@@ -1,0 +1,79 @@
+.header {
+    background-color: $main-bg;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    height: $header-height;
+
+    .container {
+        height: 100%
+    }
+
+    &-logo {
+        @include flex(center, center);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        img {
+            height: 28px;
+        }
+
+        ;
+    }
+
+    &-menu {
+        @include flex(center, space-between);
+        font-size: 1.5rem;
+        height: 100%;
+
+        &-mobile-toggle {
+            display: none;
+        }
+
+
+        &-item ~ &-item {
+            margin-left: 39px;
+        }
+
+        &-item.active {
+            font-weight: 600;
+            color: $main-color;
+        }
+
+        &-item:hover {
+            color: $main-color !important;
+        }
+
+        &-left,
+        &-right {
+            @include flex(center, center);
+            height: 100%;
+        }
+
+        &-right {
+            font-size: 2.25rem;
+
+            &-item {
+                @include flex(center, center)
+            }
+
+            @include tablet {
+                margin-left: auto
+            }
+
+            @include mobile {
+                font-size: 1.5rem;
+            }
+
+        }
+
+        &-left {
+            &-close {
+                display: none;
+            }
+        }
+    }
+
+}
