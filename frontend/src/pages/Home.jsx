@@ -7,8 +7,7 @@ const Home = () => {
   console.log(heroSliderData)
   return (
     <Helmet title='Trang chủ'>
-
-      <HeroSlider data={heroSliderData} />
+      <HeroSlider data={heroSliderData} control={true} auto={true} />
     </Helmet>
   )
 }
