@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import ARoutes from '../routes/ARoutes'
@@ -15,8 +15,9 @@ const Layout = () => {
             <ARoutes />
           </div>
         </React.Fragment>
-        <Footer />
+
       </div>
+      <Footer />
 
 
     </BrowserRouter>
