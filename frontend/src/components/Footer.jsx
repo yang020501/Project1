@@ -7,23 +7,23 @@ import logo from '../assets/images/sunshinelogo.png'
 const footerAboutLinks = [
   {
     display: "Giới thiệu",
-    path: "/about"
+    path: "/contact"
   },
   {
     display: "Liên hệ",
-    path: "/about"
+    path: "/contact"
   },
   {
     display: "Tuyển dụng ",
-    path: "/about"
+    path: "/contact"
   },
   {
     display: "Tin tức",
-    path: "/about"
+    path: "/contact"
   },
   {
     display: "Hệ thống",
-    path: "/about"
+    path: "/contact"
   }
 
 ]
@@ -105,13 +105,13 @@ const Footer = () => {
           <div className='footer-about'>
             <p>
               <Link to="/">
-                <img src={logo} className="footer-logo" alt='sunshinelogo.png'/>
+                <img src={logo} className="footer-logo" alt='sunshinelogo.png' />
               </Link>
             </p>
             <p>
-                Hướng đến mục tiêu mang lại niềm vui ăn mặc với mỗi ngày cho hàng triệu
-                người tiêu dùng Việt. Hãy cùng sunshine hướng đến một cuộc sống năng động,
-                tích cực hơn. Vì mỗi ngày là một cuộc vui.   
+              Hướng đến mục tiêu mang lại niềm vui ăn mặc với mỗi ngày cho hàng triệu
+              người tiêu dùng Việt. Hãy cùng sunshine hướng đến một cuộc sống năng động,
+              tích cực hơn. Vì mỗi ngày là một cuộc vui.
             </p>
           </div>
         </Grid>
