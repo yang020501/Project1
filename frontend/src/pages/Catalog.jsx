@@ -9,6 +9,7 @@ import { isTSEnumMember } from '@babel/types'
 import size from '../assets/fake-data/product-size'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
+import CatalogNotFound from '../components/CatalogNotFound'
 const Catalog = () => {
 
   const initFilter = {
@@ -17,11 +18,10 @@ const Catalog = () => {
     size: []
 
   }
-
   const productList = productData.getAllProducts();
-
   const [products, setProducts] = useState(productList)
   const [filter, setFilter] = useState(initFilter)
+
   const filterSelect = (type, checked, item) => {
     if (checked) {
       switch (type) {
@@ -96,6 +96,7 @@ const Catalog = () => {
             </div>
             <div className="catalog-widget-filter-content">
               {
+
                 category.map((item, index) => (
                   <div key={index} className='catalog-filter-widget-content-item'>
                     <CheckBox
@@ -157,16 +158,20 @@ const Catalog = () => {
             smCol={1}
             gap={20}>
             {
-              products.map((item, index) => (
-                <ProductCard
-                  key={index}
-                  img01={item.image01}
-                  img02={item.image02}
-                  name={item.title}
-                  price={item.price}
-                  slug={item.slug}
-                />
-              ))
+              products.length == 0 ?
+                <CatalogNotFound />
+                :
+                (products.map((item, index) => (
+                  <ProductCard
+                    key={index}
+                    img01={item.image01}
+                    img02={item.image02}
+                    name={item.title}
+                    price={item.price}
+                    slug={item.slug}
+                  />
+                ))
+                )
             }
           </Grid>
         </div>
