@@ -12,7 +12,7 @@ const ARoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<Home />}></Route>
-            <Route path='/product' element={<Product />}></Route>
+            <Route path='/catalog/:slug' element={<Product />}></Route>
             <Route path='/catalog' element={<Catalog />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/accessories' element={<Accessories />}></Route>
