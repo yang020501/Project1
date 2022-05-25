@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
 const CheckBox = props => {
-
     const inputRef = useRef(null)
     const onChange = () => {
         if (props.onChange) {

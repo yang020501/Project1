@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import Helmet from '../components/Helmet'
-import Grid from "../components/Grid"
-import ProductCard from '../components/ProductCard'
 import category from '../assets/fake-data/category'
 import productData from '../assets/fake-data/products'
 import colors from '../assets/fake-data/product-color'
@@ -10,6 +8,7 @@ import size from '../assets/fake-data/product-size'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
 import CatalogNotFound from '../components/CatalogNotFound'
+import InfinityList from '../components/InfinityList'
 const Catalog = () => {
 
   const initFilter = {
@@ -84,12 +83,16 @@ const Catalog = () => {
   useEffect(() => {
     updateProducts();
   }, [updateProducts])
+  const filterRef = useRef(null)
 
+  const showHideFilter = () => filterRef.current.classList.toggle('active')
   return (
     <Helmet title='Sản phẩm'>
-      {console.log(filter)}
       <div className="catalog">
-        <div className="catalog-filter">
+        <div className="catalog-filter " ref={filterRef}>
+          <div className="catalog-filter-close" onClick={() => { showHideFilter() }}>
+            <i className='bx bx-left-arrow-alt'></i>
+          </div>
           <div className="catalog-filter-widget">
             <div className="catalog-filter-widget-title">
               Danh mục sản phẩm
@@ -151,29 +154,16 @@ const Catalog = () => {
             </div>
           </div>
         </div>
+        <div className="catalog-filter-toggle">
+          <Button size="sm" onclick={() => { showHideFilter() }}>bộ lọc</Button>
+        </div>
         <div className="catalog-content">
-          <Grid
-            col={3}
-            mdCol={2}
-            smCol={1}
-            gap={20}>
-            {
-              products.length == 0 ?
-                <CatalogNotFound />
-                :
-                (products.map((item, index) => (
-                  <ProductCard
-                    key={index}
-                    img01={item.image01}
-                    img02={item.image02}
-                    name={item.title}
-                    price={item.price}
-                    slug={item.slug}
-                  />
-                ))
-                )
-            }
-          </Grid>
+          {
+            products.length == 0 ?
+              <CatalogNotFound />
+              :
+              <InfinityList data={products} />
+          }
         </div>
       </div>
     </Helmet>
