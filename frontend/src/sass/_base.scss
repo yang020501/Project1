@@ -12,6 +12,9 @@
 html {
     font-size: 13px;
 
+    @include mobile {
+        font-size: 11px;
+    }
 }
 
 body {
@@ -21,9 +24,11 @@ body {
 ul {
     list-style-type: none;
 }
-img{
+
+img {
     max-width: 100%;
 }
+
 a {
     text-decoration: none;
     color: unset;

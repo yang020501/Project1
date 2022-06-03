@@ -5,20 +5,19 @@ import Section, { SectionBody, SectionTitle } from '../components/Section'
 import Grid from '../components/Grid'
 import ProductCard from '../components/ProductCard'
 import { useParams } from 'react-router-dom'
+import ProductView from '../components/ProductView'
 const Product = props => {
   const { slug } = useParams();
   const product = productData.getProductBySlug(slug)
   const relatedProducts = productData.getProducts(8)
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+  }, [product])
   return (
     <Helmet title={product.title}>
       <Section>
         <SectionBody>
-          {
-            product.title
-          }
+          <ProductView product={product} />
         </SectionBody>
       </Section>
       <Section>
