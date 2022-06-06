@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../redux/shopping-cart/cartItemsSlice'
 const ProductView = props => {
     let navigate = useNavigate();
-    const product = props.product
+    const dispatch = useDispatch();
+    let product = props.product
+    if (product === undefined) product = {
+        price: 0,
+        title: "",
+        colors: [],
+        size: []
+    }
     const [previewImg, setPreviewImage] = useState(product.image01)
     const [descriptionExpand, setDescriptionExpand] = useState(false)
     const [color, setColor] = useState(undefined)
@@ -31,10 +40,27 @@ const ProductView = props => {
         return true
     }
     const addToCart = () => {
-        if (check()) { console.log({ color, size, quantity }); }
+        if (check()) {
+            dispatch(addItem({
+                slug: product.slug,
+                color: color,
+                size: size,
+                quantity: quantity,
+                price: product.price
+
+            }))
+        }
     }
     const gotoCart = () => {
         if (check()) {
+            dispatch(addItem({
+                slug: product.slug,
+                color: color,
+                size: size,
+                quantity: quantity,
+                price: product.price
+
+            }))
 
             navigate("/cart")
         }
@@ -163,7 +189,7 @@ const ProductView = props => {
 }
 
 ProductView.propTypes = {
-    product: PropTypes.object.isRequired
+    product: PropTypes.object
 
 }
 
