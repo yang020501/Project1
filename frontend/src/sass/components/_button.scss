@@ -22,8 +22,9 @@
     &-txt {
         padding: 1rem 2rem;
     }
-    &-icon{
-        @include flex(center,center);
+
+    &-icon {
+        @include flex(center, center);
         font-size: 2rem;
         position: absolute;
         left: 0;
@@ -33,16 +34,24 @@
         transform: translateX(-100%);
 
     }
-    &-animate:hover &-txt{
+
+    &-animate:hover &-txt {
         transform: translateX(100%);
     }
-    &-animate:hover &-icon{
+
+    &-animate:hover &-icon {
         transform: translateX(0);
     }
-    &-sm{
+
+    &-sm {
         font-size: 1rem;
     }
-    &-sm &-txt{
+
+    &-sm &-txt {
         padding: 0.7rem 1.5rem;
+    }
+
+    &-block {
+        width: 100%;
     }
 }

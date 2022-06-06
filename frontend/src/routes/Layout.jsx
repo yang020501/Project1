@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ProductViewModal from '../components/ProductViewModal'
 import { BrowserRouter } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -17,6 +17,7 @@ const Layout = () => {
         </React.Fragment>
       </div>
       <Footer />
+      <ProductViewModal />
     </BrowserRouter>
 
   )
