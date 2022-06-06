@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/images/sunshinelogo.png'
+import Searchbar from './Searchbar'
+import productData from '../assets/fake-data/products'
 
 const mainNav = [
     {
@@ -81,7 +83,7 @@ const Header = () => {
                     </div>
                     <div className="header-menu-right">
                         <div className="header-menu-item header-menu-right-item">
-                            <i className='bx bx-search' />
+                            <Searchbar placeholder={"Tìm kiếm sản phẩm...."} data={productData.getAllProducts()} />
                         </div>
                         <div className="header-menu-item header-menu-right-item">
                             <Link to="/cart">
