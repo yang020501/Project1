@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 
 const Searchbar = ({ placeholder, data }) => {
-    console.log(data);
+ 
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
 
     const handleFilter = (event) => {
         const searchWord = event.target.value;
-        setWordEntered(searchWord.toLowerCase());
+        setWordEntered(searchWord);
         const newFilter = data.filter((value) => {
             return normalizeStr(value.title).toLowerCase().includes(searchWord.toLowerCase());
         });
@@ -35,14 +35,14 @@ const Searchbar = ({ placeholder, data }) => {
     };
     return (
         <div className="search">
-            <div className="searchInputs">
+            <div className="search-inputs">
                 <input
                     type="text"
                     placeholder={placeholder}
                     value={wordEntered}
                     onChange={handleFilter}
                 />
-                <div className="searchIcon">
+                <div className="search-icon">
                     {filteredData.length === 0 ? (
                         <SearchIcon />
                     ) : (
@@ -50,12 +50,12 @@ const Searchbar = ({ placeholder, data }) => {
                     )}
                 </div>
             </div>
-            <div className={`dataResult ${filteredData.length !== 0 ? 'active' : ''}`}>
+            <div className={`search-data ${filteredData.length !== 0 ? 'active' : ''}`}>
                 {filteredData.length != 0 && (
 
                     filteredData.slice(0, 15).map((value, key) => {
                         return (
-                            <Link className="dataItem" to={`/catalog/${value.slug}`}>
+                            <Link key={key} className="search-data-item" to={`/catalog/${value.slug}`}>
                                 <p>{value.title} </p>
                             </Link>
 

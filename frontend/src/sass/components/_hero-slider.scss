@@ -112,7 +112,7 @@
             flex-grow: 1;
             position: relative;
             height: 100%;
-            z-index: 99;
+            z-index: 98;
             pointer-events: none;
 
             @include tablet {
@@ -120,7 +120,7 @@
                 height: 60%;
                 @include flex(center, center);
                 flex-grow: unset;
-                z-index: 98;
+                z-index: 97;
             }
 
             img {
