@@ -11,11 +11,11 @@ import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
 import banner from '../assets/images/banner.png'
 const Home = () => {
- 
+
   return (
     <Helmet title='Trang chủ'>
       <HeroSlider data={heroSliderData} control={true} auto={true} timeOut={3000} />
-      //
+
       <Section>
         <SectionBody>
           <Grid
@@ -25,7 +25,7 @@ const Home = () => {
             gap={20}
           >
             {policy.map((item, index) => (
-              <Link key={index} to="/policy">
+              <Link key={index} to="/">
                 <PolicyCard
 
                   name={item.name}
@@ -39,7 +39,7 @@ const Home = () => {
           </Grid>
         </SectionBody>
       </Section>
-      //
+
       <Section>
         <SectionTitle>
           Top sản phẩm bán chạy
@@ -69,7 +69,7 @@ const Home = () => {
           </Grid>
         </SectionBody>
       </Section>
-      //
+
       <Section>
         <SectionTitle>
           sản phẩm mới
@@ -100,14 +100,13 @@ const Home = () => {
         </SectionBody>
       </Section>
 
-      //
       <Section>
         <Link to="/catalog">
           <img src={banner} alt="" />
         </Link>
       </Section>
 
-      //
+
       <Section>
         <SectionTitle>
           phổ biến
