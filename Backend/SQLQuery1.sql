@@ -10,18 +10,18 @@ create table Users(
 
 create table Category(
 	id varchar(10) primary key,
-	name varchar(50),
-	slug varchar(max)
+	display varchar(50),
+	categorySlug varchar(max)
 )
 
 create table Product(
 	id varchar(10) primary key,
-	name varchar(100),
+	title varchar(100),
 	id_cate varchar(10),
 	images varchar(max),
 	price int,
 	slug varchar(100),
-	color varchar(100),
+	colors varchar(100),
 	size varchar(50),
 	descriptions varchar(max)
 
