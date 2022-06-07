@@ -10,7 +10,8 @@ create table Users(
 
 create table Category(
 	id varchar(10) primary key,
-	name varchar(50)
+	name varchar(50),
+	slug varchar(max)
 )
 
 create table Product(
@@ -46,7 +47,16 @@ create table CartInfo(
 	foreign key (product_id) references Product(id)
 )
 
-insert into Category values ('erq135r5to', 'ao quan');
-insert into Category values ('rqt6yu748o', 'phu kien')
+insert into Category values ('erq200113r', 'ao thun', 'ao-thung');
+insert into Category values ('erq135r5to', 'quan thun', 'quan-thung');
+insert into Category values ('erq55122d1', 'quan kaki', 'quan-kaki');
+insert into Category values ('erq231146o', 'ao len', 'ao-len');
+insert into Category values ('rqt6yu748o', 'phu kien', 'phu-kien')
 
-insert into Product values ('trwyhnbd47', 'ao thung nam', 'erq135r5to', 'null', '900000', 'null', 'xanh', 'M', 'lalalalla')
+insert into Product values ('trwyhnbd47', 'ao thun nam', 'erq200113r', 'null', '900000', 'null', 'xanh', 'M', 'lalalalla')
+insert into Product values ('74516ffssg', 'ao thun nu', 'erq200113r', 'null', '900000', 'null', 'do', 'M,X', 'lalalalla')
+insert into Product values ('tf6234ytfa', 'quan thun nam', 'erq135r5to', 'null', '900000', 'null', 'tim', 'S', 'lalalalla')
+insert into Product values ('67234cccas', 'quan kaki nam', 'erq55122d1', 'null', '900000', 'null', 'vang', 'XL', 'lalalalla')
+insert into Product values ('awsdg52345', 'ao len', 'erq231146o', 'null', '900000', 'null', 'den', 'S', 'lalalalla')
+insert into Product values ('asd5567111', 'vong tay go', 'rqt6yu748o', 'null', '1400000', 'null', 'xanh', '', 'memememe')
+insert into Product values ('asc623ggg1', 'nhan deo', 'rqt6yu748o', 'null', '5600000', 'null', 'do', '', 'memememe')
