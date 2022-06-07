@@ -20,9 +20,25 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
+    public ProductDto getDetail_byID(String id) {
+        return productRepo.getDetail_byID(id);
+    }
+
+    @Override
+    public List<ProductDto> getAll_byCateID(String id_cate) {
+        return productRepo.getAll_byCateID(id_cate);
+    }
+
+    @Override
+    public List<ProductDto> getProduct_byCateSlug(String slug) {
+        return productRepo.getProduct_byCateSlug(slug);
+    }
+
+    @Override
     public void add(ProductDto product) {
 
     }
+
     @Override
     public void update(ProductDto product) {
 
