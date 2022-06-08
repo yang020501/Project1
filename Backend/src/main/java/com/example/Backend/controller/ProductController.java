@@ -75,5 +75,16 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/slug/{slug}")
+    public Object getAll_bySlug(@PathVariable String slug){
+        try {
+            List<ProductDto> product_list = productService.getProduct_bySlug(slug);
+            return new ResponseEntity<List<ProductDto>>(product_list, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

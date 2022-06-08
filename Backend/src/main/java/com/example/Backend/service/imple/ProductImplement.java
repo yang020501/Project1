@@ -35,6 +35,11 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
+    public List<ProductDto> getProduct_bySlug(String slug) {
+        return productRepo.getProduct_bySlug(slug);
+    }
+
+    @Override
     public void add(ProductDto product) {}
 
     @Override
