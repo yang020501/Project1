@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { remove } from '../redux/alert-message/alertMessage'
+import { removeAlert } from '../redux/alert-message/alertMessage'
 const AlertMessage = () => {
     const alert = useSelector(state => state.alertMessage)
     const dispatch = useDispatch()
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(remove())
+            dispatch(removeAlert())
         }, 5000)
     }, [alert])
     return (
