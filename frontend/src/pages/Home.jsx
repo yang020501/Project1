@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Helmet from '../components/Helmet'
 import HeroSlider from '../components/HeroSlider'
 import Section, { SectionTitle, SectionBody } from '../components/Section'
@@ -10,8 +10,28 @@ import productData from '../assets/fake-data/products'
 import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
 import banner from '../assets/images/banner.png'
+import { apiUrl } from '../utils/constant'
+import axios from 'axios'
 const Home = () => {
+  const [rs, setRs] = useState()
+  useEffect(() => {
+    const fetchData = async () => {
 
+
+      const rss = await axios.get(`${apiUrl}/product/category_slug/quan-kaki`,
+        {
+          headers: {
+            "Cache-Control": "no-cache",
+            "Accept-Language": "en",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
+      setRs(rss.data);
+    }
+    fetchData();
+  }, [])
+  console.log(rs);
   return (
     <Helmet title='Trang chủ'>
       <HeroSlider data={heroSliderData} control={true} auto={true} timeOut={3000} />
