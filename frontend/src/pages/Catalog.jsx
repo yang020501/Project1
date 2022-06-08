@@ -87,7 +87,7 @@ const Catalog = () => {
 
   const showHideFilter = () => filterRef.current.classList.toggle('active')
   return (
-    <Helmet title='Sản phẩm'>
+    <Helmet title='Quần áo'>
       <div className="catalog">
         <div className="catalog-filter " ref={filterRef}>
           <div className="catalog-filter-close" onClick={() => { showHideFilter() }}>

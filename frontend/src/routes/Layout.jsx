@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import ARoutes from './ARoutes'
 import LoginModal from '../components/LoginModal'
 import RegisterModal from '../components/RegisterModal'
+import AlertMessage from '../components/AlertMessage'
 
 const Layout = () => {
   return (
@@ -22,6 +23,7 @@ const Layout = () => {
       <ProductViewModal />
       <LoginModal />
       <RegisterModal />
+      <AlertMessage />
     </BrowserRouter>
 
   )

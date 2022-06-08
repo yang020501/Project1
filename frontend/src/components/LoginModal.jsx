@@ -67,7 +67,7 @@ const LoginModal = () => {
                             </div>
                             <p className="text-muted text-center mt-3 mb-0">Don't have an account? <a
                                 className="text-primary ml-1">register</a></p>
-                        </div>
+                        </div>đ
                     </div>
 
                 </div>
