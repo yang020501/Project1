@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ARoutes from './ARoutes'
+import LoginModal from '../components/LoginModal'
+import RegisterModal from '../components/RegisterModal'
 
 const Layout = () => {
   return (
@@ -18,6 +20,8 @@ const Layout = () => {
       </div>
       <Footer />
       <ProductViewModal />
+      <LoginModal />
+      <RegisterModal />
     </BrowserRouter>
 
   )

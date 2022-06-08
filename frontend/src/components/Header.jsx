@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/images/sunshinelogo.png'
 import Searchbar from './Searchbar'
 import productData from '../assets/fake-data/products'
-
+import { set } from '../redux/login-sign_modal/loginSlice'
+import { useDispatch } from 'react-redux'
 const mainNav = [
     {
         display: "Trang chủ",
@@ -24,6 +25,7 @@ const mainNav = [
 ]
 
 const Header = () => {
+    const dispatch = useDispatch()
     const { pathName } = useLocation()
     const activeNav = mainNav.findIndex(e => e.path === pathName)
     const headerRef = useRef(null)
@@ -90,7 +92,7 @@ const Header = () => {
                                 <i className='bx bx-shopping-bag' />
                             </Link>
                         </div>
-                        <div className="header-menu-item header-menu-right-item">
+                        <div className="header-menu-item header-menu-right-item" onClick={() => dispatch(set())}>
                             <i className='bx bx-user' />
                         </div>
                     </div>

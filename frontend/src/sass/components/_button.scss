@@ -21,6 +21,7 @@
 
     &-txt {
         padding: 1rem 2rem;
+        color: white !important;
     }
 
     &-icon {
@@ -32,15 +33,18 @@
         height: 100%;
         width: 100%;
         transform: translateX(-100%);
+        color: white !important;
 
     }
 
     &-animate:hover &-txt {
         transform: translateX(100%);
+        color: white !important;
     }
 
     &-animate:hover &-icon {
         transform: translateX(0);
+        color: white !important;
     }
 
     &-sm {

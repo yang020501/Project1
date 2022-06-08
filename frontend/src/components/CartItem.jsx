@@ -25,8 +25,7 @@ const CartItem = props => {
         }
     }
     const removeCartitem = (obj) => {
-        dispatch(removeItem(item))
-        console.log(obj);
+        dispatch(removeItem(item))       
     }
     return (
         <div className='cart-item'>
