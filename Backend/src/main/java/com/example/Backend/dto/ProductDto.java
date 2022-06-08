@@ -110,6 +110,6 @@ public class ProductDto implements Serializable {
                 "slug = " + slug + ", " +
                 "colors = " + colors + ", " +
                 "size = " + size + ", " +
-                "descriptions = " + descriptions + ")";
+                "description = " + descriptions + ")";
     }
 }

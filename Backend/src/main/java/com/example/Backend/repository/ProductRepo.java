@@ -26,6 +26,10 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
             "p.descriptions) FROM Product p WHERE p.categorySlug = ?1")
     List<ProductDto> getProduct_byCateSlug(String categorySlug);
 
+    @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
+            "p.descriptions) FROM Product p WHERE p.slug = ?1")
+    List<ProductDto> getProduct_bySlug(String slug);
+
 
 
 
