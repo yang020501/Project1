@@ -30,22 +30,14 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getProduct_byCateSlug(String slug) {
-        return productRepo.getProduct_byCateSlug(slug);
+    public List<ProductDto> getProduct_byCateSlug(String categorySlug) {
+        return productRepo.getProduct_byCateSlug(categorySlug);
     }
 
     @Override
-    public void add(ProductDto product) {
-
-    }
+    public void add(ProductDto product) {}
 
     @Override
-    public void update(ProductDto product) {
+    public void update(ProductDto product) {}
 
-    }
-
-    @Override
-    public List<ProductDto> getProductsByCategory(String categorySlug) {
-        return null;
-    }
 }

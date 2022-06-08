@@ -1,7 +1,6 @@
 package com.example.Backend.controller;
 
 import com.example.Backend.dto.ProductDto;
-import com.example.Backend.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +52,10 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/category_slug/{slug}")
-    public Object getProduct_byCateSlug(@PathVariable String slug){
+    @GetMapping("/category_slug/{categorySlug}")
+    public Object getProduct_byCateSlug(@PathVariable String categorySlug){
         try {
-            List<ProductDto> product_list = productService.getProduct_byCateSlug(slug);
+            List<ProductDto> product_list = productService.getProduct_byCateSlug(categorySlug);
             List<ProductDto> same_cate_list = new LinkedList<ProductDto>();
             int count = 0;
             if(!product_list.isEmpty())
