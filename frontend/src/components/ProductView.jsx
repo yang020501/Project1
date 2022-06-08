@@ -4,6 +4,7 @@ import Button from './Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../redux/shopping-cart/cartItemsSlice'
+import { setAlert } from '../redux/alert-message/alertMessage'
 import { set } from '../redux/alert-message/alertMessage'
 import numberWithCommas from '../utils/numberWithCommas'
 const ProductView = props => {
@@ -32,16 +33,16 @@ const ProductView = props => {
     }
     const check = () => {
         if (color === undefined) {
-            dispatch(set({
+            dispatch(setAlert({
                 message: "     Vui lòng chọn màu sắc",
-                type:"warning"
+                type: "warning"
             }))
             return false
         }
         if (size === undefined) {
-            dispatch(set({
+            dispatch(setAlert({
                 message: "     Vui lòng chọn kích cỡ",
-                type:"warning"
+                type: "warning"
             }))
             return false
         }
@@ -56,6 +57,10 @@ const ProductView = props => {
                 quantity: quantity,
                 price: product.price
 
+            }))
+            dispatch(setAlert({
+                message: "Thêm vào giỏ thành công",
+                type: "success"
             }))
         }
     }
