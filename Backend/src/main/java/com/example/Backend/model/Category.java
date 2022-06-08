@@ -1,6 +1,5 @@
 package com.example.Backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,16 +9,14 @@ import javax.persistence.Table;
 public class Category {
     @Id
     private String id;
-    private String name;
-    private String slug;
+    private String display;
 
     public Category() {
     }
 
-    public Category(String id, String name, String slug) {
+    public Category(String id, String display) {
         this.id = id;
-        this.name = name;
-        this.slug = slug;
+        this.display = display;
     }
 
     public String getId() {
@@ -30,19 +27,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplay() {
+        return display;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
+    public void setDisplay(String display) {
+        this.display = display;
     }
 }

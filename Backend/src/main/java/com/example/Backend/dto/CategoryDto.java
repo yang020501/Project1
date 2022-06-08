@@ -5,25 +5,19 @@ import java.util.Objects;
 
 public class CategoryDto implements Serializable {
     private final String id;
-    private final String name;
-    private final String slug;
+    private final String display;
 
-    public CategoryDto(String id, String name, String slug) {
+    public CategoryDto(String id, String display) {
         this.id = id;
-        this.name = name;
-        this.slug = slug;
+        this.display = display;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSlug() {
-        return slug;
+    public String getDisplay() {
+        return display;
     }
 
     @Override
@@ -32,20 +26,18 @@ public class CategoryDto implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         CategoryDto entity = (CategoryDto) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.name, entity.name) &&
-                Objects.equals(this.slug, entity.slug);
+                Objects.equals(this.display, entity.display);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, slug);
+        return Objects.hash(id, display);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "name = " + name + ", " +
-                "slug = " + slug + ")";
+                "display = " + display + ")";
     }
 }

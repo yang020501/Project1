@@ -5,23 +5,27 @@ import java.util.Objects;
 
 public class ProductDto implements Serializable {
     private final String id;
-    private final String name;
+    private final String title;
     private final String id_cate;
-    private final String images;
+    private final String categorySlug;
+    private final String image1;
+    private final String image2;
     private final long price;
     private final String slug;
-    private final String color;
+    private final String colors;
     private final String size;
     private final String descriptions;
 
-    public ProductDto(String id, String name, String id_cate, String image, long price, String slug, String color, String size, String description) {
+    public ProductDto(String id, String title, String id_cate, String categorySlug, String image1, String image2, long price, String slug, String color, String size, String description) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.id_cate = id_cate;
-        this.images = image;
+        this.categorySlug = categorySlug;
+        this.image1 = image1;
+        this.image2 = image2;
         this.price = price;
         this.slug = slug;
-        this.color = color;
+        this.colors = color;
         this.size = size;
         this.descriptions = description;
     }
@@ -30,16 +34,24 @@ public class ProductDto implements Serializable {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getId_cate() {
         return id_cate;
     }
 
-    public String getImage() {
-        return images;
+    public String getCategorySlug() {
+        return categorySlug;
+    }
+
+    public String getImage1() {
+        return image1;
+    }
+
+    public String getImage2() {
+        return image2;
     }
 
     public long getPrice() {
@@ -51,7 +63,7 @@ public class ProductDto implements Serializable {
     }
 
     public String getColor() {
-        return color;
+        return colors;
     }
 
     public String getSize() {
@@ -68,32 +80,36 @@ public class ProductDto implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         ProductDto entity = (ProductDto) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.name, entity.name) &&
+                Objects.equals(this.title, entity.title) &&
                 Objects.equals(this.id_cate, entity.id_cate) &&
-                Objects.equals(this.images, entity.images) &&
+                Objects.equals(this.categorySlug, entity.categorySlug) &&
+                Objects.equals(this.image1, entity.image1) &&
+                Objects.equals(this.image2, entity.image2) &&
                 Objects.equals(this.price, entity.price) &&
                 Objects.equals(this.slug, entity.slug) &&
-                Objects.equals(this.color, entity.color) &&
+                Objects.equals(this.colors, entity.colors) &&
                 Objects.equals(this.size, entity.size) &&
                 Objects.equals(this.descriptions, entity.descriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, id_cate, images, price, slug, color, size, descriptions);
+        return Objects.hash(id, title, id_cate, categorySlug, image1, image2, price, slug, colors, size, descriptions);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "name = " + name + ", " +
+                "title = " + title + ", " +
                 "id_cate = " + id_cate + ", " +
-                "image = " + images + ", " +
+                "categorySlug = " + categorySlug + ", " +
+                "image1 = " + image1 + ", " +
+                "image2 = " + image2 + ", " +
                 "price = " + price + ", " +
                 "slug = " + slug + ", " +
-                "color = " + color + ", " +
+                "colors = " + colors + ", " +
                 "size = " + size + ", " +
-                "description = " + descriptions + ")";
+                "descriptions = " + descriptions + ")";
     }
 }

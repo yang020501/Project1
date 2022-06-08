@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
-    @Query("SELECT new com.example.Backend.dto.CategoryDto(p.id, p.name, p.slug) FROM Category p")
+    @Query("SELECT new com.example.Backend.dto.CategoryDto(p.id, p.display) FROM Category p")
     List<CategoryDto> getAll();
+
 }

@@ -11,14 +11,31 @@ import javax.persistence.Table;
 public class Product {
     @Id
     private String id;
-    private String name;
+    private String title;
     private String id_cate;
-    private String images;
+    private String categorySlug;
+    private String image1;
+    private String image2;
     private long price;
     private String slug;
-    private String color;
+    private String colors;
     private String size;
     private String descriptions;
+
+    public Product(String id, String title, String id_cate, String categorySlug, String image1, String image2,
+                   long price, String slug, String color, String size, String description) {
+        this.id = id;
+        this.title = title;
+        this.id_cate = id_cate;
+        this.categorySlug = categorySlug;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.price = price;
+        this.slug = slug;
+        this.colors = color;
+        this.size = size;
+        this.descriptions = description;
+    }
 
     public long getPrice() {
         return price;
@@ -28,17 +45,6 @@ public class Product {
         this.price = price;
     }
 
-    public Product(String id, String name, String id_cate,String image, long price, String slug, String color, String size, String description) {
-        this.id = id;
-        this.name = name;
-        this.id_cate = id_cate;
-        this.images = image;
-        this.price = price;
-        this.slug = slug;
-        this.color = color;
-        this.size = size;
-        this.descriptions = description;
-    }
 
     public Product() {
     }
@@ -51,20 +57,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getImage1() {
+        return image1;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage1(String image) {
+        this.image1 = image;
     }
 
-    public String getImage() {
-        return images;
+    public String getImage2() {
+        return image2;
     }
 
-    public void setImage(String image) {
-        this.images = image;
+    public void setImage2(String image) {
+        this.image2 = image;
     }
 
     public String getSlug() {
@@ -76,11 +82,11 @@ public class Product {
     }
 
     public String getColor() {
-        return color;
+        return colors;
     }
 
     public void setColor(String color) {
-        this.color = color;
+        this.colors = color;
     }
 
     public String getSize() {
@@ -104,5 +110,21 @@ public class Product {
     }
     public void setId_cate(String id_cate) {
         this.id_cate = id_cate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCategorySlug() {
+        return categorySlug;
+    }
+
+    public void setCategorySlug(String categorySlug) {
+        this.categorySlug = categorySlug;
     }
 }
