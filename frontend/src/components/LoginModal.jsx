@@ -46,7 +46,6 @@ const LoginModal = () => {
                                                         <input type="password" className="form-control" id="exampleInputPassword1" />
                                                     </div>
                                                     <button type="submit" className="btn btn-theme">Login</button>
-                                                    <a className="forgot-link float-right text-primary">Forgot password?</a>
                                                 </form>
                                             </div>
                                         </div>
@@ -67,7 +66,7 @@ const LoginModal = () => {
                             </div>
                             <p className="text-muted text-center mt-3 mb-0">Don't have an account? <a
                                 className="text-primary ml-1">register</a></p>
-                        </div>đ
+                        </div>
                     </div>
 
                 </div>

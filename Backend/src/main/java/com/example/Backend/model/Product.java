@@ -23,7 +23,7 @@ public class Product {
     private String descriptions;
 
     public Product(String id, String title, String id_cate, String categorySlug, String image1, String image2,
-                   long price, String slug, String color, String size, String description) {
+                   long price, String slug, String colors, String size, String description) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
@@ -32,7 +32,7 @@ public class Product {
         this.image2 = image2;
         this.price = price;
         this.slug = slug;
-        this.colors = color;
+        this.colors = colors;
         this.size = size;
         this.descriptions = description;
     }
@@ -85,8 +85,8 @@ public class Product {
         return colors;
     }
 
-    public void setColor(String color) {
-        this.colors = color;
+    public void setColor(String colors) {
+        this.colors = colors;
     }
 
     public String getSize() {
