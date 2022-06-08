@@ -4,10 +4,7 @@ import com.example.Backend.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.Backend.service.ProductService;
 
 import java.util.LinkedList;
@@ -18,6 +15,7 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
 
     @GetMapping("")
     public Object getAll() {
@@ -30,6 +28,7 @@ public class ProductController {
         }
     }
 
+
     @GetMapping("/{id}")
     public Object getDetail_byID(@PathVariable String id){
         try {
@@ -41,6 +40,7 @@ public class ProductController {
         }
     }
 
+
     @GetMapping("/category_id/{id_cate}")
     public Object getAll_byCateID(@PathVariable String id_cate){
         try {
@@ -51,6 +51,7 @@ public class ProductController {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @GetMapping("/category_slug/{categorySlug}")
     public Object getProduct_byCateSlug(@PathVariable String categorySlug){
@@ -75,6 +76,7 @@ public class ProductController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/slug/{slug}")
     public Object getAll_bySlug(@PathVariable String slug){
         try {
