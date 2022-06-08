@@ -16,22 +16,13 @@ const Home = () => {
   const [rs, setRs] = useState()
   useEffect(() => {
     const fetchData = async () => {
-
-
-      const rss = await axios.get(`${apiUrl}/product/category_slug/quan-kaki`,
-        {
-          headers: {
-            "Cache-Control": "no-cache",
-            "Accept-Language": "en",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
-          }
-        })
-      setRs(rss.data);
+      const rss = await axios.get(`http://localhost:8080/product/`)
+      console.log(rss.data);
+      setRs(rss);
     }
     fetchData();
   }, [])
-  console.log(rs);
+  console.log();
   return (
     <Helmet title='Trang chủ'>
       <HeroSlider data={heroSliderData} control={true} auto={true} timeOut={3000} />
