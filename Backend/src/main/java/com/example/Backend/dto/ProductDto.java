@@ -16,7 +16,7 @@ public class ProductDto implements Serializable {
     private final String size;
     private final String descriptions;
 
-    public ProductDto(String id, String title, String id_cate, String categorySlug, String image1, String image2, long price, String slug, String color, String size, String description) {
+    public ProductDto(String id, String title, String id_cate, String categorySlug, String image1, String image2, long price, String slug, String colors, String size, String description) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
@@ -25,7 +25,7 @@ public class ProductDto implements Serializable {
         this.image2 = image2;
         this.price = price;
         this.slug = slug;
-        this.colors = color;
+        this.colors = colors;
         this.size = size;
         this.descriptions = description;
     }
@@ -110,6 +110,6 @@ public class ProductDto implements Serializable {
                 "slug = " + slug + ", " +
                 "colors = " + colors + ", " +
                 "size = " + size + ", " +
-                "description = " + descriptions + ")";
+                "descriptions = " + descriptions + ")";
     }
 }
