@@ -15,16 +15,31 @@ $header-shrink-height: 90px;
 
 $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-$colors: ("blue": #4267b2,
+$colors: (
+    "blue": #4267b2,
     "orange": #fbb96b,
     "pink": #fe7e73,
     "white": #fff,
     "black": #000,
     "main": $main-color,
     "red": #ff0000,
+    "purple": purple,
+    "brown": brown,
+    "gray": gray,
+    "green":green
 );
 
 $mobile-width: 600px;
 $tablet-width: 1024px;
 
-$numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8);
+$numbers: (
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+);
