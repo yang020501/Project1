@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Helmet from '../components/Helmet'
 import CartItem from '../components/CartItem'
 import Button from '../components/Button'
@@ -16,12 +16,12 @@ const Cart = () => {
   const productList = useSelector(state => state.productSlice.value)
   const user = useSelector(state => state.userState.user)
   const dispatch = useDispatch()
-
+  let navigate = useNavigate()
   const gotoOrder = () => {
-    if (user) {
-
+    if (!user) {
+      navigate('/order')
     }
-    else {
+    /* else {
       setTimeout(() => {
         dispatch(setLoginModal())
       }, 1500)
@@ -30,7 +30,7 @@ const Cart = () => {
         type: "danger",
       }))
 
-    }
+    } */
   }
   const getCartItemsInfo = (cartItems) => {
     if (productList.length > 0) {
