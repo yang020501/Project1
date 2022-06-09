@@ -18,11 +18,13 @@
             width: 100%;
         }
 
-        &-list {
+        &-list { 
             width: 15%;
+          
 
             &-item {
                 cursor: pointer;
+                margin-bottom: 15px;
                 
             }
         }

@@ -77,8 +77,8 @@ const RegisterModal = () => {
 
                             </div>
 
-                            <p className="text-muted text-center mt-3 mb-0 d-flex justify-content-center" >Already have an account? &nbsp;<div
-                                className="text-primary ml-1 modalmove" onClick={() => gotoLogin()}> Login</div></p>
+                            <div className="text-muted text-center mt-3 mb-0 d-flex justify-content-center" >Already have an account? &nbsp;<div
+                                className="text-primary ml-1 modalmove" onClick={() => gotoLogin()}> Login</div></div>
 
                         </div>
 

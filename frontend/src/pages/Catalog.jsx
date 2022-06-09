@@ -19,7 +19,6 @@ const Catalog = () => {
     size: []
 
   }
-  /*   const productList = productData.getAllProducts(); */
   const [productList, setProductList] = useState();
   const [products, setProducts] = useState()
   const [filter, setFilter] = useState(initFilter)

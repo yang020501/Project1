@@ -21,7 +21,7 @@ const CartItem = props => {
 
         }
         if (opt === '-') {
-            dispatch(updateItem({ ...item, quantity: quantity - 1 }))
+            dispatch(updateItem({ ...item, quantity: quantity - 1 > 0 ? quantity - 1 : 1 }))
         }
     }
     const removeCartitem = (obj) => {
