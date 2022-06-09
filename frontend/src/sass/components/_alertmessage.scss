@@ -1,12 +1,12 @@
 .alert-message {
     width: max-content;
-    z-index: 102;
+    z-index: 999;
     position: fixed;
     top: 0;
     left: 40%;
     visibility: hidden;
     transition: .5s ease;
-
+    
 
     .alert {
         padding: 1.5rem !important;

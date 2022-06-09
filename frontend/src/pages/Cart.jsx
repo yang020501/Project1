@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { apiUrl } from '../utils/constant'
-import productData from '../assets/fake-data/products'
 import Helmet from '../components/Helmet'
 import CartItem from '../components/CartItem'
 import Button from '../components/Button'
 import numberWithCommas from '../utils/numberWithCommas'
 import { getAllProduct } from '../redux/product/productSlice'
-
+import { setAlert } from '../redux/alert-message/alertMessage'
+import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
   const [cartProducts, setcartProducts] = useState([])
   const [totalProducts, settotalProducts] = useState(0)
   const [totalPrice, settotalPrice] = useState(0)
   const productList = useSelector(state => state.productSlice.value)
+  const user = useSelector(state => state.userState.user)
   const dispatch = useDispatch()
+
+  const gotoOrder = () => {
+    if (user) {
+
+    }
+    else {
+      setTimeout(() => {
+        dispatch(setLoginModal())
+      }, 1500)
+      dispatch(setAlert({
+        message: "Bạn chưa đăng nhập vui lòng đặng nhập để đặt hàng",
+        type: "danger",
+      }))
+
+    }
+  }
   const getCartItemsInfo = (cartItems) => {
     if (productList.length > 0) {
       let res = []
@@ -55,7 +70,9 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart-info-btn">
-            <Button size="block">
+            <Button size="block" onclick={() => {
+              gotoOrder()
+            }}>
               Đặt hàng
             </Button>
             <Link to="/catalog">
