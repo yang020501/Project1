@@ -3,16 +3,20 @@ import Modal from 'react-bootstrap/Modal'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import { remove } from '../redux/login-sign_modal/signSlice'
+import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
+import { removeSignModal } from '../redux/login-sign_modal/signSlice'
 const RegisterModal = () => {
     const show = useSelector(state => state.signModal.value)
     const dispatch = useDispatch()
-
+    const gotoLogin = () => {
+        dispatch(removeSignModal())
+        dispatch(setLoginModal())
+    }
 
     return (
         <Modal
             show={show}
-            onHide={() => dispatch(remove())}
+            onHide={() => dispatch(removeSignModal())}
             backdrop={"static"}
             aria-labelledby="example-custom-modal-styling-title"
         >
@@ -49,6 +53,10 @@ const RegisterModal = () => {
                                                         <label htmlFor="exampleInputPassword1">Password</label>
                                                         <input type="password" className="form-control" id="exampleInputPassword1" />
                                                     </div>
+                                                    <div className="form-group mb-5">
+                                                        <label htmlFor="exampleInputPassword1">Repeat Password</label>
+                                                        <input type="password" className="form-control" id="exampleInputPassword2" />
+                                                    </div>
                                                     <button type="submit" className="btn btn-theme">Register</button>
                                                 </form>
                                             </div>
@@ -69,8 +77,8 @@ const RegisterModal = () => {
 
                             </div>
 
-                            <p className="text-muted text-center mt-3 mb-0">Already have an account? <a 
-                                className="text-primary ml-1">login</a></p>
+                            <p className="text-muted text-center mt-3 mb-0 d-flex justify-content-center" >Already have an account? &nbsp;<div
+                                className="text-primary ml-1 modalmove" onClick={() => gotoLogin()}> Login</div></p>
 
                         </div>
 

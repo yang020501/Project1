@@ -10,13 +10,13 @@ export const loginModal = createSlice({
     name: 'loginModal',
     initialState,
     reducers: {
-        set: (state) => {
+        setLoginModal: (state) => {
             state.value = true
         },
-        remove: (state) => {
+        removeLoginModal: (state) => {
             state.value = false
         }
     }
 })
-export const { set, remove } = loginModal.actions
+export const { removeLoginModal,setLoginModal } = loginModal.actions
 export default loginModal.reducer
