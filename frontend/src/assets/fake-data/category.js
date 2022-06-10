@@ -8,8 +8,16 @@ const category = [
         categorySlug: "ao-somi"
     },
     {
+        display: "Áo len",
+        categorySlug: "ao-len"
+    },
+    {
         display: "Quần jean",
         categorySlug: "quan-jean"
+    },
+    {
+        display: "Quần kaki",
+        categorySlug: "quan-kaki"
     }
 ]
 

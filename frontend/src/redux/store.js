@@ -6,6 +6,8 @@ import signSlice from "./login-sign_modal/signSlice";
 import alertMessage from "./alert-message/alertMessage";
 import productSlice from "./product/productSlice";
 import userState from "./user/userState";
+import accessoriesSlice from "./product/accessoriesSlice";
+import clothesSlice from "./product/clothesSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +17,9 @@ export const store = configureStore({
         signModal: signSlice,
         alertMessage: alertMessage,
         productSlice: productSlice,
-        userState: userState
+        userState: userState,
+        accessoriesSlice: accessoriesSlice,
+        clothesSlice: clothesSlice
 
     }
 })

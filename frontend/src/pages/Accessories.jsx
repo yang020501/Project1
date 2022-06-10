@@ -1,23 +1,25 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import Helmet from '../components/Helmet'
-import category from '../assets/fake-data/category'
-import productData from '../assets/fake-data/products'
+import category2 from '../assets/fake-data/category2'
 import colors from '../assets/fake-data/product-color'
 import size from '../assets/fake-data/product-size'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
 import CatalogNotFound from '../components/CatalogNotFound'
 import InfinityList from '../components/InfinityList'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllAccessories } from '../redux/product/accessoriesSlice'
 const Accessories = () => {
-
+    const dispatch = useDispatch()
+    const Accessories = useSelector(state => state.accessoriesSlice.value)
     const initFilter = {
         category: [],
         color: [],
         size: []
 
     }
-    const productList = productData.getAllProducts();
-    const [products, setProducts] = useState(productList)
+    const [productList, setProductList] = useState();
+    const [products, setProducts] = useState()
     const [filter, setFilter] = useState(initFilter)
 
     const filterSelect = (type, checked, item) => {
@@ -65,13 +67,13 @@ const Accessories = () => {
             }
             if (filter.color.length > 0) {
                 temp = temp.filter(e => {
-                    const check = e.colors.find(color => filter.color.includes(color))
+                    const check = e.color.split(",").find(color => filter.color.includes(color))
                     return check !== undefined
                 })
             }
             if (filter.size.length > 0) {
                 temp = temp.filter(e => {
-                    const check = e.size.find(size => filter.size.includes(size))
+                    const check = e.size.split(",").find(size => filter.size.includes(size))
                     return check !== undefined
                 })
             }
@@ -83,7 +85,13 @@ const Accessories = () => {
         updateProducts();
     }, [updateProducts])
     const filterRef = useRef(null)
-
+    useEffect(() => {
+        dispatch(getAllAccessories())
+    }, [])
+    useEffect(() => {
+        setProductList(Accessories)
+        setProducts(Accessories)
+    }, [Accessories])
     const showHideFilter = () => filterRef.current.classList.toggle('active')
     return (
         <Helmet title='Quần áo'>
@@ -99,7 +107,7 @@ const Accessories = () => {
                         <div className="catalog-widget-filter-content">
                             {
 
-                                category.map((item, index) => (
+                                category2.map((item, index) => (
                                     <div key={index} className='catalog-filter-widget-content-item'>
                                         <CheckBox
                                             label={item.display}
@@ -157,11 +165,12 @@ const Accessories = () => {
                     <Button size="sm" onclick={() => { showHideFilter() }}>bộ lọc</Button>
                 </div>
                 <div className="catalog-content">
-                    {
+                    {products ?
                         products.length == 0 ?
                             <CatalogNotFound />
                             :
                             <InfinityList data={products} />
+                        : <></>
                     }
                 </div>
             </div>
