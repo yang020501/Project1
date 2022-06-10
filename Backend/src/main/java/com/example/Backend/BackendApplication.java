@@ -26,7 +26,7 @@ public class BackendApplication {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.cors().and();
+			http.cors().and().csrf().disable();
 		}
 	}
 	@Bean

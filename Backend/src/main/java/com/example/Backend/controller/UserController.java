@@ -19,16 +19,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/check_login")
+
+    @PostMapping
     public Object login(@RequestBody UserDto user){
         try {
+
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
             if(find){
                 UserDto loginer = userService.find_byUserName(user.getUsername());
-                return new ResponseEntity<UserDto>(loginer, HttpStatus.OK);
+
+                return new ResponseEntity<UserDto>(loginer, HttpStatus.ACCEPTED);
             }
-            return new ResponseEntity<String>("Login false", HttpStatus.OK);
+            return new ResponseEntity<String>("Login false", HttpStatus.NOT_ACCEPTABLE);
+
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
@@ -36,13 +40,17 @@ public class UserController {
     }
 
     @Transactional
-    @GetMapping("/sign_in")
+
+    @PostMapping("/sign_in")
+
     public Object sign(@RequestBody UserDto new_user){
         try {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
             if(find){
-                return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.OK);
+
+                return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.NOT_ACCEPTABLE);
+
             }
             String id = RandomGenerate.GenerateId(5);
             String username = new_user.getUsername();
@@ -54,8 +62,9 @@ public class UserController {
             String address2 = new_user.getAddress2();
             String address3 = new_user.getAddress3();
             userService.add(id, username, password, customer_name, email, phone, address1, address2, address3);
-            UserDto u = new UserDto(id, username, password, customer_name, email, phone, address1, address2, address3);
-            return new ResponseEntity<UserDto>(u, HttpStatus.OK);
+
+            return new ResponseEntity<String>("Add a user successfully" ,HttpStatus.CREATED);
+
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
