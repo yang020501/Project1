@@ -19,17 +19,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping
     public Object login(@RequestBody UserDto user){
         try {
-//            System.out.println(user.toString());
+
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
             if(find){
                 UserDto loginer = userService.find_byUserName(user.getUsername());
+
                 return new ResponseEntity<UserDto>(loginer, HttpStatus.ACCEPTED);
             }
             return new ResponseEntity<String>("Login false", HttpStatus.NOT_ACCEPTABLE);
+
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
@@ -37,13 +40,17 @@ public class UserController {
     }
 
     @Transactional
+
     @PostMapping("/sign_in")
+
     public Object sign(@RequestBody UserDto new_user){
         try {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
             if(find){
+
                 return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.NOT_ACCEPTABLE);
+
             }
             String id = RandomGenerate.GenerateId(5);
             String username = new_user.getUsername();
@@ -57,6 +64,7 @@ public class UserController {
             userService.add(id, username, password, customer_name, email, phone, address1, address2, address3);
 
             return new ResponseEntity<String>("Add a user successfully" ,HttpStatus.CREATED);
+
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);

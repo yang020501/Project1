@@ -26,6 +26,22 @@ const colors = [
     {
         display: "Xanh dương",
         color: "blue"
+    },
+    {
+        display: "Xanh lá",
+        color: "green"
+    },
+    {
+        display: "Xám",
+        color: "gray"
+    }, {
+
+        display: "Nâu",
+        color: "brown"
+    },
+    {
+        display: "Tím",
+        color: "purple"
     }
 ]
 
