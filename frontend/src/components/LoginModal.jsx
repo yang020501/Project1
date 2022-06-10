@@ -1,18 +1,59 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeLoginModal } from '../redux/login-sign_modal/loginSlice'
 import { setSignModal } from '../redux/login-sign_modal/signSlice'
+import Alert from 'react-bootstrap/Alert'
+import Form from 'react-bootstrap/Form'
+import FormGroup from 'react-bootstrap/esm/FormGroup'
+import { login } from '../redux/user/userState'
 
 const LoginModal = () => {
+    const tmp = useSelector(state => state.userState.user)
+    const initialForm = {
+        username: "",
+        password: ""
+    }
+    const [LoginForm, setLoginForm] = useState(initialForm)
     const show = useSelector(state => state.loginModal.value)
     const dispatch = useDispatch()
+    const alertRef = useRef(null)
+    const { username, password } = LoginForm
     const gotoRegister = () => {
         dispatch(removeLoginModal())
         dispatch(setSignModal())
     }
+    const [validated, setValidated] = useState(false);
+    const onLoginFormChange = e => {
+        setLoginForm({
+            ...LoginForm,
+            [e.target.name]: e.target.value,
+
+        })
+    }
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        else {
+
+            dispatch(login(LoginForm))
+        }
+
+        setValidated(true);
+    };
+    useEffect(() => {
+
+
+
+    }, [Alert])
+console.log(tmp);
     return (
         <Modal
             show={show}
@@ -42,17 +83,45 @@ const LoginModal = () => {
                                                 <p className="text-muted mt-2 mb-5">Enter your email address and password to access
                                                     admin panel.</p>
 
-                                                <form>
-                                                    <div className="form-group">
-                                                        <label htmlFor="exampleInputEmail1">Email address</label>
-                                                        <input type="email" className="form-control" id="exampleInputEmail1" />
+                                                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                                    <Form.Group >
+                                                        <Form.Label>Email</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="email"
+                                                            placeholder="Email"
+                                                            value={username}
+                                                            name="username"
+                                                            onChange={onLoginFormChange}
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please input email.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group >
+                                                        <Form.Label>Password</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="password"
+                                                            placeholder="Password"
+                                                            value={password}
+                                                            name="password"
+                                                            onChange={onLoginFormChange}
+
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please input password.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+
+                                                    <div>
+                                                        <button className="btn btn-theme mb-3 mt-3" type='submit'>Login</button>
+                                                        <Alert variant={"danger"} ref={alertRef}>
+                                                            This is a  alert—check it out!
+                                                        </Alert>
                                                     </div>
-                                                    <div className="form-group mb-5">
-                                                        <label htmlFor="exampleInputPassword1">Password</label>
-                                                        <input type="password" className="form-control" id="exampleInputPassword1" />
-                                                    </div>
-                                                    <button type="submit" className="btn btn-theme">Login</button>
-                                                </form>
+
+                                                </Form>
                                             </div>
                                         </div>
 

@@ -3,12 +3,14 @@ import axios from "axios";
 import { apiUrl } from "../../utils/constant";
 
 export const login = createAsyncThunk(
-    'user/login',
+    '/login',
     async (data, { rejectWithValue }) => {
-        const rs = await axios.get(`${apiUrl}/product`, { data: data })
+        console.log(data);
+        const rs = await axios.post(`${apiUrl}/user/check_login` )
         if (rs.status < 200 || rs.status >= 300) {
             return rejectWithValue(rs.data)
         }
+        console.log(rs.data);
         return rs.data
     }
 )
@@ -35,7 +37,7 @@ export const userState = createSlice({
         })
         builder.addCase(login.rejected, (state, action) => {
             state.loading = false;
-            state.errorMessage = action.payload.message;
+            state.errorMessage = action.payload;
         });
     }
 })
