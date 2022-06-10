@@ -8,7 +8,9 @@ import numberWithCommas from '../utils/numberWithCommas'
 import { getAllProduct } from '../redux/product/productSlice'
 import { setAlert } from '../redux/alert-message/alertMessage'
 import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
+import address from '../assets/fake-data/address.json'
 const Cart = () => {
+  console.log(address);
   const cartItems = useSelector((state) => state.cartItems.value)
   const [cartProducts, setcartProducts] = useState([])
   const [totalProducts, settotalProducts] = useState(0)
@@ -18,10 +20,10 @@ const Cart = () => {
   const dispatch = useDispatch()
   let navigate = useNavigate()
   const gotoOrder = () => {
-    if (!user) {
+    if (user) {
       navigate('/order')
     }
-    /* else {
+    else {
       setTimeout(() => {
         dispatch(setLoginModal())
       }, 1500)
@@ -30,7 +32,7 @@ const Cart = () => {
         type: "danger",
       }))
 
-    } */
+    }
   }
   const getCartItemsInfo = (cartItems) => {
     if (productList.length > 0) {
@@ -86,7 +88,7 @@ const Cart = () => {
         <div className="cart-list">
           {
             (cartProducts) ?
-              cartProducts.map((item, index) => {               
+              cartProducts.map((item, index) => {
                 return <CartItem item={item} key={index} />
               })
               : <></>

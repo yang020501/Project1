@@ -7,19 +7,18 @@ import { removeLoginModal } from '../redux/login-sign_modal/loginSlice'
 import { setSignModal } from '../redux/login-sign_modal/signSlice'
 import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
-import FormGroup from 'react-bootstrap/esm/FormGroup'
 import { login } from '../redux/user/userState'
 
 const LoginModal = () => {
-    const tmp = useSelector(state => state.userState.user)
+    const user = useSelector(state => state.userState)
     const initialForm = {
         username: "",
         password: ""
     }
     const [LoginForm, setLoginForm] = useState(initialForm)
     const show = useSelector(state => state.loginModal.value)
+    const [alert, setAlert] = useState(null)
     const dispatch = useDispatch()
-    const alertRef = useRef(null)
     const { username, password } = LoginForm
     const gotoRegister = () => {
         dispatch(removeLoginModal())
@@ -40,20 +39,33 @@ const LoginModal = () => {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            setValidated(true);
         }
         else {
-
             dispatch(login(LoginForm))
+            setValidated(false)
         }
 
-        setValidated(true);
     };
     useEffect(() => {
-
-
-
-    }, [Alert])
-console.log(tmp);
+        setTimeout(() => {
+            setAlert(null)
+        }, 3500)
+    }, [alert])
+    useEffect(() => {
+        if (user.user) {
+            dispatch(removeLoginModal())
+            setAlert(<Alert variant='success'>Đăng nhập thành công!</Alert>)
+        }
+        else  {
+            setAlert(<Alert variant='danger'>Tài khoản hoặc mật khẩu không đúng!</Alert>)
+        }
+    }, [user])
+    useEffect(() => {
+        setLoginForm(initialForm)
+        setValidated(false)
+        setAlert(null)
+    }, [show])
     return (
         <Modal
             show={show}
@@ -116,9 +128,7 @@ console.log(tmp);
 
                                                     <div>
                                                         <button className="btn btn-theme mb-3 mt-3" type='submit'>Login</button>
-                                                        <Alert variant={"danger"} ref={alertRef}>
-                                                            This is a  alert—check it out!
-                                                        </Alert>
+                                                        {alert }
                                                     </div>
 
                                                 </Form>
