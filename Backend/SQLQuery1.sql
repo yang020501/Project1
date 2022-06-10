@@ -4,8 +4,13 @@ use E_Commerce
 create table Users(
 	id varchar(5) primary key,
 	username varchar(50),
-	passwords varchar(50),
-	customer_name varchar(max)
+	password varchar(50),
+	customer_name varchar(max),
+	email varchar(max),
+	phone varchar(20),
+	address1 varchar(100),
+	address2 varchar(100),
+	address3 varchar(100),
 )
 
 create table Category(

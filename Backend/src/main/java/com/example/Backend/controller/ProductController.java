@@ -76,7 +76,6 @@ public class ProductController {
         }
     }
 
-    @CrossOrigin
     @GetMapping("/slug/{slug}")
     public Object getAll_bySlug(@PathVariable String slug){
         try {
