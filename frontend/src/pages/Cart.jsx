@@ -86,9 +86,7 @@ const Cart = () => {
         <div className="cart-list">
           {
             (cartProducts) ?
-              cartProducts.map((item, index) => {
-                console.log(productList.length);
-                console.log(item);
+              cartProducts.map((item, index) => {               
                 return <CartItem item={item} key={index} />
               })
               : <></>
