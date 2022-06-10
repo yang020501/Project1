@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import numberWithCommas from '../utils/numberWithCommas'
-
 import { useDispatch } from 'react-redux'
 import { set } from '../redux/product-modal/productModalSlice'
 
@@ -13,14 +12,14 @@ const ProductCard = props => {
         <div className='product-card'>
             <Link to={`/catalog/${props.slug}`}>
                 <div className='product-card-image'>
-                    <img src={props.img01} alt="" />
-                    <img src={props.img02} alt="" />
+                    <img src={require(`../assets/${props.img01}`)} alt="" />
+                    <img src={require(`../assets/${props.img02}`)} alt="" />
                 </div>
                 <h3 className='product-card-name'>{props.name}</h3>
                 <div className="product-card-price">
                     {numberWithCommas(Number((props.price)))} đ
                     <span className='product-card-price-old'>
-                        <del>{numberWithCommas(399999)} đ</del>
+                        <del>{numberWithCommas(props.price + 70000)} đ</del>
                     </span>
                 </div>
             </Link>
@@ -42,7 +41,7 @@ ProductCard.propTypes = {
     img01: PropTypes.string.isRequired,
     img02: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     slug: PropTypes.string.isRequired
 }
 

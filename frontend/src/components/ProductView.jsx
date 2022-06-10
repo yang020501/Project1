@@ -5,19 +5,28 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../redux/shopping-cart/cartItemsSlice'
 import { setAlert } from '../redux/alert-message/alertMessage'
-import { set } from '../redux/alert-message/alertMessage'
 import numberWithCommas from '../utils/numberWithCommas'
 const ProductView = props => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
-    let product = props.product
+    const convert = (product) => {
+        if (product) {
+            return {
+                ...product,
+                color: product.color.split(','),
+                size: product.size.split(',')
+            }
+        }
+        return undefined
+    }
+    let product = convert(props.product)
     if (product === undefined) product = {
         price: 0,
         title: "",
-        colors: [],
-        size: []
+        color: [],
+        size: [],
     }
-    const [previewImg, setPreviewImage] = useState(product.image01)
+    const [previewImg, setPreviewImage] = useState(props.product ? require(`../assets/${product.image1}`) : "")
     const [descriptionExpand, setDescriptionExpand] = useState(false)
     const [color, setColor] = useState(undefined)
     const [size, setSize] = useState(undefined)
@@ -79,20 +88,20 @@ const ProductView = props => {
         }
     }
     useEffect(() => {
-        setPreviewImage(product.image01)
+        setPreviewImage(props.product ? require(`../assets/${product.image1}`) : "")
         setQuantity(1)
         setColor(undefined)
         setSize(undefined)
-    }, [product])
+    }, [props.product])
     return (
         <div className='product'>
             <div className="product-images">
                 <div className="product-images-list">
-                    <div className="product-images-list-item" onClick={() => setPreviewImage(product.image01)}>
-                        <img src={product.image01} alt="" />
+                    <div className="product-images-list-item" onClick={() => setPreviewImage(props.product ? require(`../assets/${product.image1}`) : "")}>
+                        <img src={props.product ? require(`../assets/${product.image1}`) : ""} alt="" />
                     </div>
-                    <div className="product-images-list-item" onClick={() => setPreviewImage(product.image02)}>
-                        <img src={product.image02} alt="" />
+                    <div className="product-images-list-item" onClick={() => setPreviewImage(props.product ? require(`../assets/${product.image2}`) : "")}>
+                        <img src={props.product ? require(`../assets/${product.image2}`) : ""} alt="" />
                     </div>
                 </div>
                 <div className="product-images-main">
@@ -128,7 +137,7 @@ const ProductView = props => {
                         Màu sắc
                     </div>
                     <div className="product-info-item-list">
-                        {product.colors.map((item, index) => (
+                        {product.color.map((item, index) => (
                             <div key={index} className={`product-info-item-list-item ${color === item ? 'active' : ''}`}
                                 onClick={() => setColor(item)}
                             >

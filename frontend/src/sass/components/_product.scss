@@ -18,11 +18,14 @@
             width: 100%;
         }
 
-        &-list {
-            width: 20%;
+        &-list { 
+            width: 15%;
+          
 
             &-item {
                 cursor: pointer;
+                margin-bottom: 15px;
+                
             }
         }
 
@@ -35,7 +38,8 @@
                 position: absolute;
                 top: 0;
                 left: 50%;
-                height: 100%;
+                height: 90%;
+                width: 75%;
                 transform: translateX(-50%);
             }
         }

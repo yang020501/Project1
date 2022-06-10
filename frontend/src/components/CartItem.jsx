@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
 import numberWithCommas from '../utils/numberWithCommas';
 import { Link } from 'react-router-dom';
-import { updateItem,removeItem } from '../redux/shopping-cart/cartItemsSlice';
+import { updateItem, removeItem } from '../redux/shopping-cart/cartItemsSlice';
+
 
 const CartItem = props => {
     const [item, setItem] = useState(props.item)
     const [quantity, setquantity] = useState(props.item.quantity)
     const dispatch = useDispatch();
-
     useEffect(() => {
         setquantity(props.item.quantity)
         setItem(props.item)
@@ -18,19 +18,19 @@ const CartItem = props => {
     const updateQuantity = (opt) => {
         if (opt === '+') {
             dispatch(updateItem({ ...item, quantity: quantity + 1 }))
-            /*  setquantity(quantity + 1) */
+
         }
         if (opt === '-') {
-            dispatch(updateItem({ ...item, quantity: quantity - 1 }))
+            dispatch(updateItem({ ...item, quantity: quantity - 1 > 0 ? quantity - 1 : 1 }))
         }
     }
     const removeCartitem = (obj) => {
-        dispatch(removeItem(item))       
+        dispatch(removeItem(item))
     }
     return (
         <div className='cart-item'>
             <div className="cart-item-image">
-                <img src={item.product.image01} alt='' />
+                <img src={require(`../assets/${item.product.image1}`)} alt='' />
             </div>
             <div className="cart-item-info">
                 <div className="cart-item-info-name">

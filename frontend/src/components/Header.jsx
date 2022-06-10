@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/images/sunshinelogo.png'
 import Searchbar from './Searchbar'
-import productData from '../assets/fake-data/products'
-import { set } from '../redux/login-sign_modal/loginSlice'
+import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
 import { useDispatch } from 'react-redux'
+import axios from 'axios'
+import { setSignModal } from '../redux/login-sign_modal/signSlice'
+import { apiUrl } from '../utils/constant'
 const mainNav = [
     {
         display: "Trang chủ",
@@ -25,12 +27,17 @@ const mainNav = [
 ]
 
 const Header = () => {
+    const [productData, setProductData] = useState([])
     const dispatch = useDispatch()
     const { pathName } = useLocation()
     const activeNav = mainNav.findIndex(e => e.path === pathName)
     const headerRef = useRef(null)
+    const userRef = useRef(null)
+
+
     //scroll bar effecr header
     useEffect(() => {
+
         window.addEventListener("scroll", () => {
             if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
                 headerRef.current.classList.add('shrink')
@@ -51,8 +58,21 @@ const Header = () => {
         };
 
     }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+            const rs = await axios.get(`${apiUrl}/product`)
+            setProductData(rs.data)
+        }
+        fetchData()
+    }, [])
+    const setUserAction = () => {
+        userRef.current.classList.toggle('active')
+        console.log(userRef);
+    }
     const menuLeft = useRef(null)
-    const menuToggle = () => menuLeft.current.classList.toggle('active')
+    const menuToggle = () => {
+        menuLeft.current.classList.toggle('active')
+    }
     return (
         <div className="header " ref={headerRef}>
             <div className="container">
@@ -85,15 +105,31 @@ const Header = () => {
                     </div>
                     <div className="header-menu-right">
                         <div className="header-menu-item header-menu-right-item">
-                            <Searchbar placeholder={"Tìm kiếm sản phẩm...."} data={productData.getAllProducts()} />
+                            <Searchbar placeholder={"Tìm kiếm sản phẩm...."} data={productData} />
                         </div>
                         <div className="header-menu-item header-menu-right-item">
                             <Link to="/cart">
                                 <i className='bx bx-shopping-bag' />
                             </Link>
                         </div>
-                        <div className="header-menu-item header-menu-right-item" onClick={() => dispatch(set())}>
+                        <div className="header-menu-item header-menu-right-item" onClick={setUserAction} >
                             <i className='bx bx-user' />
+                        </div>
+                        <div className='user-collapse  ' ref={userRef} >
+                            <div className='user-collapse-item justify-content-center' onClick={() => {
+                                dispatch(setLoginModal())
+                                setUserAction()
+                            }}>
+                                Đăng nhập
+                            </div>
+                            <div className='user-collapse-item justify-content-center'
+                                onClick={() => {
+                                    dispatch(setSignModal())
+                                    setUserAction()
+                                }}
+                            >
+                                Đăng ký
+                            </div>
                         </div>
                     </div>
 

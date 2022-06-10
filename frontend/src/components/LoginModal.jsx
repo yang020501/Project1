@@ -3,15 +3,21 @@ import Modal from 'react-bootstrap/Modal'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import { remove } from '../redux/login-sign_modal/loginSlice'
+import { removeLoginModal } from '../redux/login-sign_modal/loginSlice'
+import { setSignModal } from '../redux/login-sign_modal/signSlice'
 
 const LoginModal = () => {
     const show = useSelector(state => state.loginModal.value)
     const dispatch = useDispatch()
+    const gotoRegister = () => {
+        dispatch(removeLoginModal())
+        dispatch(setSignModal())
+    }
     return (
         <Modal
             show={show}
-            onHide={() => dispatch(remove())}
+            onHide={() => dispatch(removeLoginModal())}
+            backdrop={"static"}
             aria-labelledby="example-custom-modal-styling-title"
         >
             <ModalHeader closeButton>
@@ -64,8 +70,8 @@ const LoginModal = () => {
                                     </div>
                                 </div>
                             </div>
-                            <p className="text-muted text-center mt-3 mb-0">Don't have an account? <a
-                                className="text-primary ml-1">register</a></p>
+                            <div className="text-muted text-center mt-3 mb-0 d-flex justify-content-center">Don't have an account?&nbsp; <div
+                                className="text-primary ml-1 modalmove" onClick={() => gotoRegister()}>Register</div></div>
                         </div>
                     </div>
 

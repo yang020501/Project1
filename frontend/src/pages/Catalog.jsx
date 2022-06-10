@@ -9,6 +9,8 @@ import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
 import CatalogNotFound from '../components/CatalogNotFound'
 import InfinityList from '../components/InfinityList'
+import axios from 'axios'
+import { apiUrl } from '../utils/constant'
 const Catalog = () => {
 
   const initFilter = {
@@ -17,8 +19,8 @@ const Catalog = () => {
     size: []
 
   }
-  const productList = productData.getAllProducts();
-  const [products, setProducts] = useState(productList)
+  const [productList, setProductList] = useState();
+  const [products, setProducts] = useState()
   const [filter, setFilter] = useState(initFilter)
 
   const filterSelect = (type, checked, item) => {
@@ -84,7 +86,14 @@ const Catalog = () => {
     updateProducts();
   }, [updateProducts])
   const filterRef = useRef(null)
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const rs = await axios.get(`${apiUrl}/product/`)
+      setProductList(rs.data)
+      setProducts(rs.data)
+    }
+    fetchData()
+  }, [])
   const showHideFilter = () => filterRef.current.classList.toggle('active')
   return (
     <Helmet title='Quần áo'>
@@ -158,11 +167,12 @@ const Catalog = () => {
           <Button size="sm" onclick={() => { showHideFilter() }}>bộ lọc</Button>
         </div>
         <div className="catalog-content">
-          {
+          {products ?
             products.length == 0 ?
               <CatalogNotFound />
               :
               <InfinityList data={products} />
+            : <></>
           }
         </div>
       </div>

@@ -1,0 +1,51 @@
+.order {
+    @include flex(flex-start, flex-start);
+    padding: 50px;
+    height: 100%;
+
+    &-leftcontent {
+        width: 100%;
+
+        &-main-header {
+            .breadcrumb-item a {
+                text-decoration: none;
+                color: #1990C6;
+                transition: color 0.2s ease-in-out;
+                display: inline-block;
+            }
+
+            .breadcrumb-item::before {
+                display: none;
+            }
+
+            .breadcrumb-item::after {
+                content: "";
+                display: inline-block;
+                width: 6px;
+                height: 11px;
+                vertical-align: middle;
+                margin: 0 0.5em;
+                background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjExIiBvcGFjaXR5PSIuNCIgZmlsbD0iIzAwMCI+PHBhdGggZD0iTS41MjYgMS40MDhsNCA0LjY0NS4wMTQtLjgzLTQgNC4zNTQuOTIuODQ2IDQtNC4zNTYuMzc2LS40MS0uMzYyLS40Mi00LTQuNjQ1LS45NDguODE2eiIvPjwvc3ZnPg==), none;
+            }
+
+            .breadcrumb-item-current {
+                font-weight: 500;
+                color: #4d4d4d;
+            }
+
+            .breadcrumb-item-current::after {
+                display: none;
+            }
+        }
+
+        &-main-content {
+            
+        }
+
+
+    }
+
+    &-rightcontent {
+        width: 100%;
+    }
+}

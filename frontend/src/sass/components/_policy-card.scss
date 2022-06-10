@@ -4,6 +4,7 @@
     padding-left: 0;
     box-shadow: $box-shadow;
     transition: transform 0.5s ease;
+    height: 100%;
 
     &:hover {
         transform: translateY(-20px);
@@ -13,6 +14,7 @@
         @include flex(center, center);
         width: 40%;
         color: $main-color;
+
         i {
             font-size: 3rem;
         }
