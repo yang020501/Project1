@@ -5,12 +5,12 @@ create table Users(
 	id varchar(5) primary key,
 	username varchar(50),
 	password varchar(50),
-	customer_name varchar(max),
+	customer_name nvarchar(max),
 	email varchar(max),
 	phone varchar(20),
-	address1 varchar(100),
-	address2 varchar(100),
-	address3 varchar(100),
+	address1 nvarchar(100),
+	address2 nvarchar(100),
+	address3 nvarchar(100),
 )
 
 create table Category(
@@ -128,4 +128,7 @@ insert into Product values ('amu08akrdw',N'Kính Mát Wellington','rkt5yu848e','
 
 
 
+
+insert into Users values('aaaaa','admin','admin','Nguyễn Hoàng Thái Dương','thaiduong020501@gmail.com','0366330205',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
+insert into Users values('aaaad','admin@gmail.com','admin','Nguyễn Hoàng Thái Dương','thaiduong020501@gmail.com','0366330205',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
 
