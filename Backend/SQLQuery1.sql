@@ -48,12 +48,15 @@ create table CartInfo(
 	foreign key (product_id) references Product(id)
 )
 
-insert into Category values ('erq200113r', 'ao thun');
-insert into Category values ('erqj9r5tw2', 'ao somi');
-insert into Category values ('erq231146o', 'ao len');
-insert into Category values ('erq55122d1', 'quan kaki');
-insert into Category values ('erq135r5to', 'quan jean');
-insert into Category values ('rqt6yu748o', 'phu kien')
+insert into Category values ('erq200113r', 'ao-thun');
+insert into Category values ('erqj9r5tw2', 'ao-somi');
+insert into Category values ('erq231146o', 'ao-len');
+insert into Category values ('erq55122d1', 'quan-kaki');
+insert into Category values ('erq135r5to', 'quan-jean');
+insert into Category values ('rqt6yu748o', 'that-lung')
+insert into Category values ('rkt6yu548e', 'o')
+insert into Category values ('rkt5yu848e', 'kinh')
+insert into Category values ('r0di179uhw', 'non')
 
 insert into Product values ('trwyhnbd47', 'ao thun nam', 'erq200113r','ao-thun','null', 'null', '900000', 'null', 'xanh', 'M', 'lalalalla')
 insert into Product values ('74516ffssg', 'ao thun nu', 'erq200113r','ao-thun','null', 'null', '900000', 'null', 'do', 'M,X', 'lalalalla')
@@ -99,6 +102,24 @@ insert into Product values ('ctrpbencxf',N'Quần Kaki Baggy Casual','erq55122d1
 insert into Product values ('vhtxsxt5uu',N'Quần Kaki Ống Suông','erq55122d1','quan-kaki','images/quankakiongsuong-1.png','images/quankakiongsuong-2.png',390000,'quan-kaki-ong-suong','brown,white,black','M,L,XL,XXL',N'Được thiết kế cho mọi lứa tuổi.Cạp cao vừa tạo cảm giác vừa vặn an toàn và thoải mái.Túi trước và túi sau được đặt cao, và mặt sau của quần được vát xéo để tôn lên đường nét của đôi chân bạn.Dễ mặc ngay cả với kiểu xắn gấu.Đã áp dụng quy trình xử lý đặc biệt để tạo cảm giác sờn rách khác biệt và sử dụng phương pháp nhuộm không đều được phát triển bởi Kaihara để tạo độ sâu như vải denim cổ điển.Được sản xuất với phương pháp giặt tiết kiệm nước nước do Trung Tâm Cải Tiến Jeans phát triển độc lập, giúp giảm hơn 90% lượng nước sử dụng tại thời điểm xử lý vải trong sản xuất.Chất liệu bao gồm 13,5-oz. denim dệt bằng 100% cotton Kaihara giúp tạo một cấu trúc vải mềm mại vừa phải.Chất lượng cao và giá trị lớn so với giá cả.Có sẵn những màu phổ biến nhất của chúng tôi.Màu sắc mới được thêm vào để làm thêm phong phú thêm phong cách của bạn.')
 insert into Product values ('hhjx5iyqcj',N'Quần Kaki Công sở','erq55122d1','quan-kaki','images/quankakicongso-1.png','images/quankakicongso-1.png',390000,'quan-kaki-cong-so','brown,white,black','M,L,XL,XXL',N'Được thiết kế cho mọi lứa tuổi.Cạp cao vừa tạo cảm giác vừa vặn an toàn và thoải mái.Túi trước và túi sau được đặt cao, và mặt sau của quần được vát xéo để tôn lên đường nét của đôi chân bạn.Dễ mặc ngay cả với kiểu xắn gấu.Đã áp dụng quy trình xử lý đặc biệt để tạo cảm giác sờn rách khác biệt và sử dụng phương pháp nhuộm không đều được phát triển bởi Kaihara để tạo độ sâu như vải denim cổ điển.Được sản xuất với phương pháp giặt tiết kiệm nước nước do Trung Tâm Cải Tiến Jeans phát triển độc lập, giúp giảm hơn 90% lượng nước sử dụng tại thời điểm xử lý vải trong sản xuất.Chất liệu bao gồm 13,5-oz. denim dệt bằng 100% cotton Kaihara giúp tạo một cấu trúc vải mềm mại vừa phải.Chất lượng cao và giá trị lớn so với giá cả.Có sẵn những màu phổ biến nhất của chúng tôi.Màu sắc mới được thêm vào để làm thêm phong phú thêm phong cách của bạn.')
 
+
+
+insert into Product values ('afc7s54i5m',N'Thắt Lưng Khóa Tròn Bản Mảnh','rqt6yu748o','that-lung','images/thatlungkhoatronbanmanh-1.png','images/thatlungkhoatronbanmanh-2.png',110000,'that-lung-khoa-tron','brown,white,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('aopc22oo00',N'Thắt Lưng Enamel','rqt6yu748o','that-lung','images/thatlungenamel-1.png','images/thatlungenamel-2.png',120000,'that-lung-enamel','gray,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('pcd41qrmvo',N'Thắt Lưng Vintage','rqt6yu748o','that-lung','images/thatlungvintage-1.png','images/thatlungvintage-2.png',120000,'that-lung-vintage','brown','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('8usxrqdvm7',N'Thắt Lưng Trơn','rqt6yu748o','that-lung','images/thatlungtron-1.png','images/thatlungtron-2.png',150000,'that-lung-tron','brown,black,white','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('gpvgeu9emm',N'Thắt Lưng Da Thuộc Ý Bản Mỏng','rqt6yu748o','that-lung','images/thatlungdabuocy-1.png','images/thatlungdabuocy-2.png',190000,'that-lung-da-buoc-y','brown,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('5x282bp3i3',N'Thắt Lưng Da Da Bò Sáp Ngựa Điên Ý','rqt6yu748o','that-lung','images/thatlungdaboy-1.png','images/thatlungdaboy-2.png',200000,'that-lung-da-bo-y','brown,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+
+insert into Product values ('pzvy7etfgk',N'Thắt Lưng Da Ý May Viền','rqt6yu748o','that-lung','images/thatlungyvien-1.png','images/thatlungyvien-2.png',200000,'that-lung-da-y-vien','brown,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('g092vuzwb7',N'Thắt Lưng Da Ý','rqt6yu748o','that-lung','images/thatlungy-2.png','images/thatlungy-2.png',200000,'that-lung-y','brown,black','M,L,XL',N'Thắt lưng được làm từ da 100 ％.Bề mặt được dập nổi.Kích thước dài hơn cũng phù hợp với quần, váy, áo cardigan và đầm.Dập nổi tạo thêm nét đặc biệt.')
+insert into Product values ('8usxrqwvm7',N'Ô nhỏ gọn','rkt6yu548e','o','images/onhogon-1.png','images/onhogon-2.png',100000,'o-nho-gon','brown,black,white','M,L,XL',N'Với tính năng chống tia UV được bổ sung giúp sản phẩm hiện tại cũng giữ vai trò như một sản phẩm chống nắng tốt. Giữ một chiếc ô trong túi cho cả trường hợp ngày nắng và ngày mưa.')
+insert into Product values ('t0l8rd3h2a',N'PEANUTS×Reyn Spooner UT Mũ','r0di179uhw','non','images/mupeanut-1.png','images/mupeanut-2.png',130000,'mu-spooner','gray,blue','M,L,XL',N'Sự hợp tác với thương hiệu áo sơ mi Aloha mang tính biểu tượng Reyn Spooner. UPF50 +')
+insert into Product values ('vc50259krt',N'Mũ Lưỡi Trai Vải Twill Chống UV','r0di179uhw','non','images/muluoitrai-1.png','images/muluoitrai-2.png',130000,'mu-luoi-trai','gray,blue,black','M,L,XL',N'Một chiếc mũ bóng chày đầy đủ các chức năng. Phù hợp để mang khi chơi các môn thể thao hoặc trang phục hằng ngày.')
+insert into Product values ('u5bsp4dqdl',N'Kính Mát Gọng Kim Loại Tròn','rkt5yu848e','kinh','images/kinhmatgongkimloai-1.png','images/kinhmatgongkimloai-2.png',170000,'kinh-mat-gong-kim-loai','white,black','M,L,XL',N'- Bảo vệ đôi mắt của bạn khỏi sự mệt mỏi do ánh sáng xanh gây ra bởi PC và điện thoại thông minh.-Thiết kế khung kim loại sang trọng.')
+insert into Product values ('xth0ckqz2l',N'Kính Mát Hình Giọt Nước','rkt5yu848e','kinh','images/kinhmathinhgiotnuoc-1.png','images/kinhmathinhgiotnuoc-2.png',170000,'kinh-mat-hinh-giot-nuoc','white,black,yellow','M,L,XL',N'- Bảo vệ đôi mắt của bạn khỏi sự mệt mỏi do ánh sáng xanh gây ra bởi PC và điện thoại thông minh.-Thiết kế khung kim loại sang trọng.')
+insert into Product values ('cu3bter58x',N'Kính Mát Boston Kết Hợp','rkt5yu848e','kinh','images/kinhmatboston-1.png','images/kinhmatboston-2.png',170000,'kinh-mat-boston','white,black,yellow','M,L,XL',N'- Bảo vệ đôi mắt của bạn khỏi sự mệt mỏi do ánh sáng xanh gây ra bởi PC và điện thoại thông minh.-Thiết kế khung kim loại sang trọng.')
+insert into Product values ('amu08akrdw',N'Kính Mát Wellington','rkt5yu848e','kinh','images/kinhmatwellington-2.png','images/kinhmatwellington-2.png',170000,'kinh-mat-wellington','white,black,yellow','M,L,XL',N'- Bảo vệ đôi mắt của bạn khỏi sự mệt mỏi do ánh sáng xanh gây ra bởi PC và điện thoại thông minh.-Thiết kế khung kim loại sang trọng.')
 
 
 

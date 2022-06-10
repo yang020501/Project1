@@ -1,10 +1,9 @@
 .order {
     @include flex(flex-start, flex-start);
     padding: 50px;
-    height: 100%;
 
     &-leftcontent {
-        width: 100%;
+        width: 110%;
 
         &-main-header {
             .breadcrumb-item a {
@@ -38,14 +37,27 @@
             }
         }
 
-        &-main-content {
-            
-        }
+        &-main-content {}
 
 
     }
 
     &-rightcontent {
-        width: 100%;
+        width: 90%;
+        height: 100%;
+        background-color: #fafafa;
+    }
+
+    &-rightcontent::after {
+        content: "";
+        display: block;
+        width: 50%;
+        position: absolute;
+        border-left: 2px solid #e3e3e3;
+        top: 0;
+        left: 54.4%;
+        bottom: -18%;
+        background: #fafafa;
+        z-index: -33;
     }
 }

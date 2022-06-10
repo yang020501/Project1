@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import Helmet from '../components/Helmet'
 import category from '../assets/fake-data/category'
-import productData from '../assets/fake-data/products'
 import colors from '../assets/fake-data/product-color'
-import { isTSEnumMember } from '@babel/types'
 import size from '../assets/fake-data/product-size'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
 import CatalogNotFound from '../components/CatalogNotFound'
 import InfinityList from '../components/InfinityList'
-import axios from 'axios'
-import { apiUrl } from '../utils/constant'
+import { getAllclothes } from '../redux/product/clothesSlice'
+import { useDispatch, useSelector } from 'react-redux'
 const Catalog = () => {
-
+  const Clothes = useSelector(state => state.clothesSlice.value)
+  const dispatch = useDispatch()
   const initFilter = {
     category: [],
     color: [],
@@ -68,13 +67,16 @@ const Catalog = () => {
       }
       if (filter.color.length > 0) {
         temp = temp.filter(e => {
-          const check = e.colors.find(color => filter.color.includes(color))
+          const check = e.color.split(",").find(color => filter.color.includes(color))
           return check !== undefined
         })
       }
       if (filter.size.length > 0) {
         temp = temp.filter(e => {
-          const check = e.size.find(size => filter.size.includes(size))
+          const check = e.size.split(",").find(size => {
+            console.log(filter.size);
+            return filter.size.includes(size)
+          })
           return check !== undefined
         })
       }
@@ -87,13 +89,13 @@ const Catalog = () => {
   }, [updateProducts])
   const filterRef = useRef(null)
   useEffect(() => {
-    const fetchData = async () => {
-      const rs = await axios.get(`${apiUrl}/product/`)
-      setProductList(rs.data)
-      setProducts(rs.data)
-    }
-    fetchData()
+    dispatch(getAllclothes())
   }, [])
+  useEffect(() => {
+    setProductList(Clothes)
+    setProducts(Clothes)
+  }, [Clothes])
+
   const showHideFilter = () => filterRef.current.classList.toggle('active')
   return (
     <Helmet title='Quần áo'>
