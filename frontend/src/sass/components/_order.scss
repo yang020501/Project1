@@ -47,18 +47,27 @@
 
                 &-select {
                     @include flex(center, flex-start);
+
                     &-item {
                         padding: 0.5rem;
+
+                        .invalidmess {
+                            visibility: hidden;
+
+                            .active {
+                                visibility: visible;
+                                color: #DC3545;
+                            }
+                        }
 
                     }
                 }
 
                 .active {
                     border-color: #DC3545;
-                   
-                  
                 }
-                .active:focus{
+
+                .active:focus {
                     box-shadow: 1px 1px 5px #DC3545;
                 }
             }
