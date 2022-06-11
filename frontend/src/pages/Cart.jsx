@@ -8,9 +8,9 @@ import numberWithCommas from '../utils/numberWithCommas'
 import { getAllProduct } from '../redux/product/productSlice'
 import { setAlert } from '../redux/alert-message/alertMessage'
 import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
-import address from '../assets/fake-data/address.json'
+
 const Cart = () => {
-  console.log(address);
+
   const cartItems = useSelector((state) => state.cartItems.value)
   const [cartProducts, setcartProducts] = useState([])
   const [totalProducts, settotalProducts] = useState(0)
