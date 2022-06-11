@@ -19,10 +19,15 @@ const Order = () => {
         address3: "Phường Bình Trị Đông B"
     }
     const dispatch = useDispatch()
+    const infoRef = useRef(null)
+    const addressRef = useRef(null)
     const provinceRef = useRef(null)
     const districtRef = useRef(null)
     const wardRef = useRef(null)
-    const [validated, setValidated] = useState(true)
+    const provinceInvalidRef = useRef(null)
+    const districtInvalidRef = useRef(null)
+    const wardInvalidRef = useRef(null)
+    const [validated, setValidated] = useState(false)
     const [OrderForm, setOrderForm] = useState(initialForm)
     const { email, phone, address1, address2, address3 } = OrderForm
     const [Province, SetProvince] = useState(address)
@@ -48,7 +53,34 @@ const Order = () => {
         }
     }
     const handleSubmit = () => {
-        districtRef.current.classList.toggle('active')
+        if (!infoRef.current.checkValidity() || !addressRef.current.checkValidity() || !checkSelect()) {
+            setValidated(true)
+        }
+        else {
+            // submit here
+            setValidated(false)
+        }
+
+
+    }
+    const checkSelect = () => {
+        let count = 0;
+        if (address1 === "") {
+            provinceRef.current.classList.add('active')
+            provinceInvalidRef.current.classList.add('active')
+            count++
+        }
+        if (address2 === "") {
+            districtRef.current.classList.add('active')
+            districtInvalidRef.current.classList.add('active')
+            count++
+        }
+        if (address3 === "") {
+            wardRef.current.classList.add('active')
+            wardInvalidRef.current.classList.add('active')
+            count++
+        }
+        return count === 0
     }
     const onOrderFormChange = e => {
         setOrderForm({
@@ -75,18 +107,33 @@ const Order = () => {
     }
     useEffect(() => {
         setDistrict(address.filter(item => item.Name === address1)[0].Districts)
+        if (address1 !== "" && provinceRef.current && provinceInvalidRef.current) {
+            provinceRef.current.classList.remove('active')
+            provinceInvalidRef.current.classList.remove('active')
+        }
     }, [address1, Province])
     useEffect(() => {
         let tmp = District.filter(item => item.Name === address2)[0]
         if (tmp)
             setWard(District.filter(item => item.Name === address2)[0].Wards)
+        if (address2 !== "" && districtRef.current && districtInvalidRef.current) {
+            districtRef.current.classList.remove('active')
+            districtInvalidRef.current.classList.remove('active')
+        }
     }, [address2, District])
+    useEffect(() => {
+        if (address3 !== "" && wardRef.current && wardInvalidRef.current) {
+            wardRef.current.classList.remove('active')
+            wardInvalidRef.current.classList.remove('active')
+        }
+    }, [address3])
     useEffect(() => {
         setcartProducts(getCartItemsInfo(cartItems))
         settotalPrice(cartItems.reduce((total, item) => total + (Number(item.quantity) * Number(item.price)), 0))
     }, [cartItems, productList])
     useEffect(() => {
         dispatch(getAllProduct())
+        
     }, [])
     return (
         <div className='order'>
@@ -106,7 +153,7 @@ const Order = () => {
                 </div>
                 <div className="order-leftcontent-main-content">
                     <div className='order-leftcontent-main-content-info'>
-                        <Form validated={validated} noValidate >
+                        <Form validated={validated} noValidate ref={infoRef} >
                             <fieldset className='border p-3'  >
                                 <legend className='float-none w-auto p-3'>{user.customer_name}</legend>
                                 <Form.Group className='me-5 mb-3' >
@@ -142,7 +189,7 @@ const Order = () => {
                         </Form>
                         <fieldset className='border p-3 mt-4'  >
                             <legend className='float-none w-auto p-3'>Thông tin giao hàng</legend>
-                            <Form validated={validated} noValidate>
+                            <Form validated={validated} noValidate ref={addressRef}>
                                 <Form.Group className=' mb-3' >
                                     <Form.Label>Địa chỉ</Form.Label>
                                     <Form.Control
@@ -163,6 +210,7 @@ const Order = () => {
                                         value={address1}
                                         name="address1"
                                         onChange={onOrderFormChangeProvince}
+                                        bsPrefix="form-select form-select-lg "
                                     >
                                         <option >Tỉnh/Thành</option>
                                         {
@@ -173,8 +221,10 @@ const Order = () => {
                                             })
                                         }
                                     </Form.Select>
-                                    <div>
-                                        Vui lòng nhập tỉnh thành
+                                    <div className='p-2 invalidmess '>
+                                        <div ref={provinceInvalidRef}>
+                                            Vui lòng nhập tỉnh thành
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='order-leftcontent-main-content-info-select-item'>
@@ -184,7 +234,7 @@ const Order = () => {
                                         name="address2"
                                         onChange={onOrderFormChangeDistrict}
                                         ref={districtRef}
-                                        bsPrefix="form-select form-select-lg active"
+                                        bsPrefix="form-select form-select-lg "
                                     >
                                         <option >Quận/Huyện</option>
                                         {
@@ -195,8 +245,10 @@ const Order = () => {
                                             })
                                         }
                                     </Form.Select>
-                                    <div>
-                                        Vui lòng nhập tỉnh thành
+                                    <div className='p-2 invalidmess '>
+                                        <div ref={districtInvalidRef}>
+                                            Vui lòng nhập tỉnh thành
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='order-leftcontent-main-content-info-select-item '>
@@ -204,6 +256,8 @@ const Order = () => {
                                         required
                                         value={address3}
                                         name="address3"
+                                        ref={wardRef}
+                                        bsPrefix="form-select form-select-lg "
                                         onChange={onOrderFormChange}
                                     >
                                         <option >Phường/Xã</option>
@@ -215,8 +269,10 @@ const Order = () => {
                                             })
                                         }
                                     </Form.Select>
-                                    <div>
-                                        Vui lòng nhập tỉnh thành
+                                    <div className='p-2 invalidmess '>
+                                        <div ref={wardInvalidRef}>
+                                            Vui lòng nhập tỉnh thành
+                                        </div>
                                     </div>
                                 </div>
 
