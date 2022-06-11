@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalHeader from 'react-bootstrap/ModalHeader'
@@ -15,16 +15,19 @@ const LoginModal = () => {
         username: "",
         password: ""
     }
+
+    const dispatch = useDispatch()
     const [LoginForm, setLoginForm] = useState(initialForm)
     const show = useSelector(state => state.loginModal.value)
     const [alert, setAlert] = useState(null)
-    const dispatch = useDispatch()
     const { username, password } = LoginForm
+    const [validated, setValidated] = useState(false);
+
     const gotoRegister = () => {
         dispatch(removeLoginModal())
         dispatch(setSignModal())
     }
-    const [validated, setValidated] = useState(false);
+
     const onLoginFormChange = e => {
         setLoginForm({
             ...LoginForm,
@@ -54,11 +57,13 @@ const LoginModal = () => {
     }, [alert])
     useEffect(() => {
         if (user.user) {
+
             dispatch(removeLoginModal())
             setAlert(<Alert variant='success'>Đăng nhập thành công!</Alert>)
         }
-        else  {
+        else if (user.user === null) {
             setAlert(<Alert variant='danger'>Tài khoản hoặc mật khẩu không đúng!</Alert>)
+
         }
     }, [user])
     useEffect(() => {
@@ -75,7 +80,7 @@ const LoginModal = () => {
         >
             <ModalHeader closeButton>
                 <Modal.Title id="example-custom-modal-styling-title">
-                    Login Form
+                    Đăng nhập 
                 </Modal.Title>
             </ModalHeader>
             <ModalBody>
@@ -88,7 +93,7 @@ const LoginModal = () => {
                                         <div className="col-lg-6">
                                             <div className="p-5">
                                                 <div className="mb-5">
-                                                    <h3 className="h4 font-weight-bold text-theme">Login</h3>
+                                                    <h3 className="h4 font-weight-bold text-theme">Đăng nhập</h3>
                                                 </div>
 
                                                 <h6 className="h5 mb-0">Welcome back!</h6>
@@ -101,34 +106,32 @@ const LoginModal = () => {
                                                         <Form.Control
                                                             required
                                                             type="email"
-                                                            placeholder="Email"
                                                             value={username}
                                                             name="username"
                                                             onChange={onLoginFormChange}
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input email.
+                                                            Vui lòng nhập email.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group >
-                                                        <Form.Label>Password</Form.Label>
+                                                        <Form.Label>Mật khẩu</Form.Label>
                                                         <Form.Control
                                                             required
                                                             type="password"
-                                                            placeholder="Password"
                                                             value={password}
                                                             name="password"
                                                             onChange={onLoginFormChange}
 
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input password.
+                                                            Vui lòng nhập mật khẩu.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
 
                                                     <div>
-                                                        <button className="btn btn-theme mb-3 mt-3" type='submit'>Login</button>
-                                                        {alert }
+                                                        <button className="btn btn-theme mb-3 mt-3" type='submit'>Đăng nhập</button>
+                                                        {alert}
                                                     </div>
 
                                                 </Form>

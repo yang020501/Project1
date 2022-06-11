@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         const rs = await axios.post(`${apiUrl}/login`, data)
         if (rs.status < 200 || rs.status >= 300) {
-            return rejectWithValue(rs)
+            return rejectWithValue(rs.data)
         }
         return rs.data
     }
@@ -40,7 +40,7 @@ export const userState = createSlice({
         builder.addCase(login.rejected, (state, action) => {
             state.loading = false;
             state.errorMess = action.payload;
-            
+
         });
     }
 })
