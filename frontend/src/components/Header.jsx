@@ -120,7 +120,8 @@ const Header = () => {
                             {
                                 user ? <React.Fragment>
                                     <div className='user-collapse-item justify-content-center' onClick={() => {
-
+                                        navigate('/customer')
+                                        setUserAction()
                                     }}>
                                         Thông tin
                                     </div>
