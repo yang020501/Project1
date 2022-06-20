@@ -8,18 +8,16 @@ public class UserDto implements Serializable {
     private final String username;
     private final String password;
     private final String customer_name;
-    private final String email;
     private final String phone;
     private final String address1;
     private final String address2;
     private final String address3;
 
-    public UserDto(String id, String username, String password, String customer_name, String email, String phone, String address1, String address2, String address3) {
+    public UserDto(String id, String username, String password, String customer_name, String phone, String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.customer_name = customer_name;
-        this.email = email;
         this.phone = phone;
         this.address1 = address1;
         this.address2 = address2;
@@ -40,10 +38,6 @@ public class UserDto implements Serializable {
 
     public String getCustomer_name() {
         return customer_name;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getPhone() {
@@ -71,7 +65,6 @@ public class UserDto implements Serializable {
                 Objects.equals(this.username, entity.username) &&
                 Objects.equals(this.password, entity.password) &&
                 Objects.equals(this.customer_name, entity.customer_name) &&
-                Objects.equals(this.email, entity.email) &&
                 Objects.equals(this.phone, entity.phone) &&
                 Objects.equals(this.address1, entity.address1) &&
                 Objects.equals(this.address2, entity.address2) &&
@@ -80,7 +73,7 @@ public class UserDto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, customer_name, email, phone, address1, address2, address3);
+        return Objects.hash(id, username, password, customer_name, phone, address1, address2, address3);
     }
 
     @Override
@@ -90,7 +83,6 @@ public class UserDto implements Serializable {
                 "username = " + username + ", " +
                 "password = " + password + ", " +
                 "customer_name = " + customer_name + ", " +
-                "email = " + email + ", " +
                 "phone = " + phone + ", " +
                 "address1 = " + address1 + ", " +
                 "address2 = " + address2 + ", " +

@@ -18,11 +18,5 @@ public class CartInfoController {
     @Autowired
     private CartInfoService cartInfoService;
 
-    @PostMapping("/buy")
-    public Object buyOder(@RequestBody List<CartRequestDto> cartRequestDtoList){
-
-
-        return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
-    }
 
 }

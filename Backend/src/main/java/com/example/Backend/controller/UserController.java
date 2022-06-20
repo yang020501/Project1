@@ -1,9 +1,7 @@
 package com.example.Backend.controller;
 
 import com.example.Backend.RandomGenerate;
-import com.example.Backend.dto.ProductDto;
 import com.example.Backend.dto.UserDto;
-import com.example.Backend.model.User;
 import com.example.Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,6 @@ public class UserController {
     @PostMapping
     public Object login(@RequestBody UserDto user){
         try {
-
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
             if(find){
@@ -56,12 +53,11 @@ public class UserController {
             String username = new_user.getUsername();
             String password = new_user.getPassword();
             String customer_name = new_user.getCustomer_name();
-            String email = new_user.getEmail();
             String phone = new_user.getPhone();
             String address1 = new_user.getAddress1();
             String address2 = new_user.getAddress2();
             String address3 = new_user.getAddress3();
-            userService.add(id, username, password, customer_name, email, phone, address1, address2, address3);
+            userService.add(id, username, password, customer_name, phone, address1, address2, address3);
 
             return new ResponseEntity<String>("Add a user successfully" ,HttpStatus.CREATED);
 

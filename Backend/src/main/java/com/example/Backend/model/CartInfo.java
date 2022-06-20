@@ -10,35 +10,62 @@ import java.util.List;
 @Table(name = "CartInfo")
 public class CartInfo {
     @Id
-    private String id_cart;
-    private String id_product;
+    private String cart_id;
+    private String product_id;
+    private String slug;
+    private String color;
+    private String size;
     private int amount;
+    private long price;
 
-
-    public CartInfo(String id_cart, String id_product, int amount) {
-        this.id_cart = id_cart;
-        this.id_product = id_product;
+    public CartInfo(String cart_id, String product_id, String slug, String color, String size, int amount, long price) {
+        this.cart_id = cart_id;
+        this.product_id = product_id;
+        this.slug = slug;
+        this.color = color;
+        this.size = size;
         this.amount = amount;
+        this.price = price;
     }
 
-    public CartInfo() {
-
+    public String getSize() {
+        return size;
     }
 
-    public String getId() {
-        return id_cart;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public void setId(String id_cart) {
-        this.id_cart = id_cart;
+    public String getCart_id() {
+        return cart_id;
     }
 
-    public String getId_product() {
-        return id_product;
+    public void setCart_id(String cart_id) {
+        this.cart_id = cart_id;
     }
 
-    public void setId_product(String id_product) {
-        this.id_product = id_product;
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getAmount() {
@@ -47,5 +74,13 @@ public class CartInfo {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 }

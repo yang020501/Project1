@@ -37,6 +37,7 @@ create table Product(
 create table Cart(
 	id varchar(9) primary key,
 	customer_id varchar(5),
+	address varchar(max),
 	create_date smalldatetime,
 	total int,
 
@@ -48,6 +49,7 @@ create table CartInfo(
 	product_id varchar(10),
 	slug varchar(50),
 	color varchar(50),
+	size varchar(50),
 	amount int,
 	price int
 

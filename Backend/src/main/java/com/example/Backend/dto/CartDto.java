@@ -1,18 +1,20 @@
 package com.example.Backend.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class CartDto implements Serializable {
     private final String id;
     private final String customer_id;
-    private final Date create_date;
+    private final String address;
+    private final LocalDate create_date;
     private final long total;
 
-    public CartDto(String id, String customer_id, Date create_date, long total) {
+    public CartDto(String id, String customer_id, String address, LocalDate create_date, long total) {
         this.id = id;
         this.customer_id = customer_id;
+        this.address = address;
         this.create_date = create_date;
         this.total = total;
     }
@@ -25,7 +27,11 @@ public class CartDto implements Serializable {
         return customer_id;
     }
 
-    public Date getCreate_date() {
+    public String getAddress() {
+        return address;
+    }
+
+    public LocalDate getCreate_date() {
         return create_date;
     }
 
@@ -40,13 +46,14 @@ public class CartDto implements Serializable {
         CartDto entity = (CartDto) o;
         return Objects.equals(this.id, entity.id) &&
                 Objects.equals(this.customer_id, entity.customer_id) &&
+                Objects.equals(this.address, entity.address) &&
                 Objects.equals(this.create_date, entity.create_date) &&
                 Objects.equals(this.total, entity.total);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer_id, create_date, total);
+        return Objects.hash(id, customer_id, address, create_date, total);
     }
 
     @Override
@@ -54,6 +61,7 @@ public class CartDto implements Serializable {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
                 "customer_id = " + customer_id + ", " +
+                "address = " + address + ", " +
                 "create_date = " + create_date + ", " +
                 "total = " + total + ")";
     }
