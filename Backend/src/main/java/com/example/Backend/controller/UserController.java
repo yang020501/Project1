@@ -31,7 +31,7 @@ public class UserController {
 
                 return new ResponseEntity<UserDto>(loginer, HttpStatus.ACCEPTED);
             }
-            return new ResponseEntity<String>("Login false", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<String>( "Login false", HttpStatus.FOUND);
 
         }
         catch (Exception e) {
@@ -49,7 +49,7 @@ public class UserController {
             boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
             if(find){
 
-                return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.NOT_ACCEPTABLE);
+                return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.BAD_REQUEST);
 
             }
             String id = RandomGenerate.GenerateId(5);
