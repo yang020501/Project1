@@ -39,7 +39,7 @@ const CartItem = props => {
                     </Link>
                 </div>
                 <div className="cart-item-info-price">
-                    {numberWithCommas(Number(item.product.price))}
+                    {numberWithCommas(Number(item.product.price))} đ
                 </div>
                 <div className="cart-item-info-quantity">
                     <div className="product-info-item-quantity">

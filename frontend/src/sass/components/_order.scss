@@ -37,7 +37,41 @@
             }
         }
 
-        &-main-content {}
+        &-main-content {
+            @include flex(center, flex-start);
+            flex-direction: row;
+            width: 90%;
+
+            &-info {
+                flex-grow: 1;
+
+                &-select {
+                    @include flex(center, flex-start);
+
+                    &-item {
+                        padding: 0.5rem;
+
+                        .invalidmess {
+                            visibility: hidden;
+
+                            .active {
+                                visibility: visible;
+                                color: #DC3545;
+                            }
+                        }
+
+                    }
+                }
+
+                .active {
+                    border-color: #DC3545;
+                }
+
+                .active:focus {
+                    box-shadow: 1px 1px 5px #DC3545;
+                }
+            }
+        }
 
 
     }
@@ -45,19 +79,72 @@
     &-rightcontent {
         width: 90%;
         height: 100%;
-        background-color: #fafafa;
+
+        &-content {
+            width: 100%;
+            margin-left: 40px;
+
+            &-order-cart-list {
+                height: fit-content;
+                max-height: 400px;
+                flex-grow: 1;
+                overflow: auto;
+
+                .cart-item {
+                    padding: 10px;
+                    margin-right: 20px;
+
+                    &-image {
+                        height: 60px;
+                        width: 60px;
+                        margin-right: 10px;
+
+                        img {
+
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+                    }
+                }
+            }
+
+            &-fee {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 2px solid #e3e3e3;
+                @include flex(center, flex-start);
+                flex-direction: column;
+
+                &-item {
+                    @include flex(center, space-between);
+                    width: 100%;
+                    margin-bottom: 10px;
+
+                    &-left {
+                        font-size: 1.25rem;
+                    }
+
+                    &-right {
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                    }
+
+                }
+
+            }
+        }
     }
 
     &-rightcontent::after {
         content: "";
         display: block;
-        width: 50%;
+        width: 45.5%;
         position: absolute;
         border-left: 2px solid #e3e3e3;
         top: 0;
         left: 54.4%;
-        bottom: -18%;
+        bottom: -22%;
         background: #fafafa;
-        z-index: -33;
+        z-index: -999;
     }
 }

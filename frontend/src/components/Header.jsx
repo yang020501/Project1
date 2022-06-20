@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/sunshinelogo.png'
 import Searchbar from './Searchbar'
 import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { setSignModal } from '../redux/login-sign_modal/signSlice'
 import { apiUrl } from '../utils/constant'
+import { login, logout } from '../redux/user/userState'
 const mainNav = [
     {
         display: "Trang chủ",
@@ -27,14 +28,15 @@ const mainNav = [
 ]
 
 const Header = () => {
+    const location = useLocation()
+    const navigate = useNavigate()
     const [productData, setProductData] = useState([])
     const dispatch = useDispatch()
     const { pathName } = useLocation()
     const activeNav = mainNav.findIndex(e => e.path === pathName)
     const headerRef = useRef(null)
     const userRef = useRef(null)
-
-
+    const user = useSelector(state => state.userState.user)
     //scroll bar effecr header
     useEffect(() => {
 
@@ -67,7 +69,6 @@ const Header = () => {
     }, [])
     const setUserAction = () => {
         userRef.current.classList.toggle('active')
-        console.log(userRef);
     }
     const menuLeft = useRef(null)
     const menuToggle = () => {
@@ -115,21 +116,45 @@ const Header = () => {
                         <div className="header-menu-item header-menu-right-item" onClick={setUserAction} >
                             <i className='bx bx-user' />
                         </div>
-                        <div className='user-collapse  ' ref={userRef} >
-                            <div className='user-collapse-item justify-content-center' onClick={() => {
-                                dispatch(setLoginModal())
-                                setUserAction()
-                            }}>
-                                Đăng nhập
-                            </div>
-                            <div className='user-collapse-item justify-content-center'
-                                onClick={() => {
-                                    dispatch(setSignModal())
-                                    setUserAction()
-                                }}
-                            >
-                                Đăng ký
-                            </div>
+                        <div className='user-collapse' ref={userRef} >
+                            {
+                                user ? <React.Fragment>
+                                    <div className='user-collapse-item justify-content-center' onClick={() => {
+                                        navigate('/customer')
+                                        setUserAction()
+                                    }}>
+                                        Thông tin
+                                    </div>
+                                    <div className='user-collapse-item justify-content-center'
+                                        onClick={() => {
+                                            dispatch(logout())
+                                            setUserAction()
+                                            // nếu logout ở quá trình đặt hàng thì bay về /cart
+                                            if (location.pathname === "/order")
+                                                navigate('/cart')
+                                        }}
+                                    >
+                                        Đăng xuất
+                                    </div>
+                                </React.Fragment>
+                                    :
+                                    <React.Fragment>
+                                        <div className='user-collapse-item justify-content-center' onClick={() => {
+                                            dispatch(setLoginModal())
+                                            setUserAction()
+                                        }}>
+                                            Đăng nhập
+                                        </div>
+                                        <div className='user-collapse-item justify-content-center'
+                                            onClick={() => {
+                                                dispatch(setSignModal())
+                                                setUserAction()
+                                            }}
+                                        >
+                                            Đăng ký
+                                        </div>
+                                    </React.Fragment>
+                            }
                         </div>
                     </div>
 

@@ -11,6 +11,7 @@ export const getAllAccessories = createAsyncThunk(
         const umbrella = await axios.get(`${apiUrl}/product/category_slug/o`)
         const hat = await axios.get(`${apiUrl}/product/category_slug/non`)
         const glass = await axios.get(`${apiUrl}/product/category_slug/kinh`)
+    
         if (belt.status < 200 || belt.status >= 300) {
             return rejectWithValue(belt.data)
         }
