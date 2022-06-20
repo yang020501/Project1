@@ -1,8 +1,6 @@
 package com.example.Backend.service.imple;
 
-import com.example.Backend.RandomGenerate;
 import com.example.Backend.dto.UserDto;
-import com.example.Backend.model.User;
 import com.example.Backend.repository.UserRepo;
 import com.example.Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +72,7 @@ public class UserImplement implements UserService {
     }
 
     @Override
-    public void add(String id, String username, String password, String customer_name, String email, String phone, String address1, String address2, String address3) {
-        userRepo.add(id, username, password, customer_name, email, phone, address1, address2, address3);
+    public void add(String id, String username, String password, String customer_name, String phone, String address1, String address2, String address3) {
+        userRepo.add(id, username, password, customer_name, phone, address1, address2, address3);
     }
 }

@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity
 @Table(name = "Cart")
@@ -13,18 +15,28 @@ public class Cart {
     @Id
     private String id;
     private String customer_id;
-    private Date create_date;
+    private String address;
+    private LocalDate create_date;
     private long total;
 
 
     public Cart() {
     }
 
-    public Cart(String id, String customer_id, Date create_date, long total) {
+    public Cart(String id, String customer_id, String address, LocalDate create_date, long total) {
         this.id = id;
         this.customer_id = customer_id;
+        this.address = address;
         this.create_date = create_date;
         this.total = total;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getId() {
@@ -43,11 +55,11 @@ public class Cart {
         this.customer_id = customer_id;
     }
 
-    public Date getCreate_date() {
+    public LocalDate getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(Date create_date) {
+    public void setCreate_date(LocalDate create_date) {
         this.create_date = create_date;
     }
 

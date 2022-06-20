@@ -1,58 +1,28 @@
 package com.example.Backend.dto;
 
+import java.util.List;
+
 public class CartRequestDto {
-    private String slug;
-    private String color;
-    private String size;
-    private int quantity;
-    private long price;
+
+    private UserDto user;
+    private List<CartInfoDto> list_product;
     private String address;
 
-    public String getSlug() {
-        return slug;
-    }
-
-    public CartRequestDto(String slug, String color, String size, int quantity, long price, String address) {
-        this.slug = slug;
-        this.color = color;
-        this.size = size;
-        this.quantity = quantity;
-        this.price = price;
+    public CartRequestDto(UserDto user, List<CartInfoDto> list_product, String address) {
+        this.user = user;
+        this.list_product = list_product;
         this.address = address;
     }
 
-    public String getColor() {
-        return color;
+    public UserDto getUser() {
+        return user;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public long getPrice() {
-        return price;
+    public List<CartInfoDto> getList_product() {
+        return list_product;
     }
 
     public String getAddress() {
         return address;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

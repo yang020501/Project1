@@ -15,20 +15,18 @@ public class User {
     private String username;
     private String password;
     private String customer_name;
-    private String email;
     private String phone;
     private String address1;
     private String address2;
     private String address3;
 
 
-    public User(String id, String username, String password, String customer_name, String email, String phone,
+    public User(String id, String username, String password, String customer_name, String phone,
                 String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.customer_name = customer_name;
-        this.email = email;
         this.phone = phone;
         this.address1 = address1;
         this.address2 = address2;
@@ -68,14 +66,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {
