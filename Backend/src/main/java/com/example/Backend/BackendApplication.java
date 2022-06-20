@@ -20,7 +20,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	// nhớ kỹ bật cors khi làm spring boottt
+	// nhớ kỹ bật cors khi làm spring boot
 	@EnableWebSecurity
 	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

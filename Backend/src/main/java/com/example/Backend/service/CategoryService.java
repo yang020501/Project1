@@ -5,7 +5,6 @@ import com.example.Backend.model.Category;
 
 import java.util.List;
 
-
 public interface CategoryService {
     public List<CategoryDto> getAll();
     public void add(Category category);
