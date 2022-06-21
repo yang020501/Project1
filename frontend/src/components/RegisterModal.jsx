@@ -125,7 +125,7 @@ const RegisterModal = () => {
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group >
-                                                        <Form.Label>Mật khẩu</Form.Label>
+                                                        <Form.Label>Lặp lại Mật khẩu</Form.Label>
                                                         <Form.Control
                                                             required
                                                             type="password"
