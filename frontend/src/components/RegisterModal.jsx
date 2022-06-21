@@ -7,7 +7,8 @@ import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
 import { removeSignModal } from '../redux/login-sign_modal/signSlice'
 import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
-import address from '../assets/fake-data/address.json'
+import axios from 'axios'
+import { apiUrl } from '../utils/constant'
 const RegisterModal = () => {
     const initialForm = {
         username: "",
@@ -21,7 +22,7 @@ const RegisterModal = () => {
     const [RegisterForm, setRegisterForm] = useState(initialForm)
     const show = useSelector(state => state.signModal.value)
     const [alert, setAlert] = useState(null)
-    const { username, password, rpassword, customer_name, phone } = RegisterForm
+    const { username, password, rpassword, customer_name } = RegisterForm
     const [validated, setValidated] = useState(false);
 
     const gotoLogin = () => {
@@ -35,25 +36,51 @@ const RegisterModal = () => {
 
         })
     }
-
-    const handleSubmit = (event) => {
+    const checkPass = () => {
+        if (password !== rpassword)
+            return true
+        return false
+    }
+    const handleSubmit = async (event) => {
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
         if (form.checkValidity() === false) {
             setValidated(true);
         }
+        else if (checkPass()) {
+            // check pass and rpass
+            setAlert(<Alert variant='danger'>Mật khẩu và Mật khẩu lặp không trùng nhau! Mời nhập lại</Alert>)
+        }
         else {
+            try {
 
+                const rs = await axios.post(`${apiUrl}/login/sign_in`, RegisterForm)
+                if (rs.data) {
+                    setAlert(<Alert variant='success'>Tạo tài khoản thành công!</Alert>)                    
+                }
+            }
+            catch {
+                setAlert(<Alert variant='danger'>Đăng ký thất bại! Email đã tồn tại</Alert>)
+                
+            }
+            setRegisterForm(initialForm)
             setValidated(false)
         }
 
-    };
+    }
+
+
     useEffect(() => {
         setRegisterForm(initialForm)
         setValidated(false)
         setAlert(null)
     }, [show])
+    useEffect(() => {
+        setTimeout(() => {
+            setAlert(null)
+        }, 3500)
+    }, [alert])
     return (
         <Modal
             show={show}
@@ -93,7 +120,7 @@ const RegisterModal = () => {
                                                             onChange={onRegisterFormChange}
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input email.
+                                                            Vui lòng nhập họ tên.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group >
@@ -107,7 +134,7 @@ const RegisterModal = () => {
                                                             onChange={onRegisterFormChange}
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input email.
+                                                            Vui lòng nhập email.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group >
@@ -121,7 +148,7 @@ const RegisterModal = () => {
 
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input password.
+                                                            Vui lòng nhập mật khẩu.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group >
@@ -135,10 +162,14 @@ const RegisterModal = () => {
 
                                                         />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please input repeat password.
+                                                            Vui lòng nhập lại mật khẩu.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <button type="submit" className="btn btn-theme mt-3">Register</button>
+                                                    <div>
+                                                        <button type="submit" className="btn btn-theme mb-3 mt-3">Register</button>
+                                                        {alert}
+                                                    </div>
+
                                                 </Form>
                                             </div>
                                         </div>
