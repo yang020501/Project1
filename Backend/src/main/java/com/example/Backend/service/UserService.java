@@ -11,5 +11,5 @@ public interface UserService {
     public boolean find_dublicate_username(String username, List<UserDto> list);
     public UserDto find_byUserName(String username);
     public void add(String id, String username, String password, String customer_name, String phone,
-                    String address1, String address2, String address3);
+                    String house_address, String address1, String address2, String address3);
 }

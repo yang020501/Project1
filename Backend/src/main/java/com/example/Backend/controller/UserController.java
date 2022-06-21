@@ -54,10 +54,11 @@ public class UserController {
             String password = new_user.getPassword();
             String customer_name = new_user.getCustomer_name();
             String phone = new_user.getPhone();
+            String house_address = new_user.getHouse_address();
             String address1 = new_user.getAddress1();
             String address2 = new_user.getAddress2();
             String address3 = new_user.getAddress3();
-            userService.add(id, username, password, customer_name, phone, address1, address2, address3);
+            userService.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
 
             return new ResponseEntity<String>("Add a user successfully" ,HttpStatus.CREATED);
 

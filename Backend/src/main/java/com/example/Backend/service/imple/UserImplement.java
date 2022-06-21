@@ -72,7 +72,7 @@ public class UserImplement implements UserService {
     }
 
     @Override
-    public void add(String id, String username, String password, String customer_name, String phone, String address1, String address2, String address3) {
-        userRepo.add(id, username, password, customer_name, phone, address1, address2, address3);
+    public void add(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+        userRepo.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
     }
 }

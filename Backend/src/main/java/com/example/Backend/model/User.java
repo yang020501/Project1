@@ -16,18 +16,19 @@ public class User {
     private String password;
     private String customer_name;
     private String phone;
+    private String house_address;
     private String address1;
     private String address2;
     private String address3;
 
 
-    public User(String id, String username, String password, String customer_name, String phone,
-                String address1, String address2, String address3) {
+    public User(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.customer_name = customer_name;
         this.phone = phone;
+        this.house_address = house_address;
         this.address1 = address1;
         this.address2 = address2;
         this.address3 = address3;
@@ -74,6 +75,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getHouse_address() {
+        return house_address;
+    }
+
+    public void setHouse_address(String house_address) {
+        this.house_address = house_address;
     }
 
     public String getAddress1() {
