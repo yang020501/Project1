@@ -55,8 +55,8 @@ public class CartController {
 
     }
 
-    @GetMapping("/get_all")
-    private Object getAll_byCustomerID(@RequestBody String customer_id){
+    @GetMapping("/{customer_id}")
+    private Object getAll_byCustomerID(@PathVariable String customer_id){
         try{
             String cart_id = cartService.getId_byCustomerID(customer_id);
             return new ResponseEntity<List<CartInfoDto>>(cartInfoService.getAll_byCartID(cart_id), HttpStatus.OK);
