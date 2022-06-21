@@ -5,7 +5,7 @@ import { apiUrl } from "../../utils/constant";
 const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')) : null
 
 export const login = createAsyncThunk(
-    '/login',
+    'user/login',
     async (data, { rejectWithValue }) => {
         const rs = await axios.post(`${apiUrl}/login`, data)
         if (rs.status < 200 || rs.status >= 300) {

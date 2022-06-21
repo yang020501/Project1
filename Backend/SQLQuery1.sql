@@ -5,7 +5,7 @@ create table Users(
 	id varchar(5) primary key,
 	username varchar(50),
 	password varchar(50),
-	customer_name varchar(max),
+	customer_name nvarchar(max),
 	phone varchar(20),
 	house_address nvarchar(100),
 	address1 nvarchar(100),
