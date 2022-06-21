@@ -42,4 +42,9 @@ public class CartImplement implements CartService {
     public List<String> getAll_Id() {
         return cartRepo.get_list_id();
     }
+
+    @Override
+    public String getId_byCustomerID(String customer_id) {
+        return cartRepo.getId_byCustomerID(customer_id);
+    }
 }

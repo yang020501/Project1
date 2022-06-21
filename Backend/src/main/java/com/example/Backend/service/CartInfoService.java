@@ -8,8 +8,7 @@ import java.util.List;
 
 
 public interface CartInfoService {
-    public List<CartRequestDto> getAll_byCardId(String id);
-
     public void add(List<CartInfoDto> list, String cart_id);
+    public List<CartInfoDto> getAll_byCartID(String cart_id);
 
 }

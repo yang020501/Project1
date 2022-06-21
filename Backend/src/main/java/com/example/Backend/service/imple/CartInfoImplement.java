@@ -13,11 +13,17 @@ import java.util.List;
 @Service
 public class CartInfoImplement implements CartInfoService {
     @Autowired
-    CartInfoRepo cartInfoRepo;
+    private CartInfoRepo cartInfoRepo;
 
     @Override
-    public List<CartRequestDto> getAll_byCardId(String id) {
-        return null;
+    public List<CartInfoDto> getAll_byCartID(String cart_id) {
+        try {
+            return cartInfoRepo.getAll_byCartID(cart_id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -37,4 +43,5 @@ public class CartInfoImplement implements CartInfoService {
             e.printStackTrace();
         }
     }
+
 }
