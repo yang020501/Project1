@@ -34,6 +34,7 @@ public class CartImplement implements CartService {
 
         }
         catch (Exception e){
+            System.out.println("Error in cart");
             e.printStackTrace();
         }
     }

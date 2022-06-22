@@ -18,8 +18,20 @@ public class CartInfo {
     private int amount;
     private long price;
 
+    public CartInfo() {
+    }
+
     public CartInfo(String cart_id, String product_id, String slug, String color, String size, int amount, long price) {
         this.cart_id = cart_id;
+        this.product_id = product_id;
+        this.slug = slug;
+        this.color = color;
+        this.size = size;
+        this.amount = amount;
+        this.price = price;
+    }
+
+    public CartInfo(String product_id, String slug, String color, String size, int amount, long price) {
         this.product_id = product_id;
         this.slug = slug;
         this.color = color;

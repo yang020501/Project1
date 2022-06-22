@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CartInfoRepo extends JpaRepository<CartInfo, Integer> {
     @Modifying
-    @Query(value = "INSERT INTO CartInfo (cart_id, product_id, slug, color, size, amount, price) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",  nativeQuery = true)
+    @Query(value = "INSERT INTO CartInfo (cart_id, product_id, slug, color, size, amount, price) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)", nativeQuery = true)
     public void add(String cart_id, String product_id, String slug, String color, String size, int amount, long price);
 
     @Query("SELECT new com.example.Backend.dto.CartInfoDto(p.cart_id, p.product_id, p.slug, p.color, p.size, p.amount, p.price) FROM CartInfo p" +
