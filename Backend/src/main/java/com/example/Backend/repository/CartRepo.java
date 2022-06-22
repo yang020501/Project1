@@ -22,6 +22,6 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
     public List<String> get_list_id();
 
     @Query(value = "SELECT id FROM Cart p WHERE p.customer_id = ?1")
-    String getId_byCustomerID(String customer_id);
+    public List<String> getId_byCustomerID(String customer_id);
 
 }

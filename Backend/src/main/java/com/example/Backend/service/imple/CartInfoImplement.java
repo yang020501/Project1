@@ -8,6 +8,7 @@ import com.example.Backend.service.CartInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,9 +17,13 @@ public class CartInfoImplement implements CartInfoService {
     private CartInfoRepo cartInfoRepo;
 
     @Override
-    public List<CartInfoDto> getAll_byCartID(String cart_id) {
+    public List<CartInfoDto> getAll_byCartID(List<String> list_cart_id) {
         try {
-            return cartInfoRepo.getAll_byCartID(cart_id);
+            List<CartInfoDto> list_product_buy_by_customer = new ArrayList<>();
+            for (String cart_id : list_cart_id) {
+                list_product_buy_by_customer.addAll(cartInfoRepo.getAll_byCartID(cart_id));
+            }
+            return list_product_buy_by_customer;
         }
         catch (Exception e){
             e.printStackTrace();
