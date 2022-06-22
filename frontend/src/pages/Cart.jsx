@@ -21,7 +21,13 @@ const Cart = () => {
   let navigate = useNavigate()
   const gotoOrder = () => {
     if (user) {
-      navigate('/order')
+      if (cartItems.length > 0)
+        navigate('/order')
+      else
+        dispatch(setAlert({
+          message: "Chưa có sản phẩm trong giỏ hàng",
+          type: "warning",
+        }))
     }
     else {
       setTimeout(() => {
@@ -40,6 +46,7 @@ const Cart = () => {
       if (cartItems.length > 0) {
         cartItems.forEach(e => {
           let product = productList.filter(item => {
+
             return item.slug === e.slug
           })
           res.push({
@@ -48,6 +55,7 @@ const Cart = () => {
           })
         })
       }
+
       return res.sort((a, b) => a.id > b.id ? 1 : (a.id < b.id ? -1 : 0))
     }
   }

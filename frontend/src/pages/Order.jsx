@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import address from '../assets/fake-data/address.json'
 import { getAllProduct } from '../redux/product/productSlice'
 import OrderItem from '../components/OrderItem'
+import { setAlert } from '../redux/alert-message/alertMessage'
 import numberWithCommas from '../utils/numberWithCommas'
 import Button from "../components/Button"
+import axios from 'axios'
+import { apiUrl } from '../utils/constant'
 const Order = () => {
     const user = useSelector(state => state.userState.user)
     const cartItems = useSelector((state) => state.cartItems.value)
@@ -19,7 +22,6 @@ const Order = () => {
         address2: user.address2,
         address3: user.address3
     }
-    console.log(user);
     const dispatch = useDispatch()
     const infoRef = useRef(null)
     const addressRef = useRef(null)
@@ -54,12 +56,39 @@ const Order = () => {
             return res.sort((a, b) => a.id > b.id ? 1 : (a.id < b.id ? -1 : 0))
         }
     }
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!infoRef.current.checkValidity() || !addressRef.current.checkValidity() || !checkSelect()) {
             setValidated(true)
         }
         else {
-            // submit here
+
+
+            let listtmp = cartItems.map((item) => {
+                console.log(cartItems);
+                let tmp = {
+                    product_id: productList.filter(e => e.slug === item.slug)[0].id,
+                    slug: item.slug,
+                    color: item.color,
+                    size: item.size,
+                    amount: item.quantity,
+                    price: item.price
+                }
+                return tmp
+            })
+            let body = {
+                user_id: user.id,
+                address: `${house_address}, ${address3}, ${address2}, ${address1}`,
+                list_product: listtmp
+
+            }
+
+            const rs = await axios.post(`${apiUrl}/cart/buy`, body)
+            console.log(rs);
+            dispatch(setAlert({
+                message: "Đặt hàng thành công",
+                type: "success"
+            }))
+
             setValidated(false)
         }
 

@@ -5,27 +5,30 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../redux/shopping-cart/cartItemsSlice'
 import { setAlert } from '../redux/alert-message/alertMessage'
+import { remove } from '../redux/product-modal/productModalSlice'
 import numberWithCommas from '../utils/numberWithCommas'
 const ProductView = props => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const convert = (product) => {
+        
         if (product) {
             return {
                 ...product,
-                color: product.color.split(','),
+                color: product.colors.split(','),
                 size: product.size.split(',')
             }
         }
         return undefined
     }
     let product = convert(props.product)
-    if (product === undefined) product = {
-        price: 0,
-        title: "",
-        color: [],
-        size: [],
-    }
+    if (product === undefined)
+        product = {
+            price: 0,
+            title: "",
+            color: [],
+            size: [],
+        }
     const [previewImg, setPreviewImage] = useState(props.product ? require(`../assets/${product.image1}`) : "")
     const [descriptionExpand, setDescriptionExpand] = useState(false)
     const [color, setColor] = useState(undefined)
@@ -83,7 +86,7 @@ const ProductView = props => {
                 price: product.price
 
             }))
-
+            dispatch(remove())
             navigate("/cart")
         }
     }
@@ -112,7 +115,7 @@ const ProductView = props => {
                         Chi tiết sản phẩm
                     </div>
                     <div className="product-description-content"
-                        dangerouslySetInnerHTML={{ __html: product.description }}
+                        dangerouslySetInnerHTML={{ __html: product.descriptions }}
                     ></div>
                     <div className="product-description-toggle">
                         <Button size='sm' onclick={() => setDescriptionExpand(!descriptionExpand)}>
@@ -196,7 +199,7 @@ const ProductView = props => {
                     Chi tiết sản phẩm
                 </div>
                 <div className="product-description-content"
-                    dangerouslySetInnerHTML={{ __html: product.description }}
+                    dangerouslySetInnerHTML={{ __html: product.descriptions }}
                 ></div>
                 <div className="product-description-toggle">
                     <Button size='sm' onclick={() => setDescriptionExpand(!descriptionExpand)}>
