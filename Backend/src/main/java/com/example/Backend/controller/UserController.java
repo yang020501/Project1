@@ -12,14 +12,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
 
     @Transactional
-    @PostMapping
+    @PostMapping("/login")
     public Object login(@RequestBody UserDto user){
         try {
             List<UserDto> list_user = userService.getAll();

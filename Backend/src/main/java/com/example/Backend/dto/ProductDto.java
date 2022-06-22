@@ -8,7 +8,7 @@ public class ProductDto implements Serializable {
     private final String title;
     private final String id_cate;
     private final String categorySlug;
-    private final boolean gender;
+    private final String gender;
     private final String image1;
     private final String image2;
     private final long price;
@@ -17,7 +17,7 @@ public class ProductDto implements Serializable {
     private final String size;
     private final String descriptions;
 
-    public ProductDto(String id, String title, String id_cate, String categorySlug, boolean gender, String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
+    public ProductDto(String id, String title, String id_cate, String categorySlug, String gender, String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
@@ -48,7 +48,7 @@ public class ProductDto implements Serializable {
         return categorySlug;
     }
 
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
