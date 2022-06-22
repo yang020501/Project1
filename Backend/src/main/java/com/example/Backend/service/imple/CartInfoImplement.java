@@ -40,6 +40,7 @@ public class CartInfoImplement implements CartInfoService {
             }
         }
         catch (Exception e){
+            System.out.println("Error in cartinfo");
             e.printStackTrace();
         }
     }

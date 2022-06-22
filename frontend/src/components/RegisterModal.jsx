@@ -55,7 +55,7 @@ const RegisterModal = () => {
         else {
             try {
 
-                const rs = await axios.post(`${apiUrl}/login/sign_in`, RegisterForm)
+                const rs = await axios.post(`${apiUrl}/user/sign_in`, RegisterForm)
                 if (rs.data) {
                     setAlert(<Alert variant='success'>Tạo tài khoản thành công!</Alert>)                    
                 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import Helmet from '../components/Helmet'
 import category2 from '../assets/fake-data/category2'
+import gender from '../assets/fake-data/gender'
 import colors from '../assets/fake-data/product-color'
 import size from '../assets/fake-data/product-size'
 import CheckBox from '../components/CheckBox'
@@ -15,7 +16,8 @@ const Accessories = () => {
     const initFilter = {
         category: [],
         color: [],
-        size: []
+        size: [],
+        gender: []
 
     }
     const [productList, setProductList] = useState();
@@ -34,6 +36,9 @@ const Accessories = () => {
                 case "SIZE":
                     setFilter({ ...filter, size: [...filter.size, item.size] })
                     break;
+                case "GENDER":
+                    setFilter({ ...filter, gender: [...filter.gender, item.value] })
+                    break;
                 default:
             }
         }
@@ -50,6 +55,10 @@ const Accessories = () => {
                 case "SIZE":
                     const newSize = filter.size.filter(e => e !== item.size)
                     setFilter({ ...filter, size: newSize })
+                    break;
+                case "GENDER":
+                    const newGender = filter.gender.filter(e => e !== item.value)
+                    setFilter({ ...filter, gender: newGender })
                     break;
                 default:
 
@@ -77,6 +86,9 @@ const Accessories = () => {
                     return check !== undefined
                 })
             }
+            if (filter.gender.length > 0) {
+                temp = temp.filter(e => filter.gender.includes(e.gender))
+            }
             setProducts(temp)
         },
         [filter, setProducts],
@@ -99,6 +111,25 @@ const Accessories = () => {
                 <div className="catalog-filter " ref={filterRef}>
                     <div className="catalog-filter-close" onClick={() => { showHideFilter() }}>
                         <i className='bx bx-left-arrow-alt'></i>
+                    </div>
+                    <div className="catalog-filter-widget">
+                        <div className="catalog-filter-widget-title">
+                            Giới tính
+                        </div>
+                        <div className="catalog-widget-filter-content">
+                            {
+
+                                gender.map((item, index) => (
+                                    <div key={index} className='catalog-filter-widget-content-item'>
+                                        <CheckBox
+                                            label={item.display}
+                                            onChange={(input) => { filterSelect("GENDER", input.checked, item) }}
+                                            checked={filter.gender.includes(item.value)}
+                                        />
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
                     <div className="catalog-filter-widget">
                         <div className="catalog-filter-widget-title">

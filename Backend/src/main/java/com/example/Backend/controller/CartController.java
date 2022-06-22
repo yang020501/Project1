@@ -9,10 +9,10 @@ import com.example.Backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Random;
 
@@ -43,7 +43,7 @@ public class CartController {
                 }
             }
             while (true);
-            String customer_id = cartRequestDto.getUser().getId();
+            String customer_id = cartRequestDto.getUserID();
             String address = cartRequestDto.getAddress();
             List<CartInfoDto> list = cartRequestDto.getList_product();
             cartService.add(cart_new_id, customer_id, address, list);

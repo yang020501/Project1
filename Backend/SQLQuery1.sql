@@ -23,7 +23,7 @@ create table Product(
 	title nvarchar(100),
 	id_cate varchar(10),
 	categorySlug varchar(max),
-	gender bit,
+	gender nvarchar(10),
 	image1 varchar(max),
 	image2 varchar(max),
 	price int,
@@ -63,6 +63,6 @@ create table CartInfo(
 
 
 
-insert into Users values('aaaaa','admin','admin','Nguyễn Hoàng Thái Dương','0366330205',N'30 đường Lê Hồng Phong',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
-insert into Users values('aaaad','admin@gmail.com','admin','Nguyễn Hoàng Thái Dương','0366330205',N'41 đường Phan Thanh Giản',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
+insert into Users values('aaaaa','admin','admin',N'Nguyễn Hoàng Thái Dương','0366330205',N'30 đường Lê Hồng Phong',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
+insert into Users values('aaaad','admin@gmail.com','admin',N'Nguyễn Hoàng Thái Dương','0366330205',N'481 Tỉnh Lộ 10',N'Thành phố Hồ Chí Minh',N'Quận Bình Tân',N'Phường Bình Trị Đông B')
 

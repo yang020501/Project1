@@ -12,12 +12,14 @@ const Order = () => {
     const cartItems = useSelector((state) => state.cartItems.value)
     const productList = useSelector(state => state.productSlice.value)
     const initialForm = {
-        email: user.email,
+        email: user.username,
         phone: Number(user.phone),
-        address1: "Thành phố Hồ Chí Minh",
-        address2: "Quận Bình Tân",
-        address3: "Phường Bình Trị Đông B"
+        house_address: user.house_address,
+        address1: user.address1,
+        address2: user.address2,
+        address3: user.address3
     }
+    console.log(user);
     const dispatch = useDispatch()
     const infoRef = useRef(null)
     const addressRef = useRef(null)
@@ -29,7 +31,7 @@ const Order = () => {
     const wardInvalidRef = useRef(null)
     const [validated, setValidated] = useState(false)
     const [OrderForm, setOrderForm] = useState(initialForm)
-    const { email, phone, address1, address2, address3 } = OrderForm
+    const { email, phone, address1, address2, address3, house_address } = OrderForm
     const [Province, SetProvince] = useState(address)
     const [District, setDistrict] = useState([])
     const [Ward, setWard] = useState([])
@@ -133,7 +135,7 @@ const Order = () => {
     }, [cartItems, productList])
     useEffect(() => {
         dispatch(getAllProduct())
-        
+
     }, [])
     return (
         <div className='order'>
@@ -195,7 +197,9 @@ const Order = () => {
                                     <Form.Control
                                         required
                                         type="text"
-
+                                        value={house_address}
+                                        name="house_address"
+                                        onChange={onOrderFormChange}
                                         size="lg"
                                     />
                                     <Form.Control.Feedback type="invalid">
