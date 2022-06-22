@@ -16,11 +16,11 @@ const Order = () => {
     const productList = useSelector(state => state.productSlice.value)
     const initialForm = {
         email: user.username,
-        phone: Number(user.phone),
-        house_address: user.house_address,
-        address1: user.address1,
-        address2: user.address2,
-        address3: user.address3
+        phone: Number(user.phone) ? Number(user.phone) : "",
+        house_address: user.house_address ? user.house_address : "",
+        address1: user.address1 ? user.address1 : "",
+        address2: user.address2 ? user.address2 : "",
+        address3: user.address3 ? user.address3 : ""
     }
     const dispatch = useDispatch()
     const infoRef = useRef(null)
@@ -63,10 +63,10 @@ const Order = () => {
         else {
 
 
-            let listtmp = cartItems.map((item) => {
-                console.log(cartItems);
+            let listtmp = cartProducts.map((item) => {
+
                 let tmp = {
-                    product_id: productList.filter(e => e.slug === item.slug)[0].id,
+                    product_id: item.product.id,
                     slug: item.slug,
                     color: item.color,
                     size: item.size,
@@ -83,7 +83,7 @@ const Order = () => {
             }
 
             const rs = await axios.post(`${apiUrl}/cart/buy`, body)
-            console.log(rs);
+            console.log(body);
             dispatch(setAlert({
                 message: "Đặt hàng thành công",
                 type: "success"
@@ -137,16 +137,25 @@ const Order = () => {
 
     }
     useEffect(() => {
-        setDistrict(address.filter(item => item.Name === address1)[0].Districts)
+        if (address1) {
+            if (address.filter(item => item.Name === address1)[0])
+                setDistrict(address.filter(item => item.Name === address1)[0].Districts)
+            else
+                setDistrict([])
+        }
         if (address1 !== "" && provinceRef.current && provinceInvalidRef.current) {
             provinceRef.current.classList.remove('active')
             provinceInvalidRef.current.classList.remove('active')
         }
     }, [address1, Province])
     useEffect(() => {
-        let tmp = District.filter(item => item.Name === address2)[0]
-        if (tmp)
-            setWard(District.filter(item => item.Name === address2)[0].Wards)
+        if (address2) {
+            if (District.filter(item => item.Name === address2)[0])
+                setWard(District.filter(item => item.Name === address2)[0].Wards)
+
+        }
+        else
+            setWard([])
         if (address2 !== "" && districtRef.current && districtInvalidRef.current) {
             districtRef.current.classList.remove('active')
             districtInvalidRef.current.classList.remove('active')
@@ -164,7 +173,6 @@ const Order = () => {
     }, [cartItems, productList])
     useEffect(() => {
         dispatch(getAllProduct())
-
     }, [])
     return (
         <div className='order'>
@@ -187,14 +195,14 @@ const Order = () => {
                         <Form validated={validated} noValidate ref={infoRef} >
                             <fieldset className='border p-3'  >
                                 <legend className='float-none w-auto p-3'>{user.customer_name}</legend>
-                                <Form.Group className='me-5 mb-3' >
+                                <Form.Group className='me-5 mb-3'  >
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control
+                                        disabled
                                         required
                                         type="email"
                                         name="email"
-                                        value={email}
-                                        onChange={onOrderFormChange}
+                                        defaultValue={email}
                                         size="lg"
                                     />
                                     <Form.Control.Feedback type="invalid">
