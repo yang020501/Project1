@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Random;
 
@@ -24,6 +25,7 @@ public class CartController {
     @Autowired
     private CartInfoService cartInfoService;
 
+    @Transactional
     @PostMapping("/buy")
     private Object saveCart(@RequestBody CartRequestDto cartRequestDto){
         try{
