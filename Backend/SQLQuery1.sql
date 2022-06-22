@@ -54,7 +54,7 @@ create table CartInfo(
 	amount int,
 	price int
 
-	primary key (cart_id, product_id),
+	primary key (cart_id, product_id, color, size),
 	foreign key (cart_id) references Cart(id),
 	foreign key (product_id) references Product(id)
 )
