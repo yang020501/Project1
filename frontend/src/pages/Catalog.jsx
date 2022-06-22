@@ -3,6 +3,7 @@ import Helmet from '../components/Helmet'
 import category from '../assets/fake-data/category'
 import colors from '../assets/fake-data/product-color'
 import size from '../assets/fake-data/product-size'
+import gender from '../assets/fake-data/gender'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
 import CatalogNotFound from '../components/CatalogNotFound'
@@ -15,7 +16,8 @@ const Catalog = () => {
   const initFilter = {
     category: [],
     color: [],
-    size: []
+    size: [],
+    gender: []
 
   }
   const [productList, setProductList] = useState();
@@ -34,6 +36,9 @@ const Catalog = () => {
         case "SIZE":
           setFilter({ ...filter, size: [...filter.size, item.size] })
           break;
+        case "GENDER":
+          setFilter({ ...filter, gender: [...filter.gender, item.value] })
+          break;
         default:
       }
     }
@@ -50,6 +55,10 @@ const Catalog = () => {
         case "SIZE":
           const newSize = filter.size.filter(e => e !== item.size)
           setFilter({ ...filter, size: newSize })
+          break;
+        case "GENDER":
+          const newGender = filter.gender.filter(e => e !== item.value)
+          setFilter({ ...filter, gender: newGender })
           break;
         default:
 
@@ -73,12 +82,12 @@ const Catalog = () => {
       }
       if (filter.size.length > 0) {
         temp = temp.filter(e => {
-          const check = e.size.split(",").find(size => {
-            console.log(filter.size);
-            return filter.size.includes(size)
-          })
+          const check = e.size.split(",").find(size => filter.size.includes(size))
           return check !== undefined
         })
+      }
+      if (filter.gender.length > 0) {
+        temp = temp.filter(e => filter.gender.includes(e.gender))
       }
       setProducts(temp)
     },
@@ -103,6 +112,25 @@ const Catalog = () => {
         <div className="catalog-filter " ref={filterRef}>
           <div className="catalog-filter-close" onClick={() => { showHideFilter() }}>
             <i className='bx bx-left-arrow-alt'></i>
+          </div>
+          <div className="catalog-filter-widget">
+            <div className="catalog-filter-widget-title">
+              Giới tính
+            </div>
+            <div className="catalog-widget-filter-content">
+              {
+
+                gender.map((item, index) => (
+                  <div key={index} className='catalog-filter-widget-content-item'>
+                    <CheckBox
+                      label={item.display}
+                      onChange={(input) => { filterSelect("GENDER", input.checked, item) }}
+                      checked={filter.gender.includes(item.value)}
+                    />
+                  </div>
+                ))
+              }
+            </div>
           </div>
           <div className="catalog-filter-widget">
             <div className="catalog-filter-widget-title">

@@ -7,7 +7,7 @@ const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.get
 export const login = createAsyncThunk(
     'user/login',
     async (data, { rejectWithValue }) => {
-        const rs = await axios.post(`${apiUrl}/login`, data)
+        const rs = await axios.post(`${apiUrl}/user/login`, data)
         if (rs.status < 200 || rs.status >= 300) {
             return rejectWithValue(rs.data)
         }
