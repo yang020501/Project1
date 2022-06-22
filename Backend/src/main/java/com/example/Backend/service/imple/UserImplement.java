@@ -47,7 +47,24 @@ public class UserImplement implements UserService {
 
     @Override
     public UserDto find_byUserName(String username) {
-        return userRepo.find_byUserName(username);
+        try{
+            return userRepo.find_byUserName(username);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public UserDto find_byID(String id) {
+        try{
+            return userRepo.find_byID(id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -73,6 +90,21 @@ public class UserImplement implements UserService {
 
     @Override
     public void add(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
-        userRepo.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
+        try{
+            userRepo.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(String password, String customer_name, String phone, String house_address, String address1, String address2, String address3, String id) {
+        try{
+            userRepo.update(password, customer_name, phone, house_address, address1, address2, address3, id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -18,6 +18,7 @@ public class UserController {
     private UserService userService;
 
 
+    @Transactional
     @PostMapping
     public Object login(@RequestBody UserDto user){
         try {
@@ -37,7 +38,6 @@ public class UserController {
     }
 
     @Transactional
-
     @PostMapping("/sign_in")
 
     public Object sign(@RequestBody UserDto new_user){
@@ -45,9 +45,7 @@ public class UserController {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
             if(find){
-
                 return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.BAD_REQUEST);
-
             }
             String id = RandomGenerate.GenerateId(5);
             String username = new_user.getUsername();
@@ -73,6 +71,26 @@ public class UserController {
         try {
             List<UserDto> userlist = userService.getAll();
             return new ResponseEntity<List<UserDto>>(userlist, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Transactional
+    @PatchMapping("/update")
+    public Object update(@RequestBody UserDto userDto){
+        try {
+            String id = userDto.getId();
+            String password = userDto.getPassword();
+            String customer_name = userDto.getCustomer_name();
+            String phone = userDto.getPhone();
+            String house_address = userDto.getHouse_address();
+            String address1 = userDto.getAddress1();
+            String address2 = userDto.getAddress2();
+            String address3 = userDto.getAddress3();
+            userService.update(password, customer_name, phone, house_address, address1, address2, address3, id);
+            return new ResponseEntity<String>("Update success", HttpStatus.OK);
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
