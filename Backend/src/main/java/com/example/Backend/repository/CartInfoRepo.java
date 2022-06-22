@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 public interface CartInfoRepo extends JpaRepository<CartInfo, Integer> {
+    @Transactional
     @Modifying
     @Query(value = "INSERT INTO CartInfo (cart_id, product_id, slug, color, size, amount, price) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)", nativeQuery = true)
     public void add(String cart_id, String product_id, String slug, String color, String size, int amount, long price);

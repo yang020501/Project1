@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     public void add(String id, String username, String password, String customer_name, String phone,
                     String house_address, String address1, String address2, String address3);
 
+    @Transactional
     @Modifying
     @Query(value = "UPDATE Users SET password = ?1, customer_name = ?2, phone = ?3, house_address = ?4, address1 = ?5, address2 = ?6, address3 = ?7 " +
             "WHERE id = ?8" )
