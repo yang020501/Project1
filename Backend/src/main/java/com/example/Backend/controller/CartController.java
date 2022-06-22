@@ -61,7 +61,7 @@ public class CartController {
     @GetMapping("/{customer_id}")
     private Object getAll_byCustomerID(@PathVariable String customer_id){
         try{
-            String cart_id = cartService.getId_byCustomerID(customer_id);
+            List<String> cart_id = cartService.getId_byCustomerID(customer_id);
             return new ResponseEntity<List<CartInfoDto>>(cartInfoService.getAll_byCartID(cart_id), HttpStatus.OK);
         }
         catch (Exception e){

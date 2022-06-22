@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface CartInfoService {
     public void add(List<CartInfo> list, String cart_id);
-    public List<CartInfoDto> getAll_byCartID(String cart_id);
+    public List<CartInfoDto> getAll_byCartID(List<String> list_card_id);
 
 }
