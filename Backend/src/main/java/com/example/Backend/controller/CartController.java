@@ -3,6 +3,7 @@ package com.example.Backend.controller;
 import com.example.Backend.RandomGenerate;
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.dto.CartRequestDto;
+import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartRepo;
 import com.example.Backend.service.CartInfoService;
 import com.example.Backend.service.CartService;
@@ -45,7 +46,7 @@ public class CartController {
             while (true);
             String customer_id = cartRequestDto.getUserID();
             String address = cartRequestDto.getAddress();
-            List<CartInfoDto> list = cartRequestDto.getList_product();
+            List<CartInfo> list = cartRequestDto.getList_product();
             cartService.add(cart_new_id, customer_id, address, list);
             cartInfoService.add(list, cart_new_id);
             return new ResponseEntity<String>("Success", HttpStatus.CREATED);

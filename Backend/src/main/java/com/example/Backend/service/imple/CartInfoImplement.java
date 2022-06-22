@@ -27,9 +27,9 @@ public class CartInfoImplement implements CartInfoService {
     }
 
     @Override
-    public void add(List<CartInfoDto> list, String cart_id) {
+    public void add(List<CartInfo> list, String cart_id) {
         try{
-            for (CartInfoDto product : list) {
+            for (CartInfo product : list) {
                 String product_id = product.getProduct_id();
                 String slug = product.getSlug();
                 String color = product.getColor();

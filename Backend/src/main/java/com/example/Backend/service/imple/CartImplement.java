@@ -2,6 +2,7 @@ package com.example.Backend.service.imple;
 
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.model.Cart;
+import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartRepo;
 import com.example.Backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,11 @@ public class CartImplement implements CartService {
     }
 
     @Override
-    public void add(String cart_id, String customer_id, String address, List<CartInfoDto> list_product) {
+    public void add(String cart_id, String customer_id, String address, List<CartInfo> list_product) {
         try{
             LocalDate create_date = LocalDate.now();
             long price = 0;
-            for (CartInfoDto product : list_product) {
+            for (CartInfo product : list_product) {
                 price += product.getPrice() * product.getAmount();
             }
             cartRepo.add(cart_id, customer_id, address, create_date, price);
