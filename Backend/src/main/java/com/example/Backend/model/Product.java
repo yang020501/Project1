@@ -14,6 +14,7 @@ public class Product {
     private String title;
     private String id_cate;
     private String categorySlug;
+    private boolean gender;
     private String image1;
     private String image2;
     private long price;
@@ -22,19 +23,20 @@ public class Product {
     private String size;
     private String descriptions;
 
-    public Product(String id, String title, String id_cate, String categorySlug, String image1, String image2,
-                   long price, String slug, String colors, String size, String description) {
+    public Product(String id, String title, String id_cate, String categorySlug, boolean gender,
+                   String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
         this.categorySlug = categorySlug;
+        this.gender = gender;
         this.image1 = image1;
         this.image2 = image2;
         this.price = price;
         this.slug = slug;
         this.colors = colors;
         this.size = size;
-        this.descriptions = description;
+        this.descriptions = descriptions;
     }
 
     public long getPrice() {
@@ -47,6 +49,30 @@ public class Product {
 
 
     public Product() {
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
+
+    public String getDescriptions() {
+        return descriptions;
+    }
+
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
     public String getId() {

@@ -1,7 +1,6 @@
 package com.example.Backend.service.imple;
 
 import com.example.Backend.dto.ProductDto;
-import com.example.Backend.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.Backend.repository.ProductRepo;

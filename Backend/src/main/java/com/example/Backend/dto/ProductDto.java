@@ -8,6 +8,7 @@ public class ProductDto implements Serializable {
     private final String title;
     private final String id_cate;
     private final String categorySlug;
+    private final boolean gender;
     private final String image1;
     private final String image2;
     private final long price;
@@ -16,18 +17,19 @@ public class ProductDto implements Serializable {
     private final String size;
     private final String descriptions;
 
-    public ProductDto(String id, String title, String id_cate, String categorySlug, String image1, String image2, long price, String slug, String colors, String size, String description) {
+    public ProductDto(String id, String title, String id_cate, String categorySlug, boolean gender, String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
         this.categorySlug = categorySlug;
+        this.gender = gender;
         this.image1 = image1;
         this.image2 = image2;
         this.price = price;
         this.slug = slug;
         this.colors = colors;
         this.size = size;
-        this.descriptions = description;
+        this.descriptions = descriptions;
     }
 
     public String getId() {
@@ -46,6 +48,10 @@ public class ProductDto implements Serializable {
         return categorySlug;
     }
 
+    public boolean getGender() {
+        return gender;
+    }
+
     public String getImage1() {
         return image1;
     }
@@ -62,7 +68,7 @@ public class ProductDto implements Serializable {
         return slug;
     }
 
-    public String getColor() {
+    public String getColors() {
         return colors;
     }
 
@@ -70,7 +76,7 @@ public class ProductDto implements Serializable {
         return size;
     }
 
-    public String getDescription() {
+    public String getDescriptions() {
         return descriptions;
     }
 
@@ -83,6 +89,7 @@ public class ProductDto implements Serializable {
                 Objects.equals(this.title, entity.title) &&
                 Objects.equals(this.id_cate, entity.id_cate) &&
                 Objects.equals(this.categorySlug, entity.categorySlug) &&
+                Objects.equals(this.gender, entity.gender) &&
                 Objects.equals(this.image1, entity.image1) &&
                 Objects.equals(this.image2, entity.image2) &&
                 Objects.equals(this.price, entity.price) &&
@@ -94,7 +101,7 @@ public class ProductDto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, id_cate, categorySlug, image1, image2, price, slug, colors, size, descriptions);
+        return Objects.hash(id, title, id_cate, categorySlug, gender, image1, image2, price, slug, colors, size, descriptions);
     }
 
     @Override
@@ -104,6 +111,7 @@ public class ProductDto implements Serializable {
                 "title = " + title + ", " +
                 "id_cate = " + id_cate + ", " +
                 "categorySlug = " + categorySlug + ", " +
+                "gender = " + gender + ", " +
                 "image1 = " + image1 + ", " +
                 "image2 = " + image2 + ", " +
                 "price = " + price + ", " +

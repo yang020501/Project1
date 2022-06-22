@@ -1,7 +1,6 @@
 package com.example.Backend.service;
 
 import com.example.Backend.dto.ProductDto;
-import com.example.Backend.model.Product;
 
 import java.util.List;
 
