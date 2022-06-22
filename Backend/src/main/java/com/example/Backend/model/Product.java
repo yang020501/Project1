@@ -14,7 +14,7 @@ public class Product {
     private String title;
     private String id_cate;
     private String categorySlug;
-    private boolean gender;
+    private String gender;
     private String image1;
     private String image2;
     private long price;
@@ -23,7 +23,7 @@ public class Product {
     private String size;
     private String descriptions;
 
-    public Product(String id, String title, String id_cate, String categorySlug, boolean gender,
+    public Product(String id, String title, String id_cate, String categorySlug, String gender,
                    String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
         this.id = id;
         this.title = title;
@@ -51,11 +51,11 @@ public class Product {
     public Product() {
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
