@@ -14,6 +14,16 @@ export const login = createAsyncThunk(
         return rs.data
     }
 )
+export const update = createAsyncThunk(
+    'user/update',
+    async (data, { rejectWithValue }) => {
+        const rs = await axios.patch(`${apiUrl}/user/update`, data)
+        if (rs.status < 200 || rs.status >= 300) {
+            return rejectWithValue(rs.data)
+        }
+        return data
+    }
+)
 export const userState = createSlice({
     name: 'userState',
     initialState: {
@@ -41,7 +51,19 @@ export const userState = createSlice({
             state.loading = false;
             state.errorMess = action.payload;
 
-        });
+        })
+        builder.addCase(update.pending, state => {
+            state.loading = true;
+        })
+        builder.addCase(update.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(action.payload);
+        })
+        builder.addCase(update.rejected, (state, action) => {
+            state.loading = false;
+            state.errorMess = action.payload;
+
+        })
     }
 })
 export const { logout } = userState.actions

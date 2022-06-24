@@ -76,7 +76,7 @@ const Accessories = () => {
             }
             if (filter.color.length > 0) {
                 temp = temp.filter(e => {
-                    const check = e.color.split(",").find(color => filter.color.includes(color))
+                    const check = e.colors.split(",").find(color => filter.color.includes(color))
                     return check !== undefined
                 })
             }

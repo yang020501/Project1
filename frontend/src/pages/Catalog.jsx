@@ -24,7 +24,7 @@ const Catalog = () => {
   const [products, setProducts] = useState()
   const [filter, setFilter] = useState(initFilter)
 
-  const filterSelect = (type, checked, item) => {
+  const filterSelect = (type, checked, item) => {  
     if (checked) {
       switch (type) {
         case "CATEGORY":
@@ -76,7 +76,7 @@ const Catalog = () => {
       }
       if (filter.color.length > 0) {
         temp = temp.filter(e => {
-          const check = e.color.split(",").find(color => filter.color.includes(color))
+          const check = e.colors.split(",").find(color => filter.color.includes(color))
           return check !== undefined
         })
       }
