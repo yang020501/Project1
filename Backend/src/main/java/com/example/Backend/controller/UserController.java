@@ -17,22 +17,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @Transactional
     @PostMapping("/login")
-    public Object login(@RequestBody UserDto user){
+    public Object login(@RequestBody UserDto user) {
         try {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
-            if(find){
+            if (find) {
                 UserDto loginer = userService.find_byUserName(user.getUsername());
 
                 return new ResponseEntity<UserDto>(loginer, HttpStatus.ACCEPTED);
             }
-            return new ResponseEntity<String>( "Login false", HttpStatus.FOUND);
+            return new ResponseEntity<String>("Login false", HttpStatus.FOUND);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
@@ -40,11 +38,11 @@ public class UserController {
     @Transactional
     @PostMapping("/sign_in")
 
-    public Object sign(@RequestBody UserDto new_user){
+    public Object sign(@RequestBody UserDto new_user) {
         try {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
-            if(find){
+            if (find) {
                 return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.BAD_REQUEST);
             }
             String id = RandomGenerate.GenerateId(5);
@@ -58,28 +56,27 @@ public class UserController {
             String address3 = new_user.getAddress3();
             userService.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
 
-            return new ResponseEntity<String>("Add a user successfully" ,HttpStatus.CREATED);
+            return new ResponseEntity<String>("Add a user successfully", HttpStatus.CREATED);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getAll")
-    public Object getAll(){
+    public Object getAll() {
         try {
             List<UserDto> userlist = userService.getAll();
             return new ResponseEntity<List<UserDto>>(userlist, HttpStatus.OK);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
 
+    @CrossOrigin
     @Transactional
     @PatchMapping("/update")
-    public Object update(@RequestBody UserDto userDto){
+    public Object update(@RequestBody UserDto userDto) {
         try {
             String id = userDto.getId();
             String password = userDto.getPassword();
@@ -91,8 +88,7 @@ public class UserController {
             String address3 = userDto.getAddress3();
             userService.update(password, customer_name, phone, house_address, address1, address2, address3, id);
             return new ResponseEntity<String>("Update success", HttpStatus.OK);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }

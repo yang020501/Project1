@@ -96,7 +96,7 @@ $val in $colors {
 .main {
     margin-top: $header-height;
     margin-bottom: 2rem;
-    min-height: 100vh;
+    min-height: 50vh;
 
     @include tablet {
         margin-top: calc(#{$header-tablet-height} + 20px);
@@ -106,6 +106,7 @@ $val in $colors {
         margin-top: calc(#{$header-mobile-height} + 10px);
     }
 }
+
 
 .grid {
     display: grid;

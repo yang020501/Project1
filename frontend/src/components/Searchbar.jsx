@@ -12,8 +12,8 @@ const Searchbar = ({ placeholder, data }) => {
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = data.filter((value) => {
-            return normalizeStr(value.title).toLowerCase().includes(searchWord.toLowerCase());
+        const newFilter = data.filter((value) => {         
+            return normalizeStr(value.title).toLowerCase().includes(normalizeStr(searchWord).toLowerCase());
         });
 
         if (searchWord === "") {
@@ -22,7 +22,7 @@ const Searchbar = ({ placeholder, data }) => {
             setFilteredData(newFilter);
         }
     };
-    // chuan hoa chuoi tieng ve kh dau
+    // cchuẩn hóa chuỗi về dạng không dấu
     const normalizeStr = (str) => {
         return str.normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
