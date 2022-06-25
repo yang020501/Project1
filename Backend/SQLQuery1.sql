@@ -59,6 +59,15 @@ create table CartInfo(
 	foreign key (product_id) references Product(id)
 )
 
+create table SaleProduct(
+	product_id varchar(10) primary key,
+	product_title nvarchar(100),
+	slug varchar(50),
+	sale int,
+
+	FOREIGN KEY (product_id) REFERENCES Product(id)
+)
+
 
 
 
