@@ -79,14 +79,13 @@ public class UserController {
     public Object update(@RequestBody UserDto userDto) {
         try {
             String id = userDto.getId();
-            String password = userDto.getPassword();
             String customer_name = userDto.getCustomer_name();
             String phone = userDto.getPhone();
             String house_address = userDto.getHouse_address();
             String address1 = userDto.getAddress1();
             String address2 = userDto.getAddress2();
             String address3 = userDto.getAddress3();
-            userService.update(password, customer_name, phone, house_address, address1, address2, address3, id);
+            userService.update(customer_name, phone, house_address, address1, address2, address3, id);
             return new ResponseEntity<String>("Update success", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
