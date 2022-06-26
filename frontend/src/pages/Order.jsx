@@ -61,10 +61,7 @@ const Order = () => {
             setValidated(true)
         }
         else {
-
-
             let listtmp = cartProducts.map((item) => {
-
                 let tmp = {
                     product_id: item.product.id,
                     slug: item.slug,
@@ -75,20 +72,36 @@ const Order = () => {
                 }
                 return tmp
             })
+            if (!user.phone) {
+                console.log(user.id);
+                let data = {
+                    user_id: user.id,
+                    phone: phone
+                }
+                const rs = await axios.patch(`${apiUrl}/user/update`, data)
+                console.log(rs.data);
+            }
+
             let body = {
                 user_id: user.id,
                 address: `${house_address}, ${address3}, ${address2}, ${address1}`,
                 list_product: listtmp
 
             }
-
-            const rs = await axios.post(`${apiUrl}/cart/buy`, body)
-            console.log(body);
-            dispatch(setAlert({
-                message: "Đặt hàng thành công",
-                type: "success"
-            }))
-
+            // 
+            /* const rs = await axios.post(`${apiUrl}/cart/buy`, body)
+            if (rs.data) {
+                dispatch(setAlert({
+                    message: "Đặt hàng thành công",
+                    type: "success"
+                }))
+            }
+            else {
+                dispatch(setAlert({
+                    message: "Lỗi đặt hàng không thành công",
+                    type: "danger"
+                }))
+            } */
             setValidated(false)
         }
 
@@ -201,7 +214,6 @@ const Order = () => {
                                         disabled
                                         required
                                         type="email"
-                                        name="email"
                                         defaultValue={email}
                                         size="lg"
                                     />
@@ -250,6 +262,7 @@ const Order = () => {
                                         required
                                         value={address1}
                                         name="address1"
+                                        ref={provinceRef}
                                         onChange={onOrderFormChangeProvince}
                                         bsPrefix="form-select form-select-lg "
                                     >
@@ -288,7 +301,7 @@ const Order = () => {
                                     </Form.Select>
                                     <div className='p-2 invalidmess '>
                                         <div ref={districtInvalidRef}>
-                                            Vui lòng nhập tỉnh thành
+                                            Vui lòng nhập quận huyện
                                         </div>
                                     </div>
                                 </div>
@@ -312,7 +325,7 @@ const Order = () => {
                                     </Form.Select>
                                     <div className='p-2 invalidmess '>
                                         <div ref={wardInvalidRef}>
-                                            Vui lòng nhập tỉnh thành
+                                            Vui lòng nhập phường xã
                                         </div>
                                     </div>
                                 </div>
