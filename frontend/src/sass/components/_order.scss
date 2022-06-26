@@ -2,6 +2,15 @@
     @include flex(flex-start, flex-start);
     padding: 50px;
 
+    @include mobile {
+        flex-direction: column-reverse;
+        padding: 0;
+    }
+
+    @include tablet {
+        padding: 0;
+    }
+
     &-leftcontent {
         width: 110%;
 
@@ -42,6 +51,8 @@
             flex-direction: row;
             width: 90%;
 
+
+
             &-info {
                 flex-grow: 1;
 
@@ -51,6 +62,7 @@
                     &-item {
                         padding: 0.5rem;
                         flex-grow: 1;
+
                         .invalidmess {
                             visibility: hidden;
 
@@ -73,6 +85,14 @@
             }
         }
 
+        &,
+        &-main-content {
+            @include tablet {
+                width: 100%;
+            }
+        }
+
+
 
     }
 
@@ -80,9 +100,29 @@
         width: 90%;
         height: 100%;
 
+        // for 2 if mobile
+        &,
+        &-content {
+            @include mobile {
+                margin-left: 0 !important;
+                width: 100%;
+                padding: 0 !important;
+            }
+        }
+
+        &,
+        &-content {
+            @include tablet {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 10px;
+            }
+        }
+
         &-content {
             width: 100%;
             margin-left: 40px;
+
 
             &-order-cart-list {
                 height: fit-content;
@@ -109,11 +149,12 @@
             }
 
             &-fee {
+                @include flex(center, flex-start);
+
+                flex-direction: column;
                 margin-top: 20px;
                 padding-top: 20px;
                 border-top: 2px solid #e3e3e3;
-                @include flex(center, flex-start);
-                flex-direction: column;
 
                 &-item {
                     @include flex(center, space-between);
@@ -136,6 +177,7 @@
     }
 
     &-rightcontent::after {
+
         content: "";
         display: block;
         width: 45.5%;
@@ -143,8 +185,16 @@
         border-left: 2px solid #e3e3e3;
         top: 0;
         left: 54.4%;
-        bottom: -22%;
+        bottom: -18%;
         background: #fafafa;
         z-index: -999;
+
+        @include mobile {
+            visibility: hidden;
+        }
+
+        @include tablet {
+            visibility: hidden;
+        }
     }
 }

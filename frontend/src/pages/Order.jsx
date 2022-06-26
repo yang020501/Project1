@@ -73,12 +73,12 @@ const Order = () => {
                 return tmp
             })
             if (!user.phone) {
-                axios.defaults.headers.patch['Access-Control-Allow-Origin'] = '*';
-                const rs = await axios.patch(`${apiUrl}/user/update`, {
-                    data: {
-                        phone: phone
-                    }
-                })
+                console.log(user.id);
+                let data = {
+                    user_id: user.id,
+                    phone: phone
+                }
+                const rs = await axios.patch(`${apiUrl}/user/update`, data)
                 console.log(rs.data);
             }
 
@@ -214,7 +214,6 @@ const Order = () => {
                                         disabled
                                         required
                                         type="email"
-                                        name="email"
                                         defaultValue={email}
                                         size="lg"
                                     />

@@ -103,7 +103,7 @@ $val in $colors {
     }
 
     @include mobile {
-        margin-top: calc(#{$header-mobile-height} + 10px);
+        margin-top: calc(#{$header-mobile-height} + 70px);
     }
 }
 
