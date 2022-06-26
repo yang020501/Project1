@@ -2,9 +2,10 @@ package com.example.Backend.dto;
 
 import com.example.Backend.model.CartInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CartRequestDto {
+public class CartRequestDto implements Serializable {
 
     private String user_id;
     private List<CartInfo> list_product;

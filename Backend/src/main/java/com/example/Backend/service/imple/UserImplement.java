@@ -99,7 +99,7 @@ public class UserImplement implements UserService {
     }
 
     @Override
-    public void update(String customer_name, String phone, String house_address, String address1, String address2, String address3, String id) {
+    public void update_information(String customer_name, String phone, String house_address, String address1, String address2, String address3, String id) {
         try{
             userRepo.update_information(customer_name, phone, house_address, address1, address2, address3, id);
         }

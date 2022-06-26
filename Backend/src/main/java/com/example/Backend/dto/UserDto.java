@@ -37,7 +37,6 @@ public class UserDto implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public String getCustomer_name() {
         return customer_name;
     }

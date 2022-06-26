@@ -32,9 +32,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE Users SET customer_name = ?1, phone = ?2, house_address = ?3, address1 = ?4, address2 = ?5, address3 = ?6 " +
-            "WHERE id = ?7" )
-    public void update_information(String customer_name, String phone, String house_address, String address1,
-                       String address2, String address3, String id);
+    @Query(value = "UPDATE Users SET customer_name = ?1, phone = ?2, house_address = ?3, address1 = ?4, address2 = ?5, address3 = ?6 WHERE id = ?7" )
+    public void update_information(String customer_name, String phone, String house_address, String address1, String address2, String address3, String id);
 
 }
