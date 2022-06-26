@@ -34,6 +34,17 @@ public class User {
         this.address3 = address3;
     }
 
+    public User(String id, String username, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+        this.id = id;
+        this.username = username;
+        this.customer_name = customer_name;
+        this.phone = phone;
+        this.house_address = house_address;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.address3 = address3;
+    }
+
     public User() {
     }
 

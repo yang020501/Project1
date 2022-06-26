@@ -2,6 +2,7 @@ package com.example.Backend.controller;
 
 import com.example.Backend.dto.ProductDto;
 import com.example.Backend.dto.SaleProductDto;
+import com.example.Backend.dto.SaleProductRequestDto;
 import com.example.Backend.repository.SaleProductRepo;
 import com.example.Backend.service.SaleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class SaleProductController {
     @GetMapping
     public Object getAll() {
         try {
-            List<SaleProductDto> productList = saleProductService.getAll();
-            return new ResponseEntity<List<SaleProductDto>>(productList, HttpStatus.OK);
+            List<SaleProductRequestDto> productList = saleProductService.getAll();
+            return new ResponseEntity<List<SaleProductRequestDto>>(productList, HttpStatus.OK);
         }
         catch (Exception e) {
             e.printStackTrace();

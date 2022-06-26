@@ -2,6 +2,7 @@ package com.example.Backend.controller;
 
 import com.example.Backend.RandomGenerate;
 import com.example.Backend.dto.UserDto;
+import com.example.Backend.model.User;
 import com.example.Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +26,17 @@ public class UserController {
             List<UserDto> list_user = userService.getAll();
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
             if(find){
-                UserDto loginer = userService.find_byUserName(user.getUsername());
-
-                return new ResponseEntity<UserDto>(loginer, HttpStatus.ACCEPTED);
+                UserDto tmp = userService.find_byUserName(user.getUsername());
+                User login_user = new User();
+                login_user.setId(tmp.getId());
+                login_user.setUsername(tmp.getUsername());
+                login_user.setCustomer_name(tmp.getCustomer_name());
+                login_user.setPhone(tmp.getPhone());
+                login_user.setHouse_address(tmp.getHouse_address());
+                login_user.setAddress1(tmp.getAddress1());
+                login_user.setAddress2(tmp.getAddress2());
+                login_user.setAddress3(tmp.getAddress3());
+                return new ResponseEntity<User>(login_user, HttpStatus.ACCEPTED);
             }
             return new ResponseEntity<String>( "Login false", HttpStatus.FOUND);
 
@@ -88,8 +97,8 @@ public class UserController {
             String address1 = userDto.getAddress1();
             String address2 = userDto.getAddress2();
             String address3 = userDto.getAddress3();
-            userService.update(customer_name, phone, house_address, address1, address2, address3, id);
-            return new ResponseEntity<String>("Update success", HttpStatus.OK);
+            userService.update_information(customer_name, phone, house_address, address1, address2, address3, id);
+            return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
