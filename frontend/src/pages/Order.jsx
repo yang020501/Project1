@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import { useDispatch, useSelector } from 'react-redux'
 import address from '../assets/fake-data/address.json'
@@ -10,7 +10,9 @@ import numberWithCommas from '../utils/numberWithCommas'
 import Button from "../components/Button"
 import axios from 'axios'
 import { apiUrl } from '../utils/constant'
+import { removeAll } from '../redux/shopping-cart/cartItemsSlice'
 const Order = () => {
+    let navigate = useNavigate()
     const user = useSelector(state => state.userState.user)
     const cartItems = useSelector((state) => state.cartItems.value)
     const productList = useSelector(state => state.productSlice.value)
@@ -39,7 +41,10 @@ const Order = () => {
     const [Ward, setWard] = useState([])
     const [cartProducts, setcartProducts] = useState([])
     const [totalPrice, settotalPrice] = useState(0)
+
+
     const getCartItemsInfo = (cartItems) => {
+
         if (productList.length > 0) {
             let res = []
             if (cartItems.length > 0) {
@@ -73,13 +78,11 @@ const Order = () => {
                 return tmp
             })
             if (!user.phone) {
-                console.log(user.id);
                 let data = {
-                    user_id: user.id,
+                    id: user.id,
                     phone: phone
                 }
-                const rs = await axios.patch(`${apiUrl}/user/update`, data)
-                console.log(rs.data);
+                await axios.patch(`${apiUrl}/user/update`, data)
             }
 
             let body = {
@@ -88,20 +91,22 @@ const Order = () => {
                 list_product: listtmp
 
             }
-            // 
-            /* const rs = await axios.post(`${apiUrl}/cart/buy`, body)
+
+            const rs = await axios.post(`${apiUrl}/cart/buy`, body)
             if (rs.data) {
                 dispatch(setAlert({
                     message: "Đặt hàng thành công",
                     type: "success"
                 }))
+                dispatch(removeAll())
+
             }
             else {
                 dispatch(setAlert({
                     message: "Lỗi đặt hàng không thành công",
                     type: "danger"
                 }))
-            } */
+            }
             setValidated(false)
         }
 

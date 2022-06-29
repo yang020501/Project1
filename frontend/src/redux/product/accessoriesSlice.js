@@ -5,7 +5,7 @@ import { apiUrl } from "../../utils/constant";
 
 
 export const getAllAccessories = createAsyncThunk(
-    'getAllAccessories',
+    'product/getAllAccessories',
     async (data, { rejectWithValue }) => {
         const belt = await axios.get(`${apiUrl}/product/category_slug/that-lung`)
         const umbrella = await axios.get(`${apiUrl}/product/category_slug/o`)

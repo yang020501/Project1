@@ -31,7 +31,7 @@ const Product = props => {
   }, [slug])
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+  }, [slug])
   return (
     <Helmet title={product ? product.title : ""}>
       <Section>

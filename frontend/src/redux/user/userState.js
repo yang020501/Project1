@@ -14,14 +14,14 @@ export const login = createAsyncThunk(
         return rs.data
     }
 )
-export const update = createAsyncThunk(
-    'user/update',
+export const getCart = createAsyncThunk(
+    'user/getCart',
     async (data, { rejectWithValue }) => {
-        const rs = await axios.patch(`${apiUrl}/user/update`, data)
+        const rs = await axios.get(`${apiUrl}/cart/${user.id}`)
         if (rs.status < 200 || rs.status >= 300) {
             return rejectWithValue(rs.data)
         }
-        return data
+        return rs.data
     }
 )
 export const userState = createSlice({
@@ -29,7 +29,8 @@ export const userState = createSlice({
     initialState: {
         loading: false,
         user: user,
-        errorMess: ""
+        errorMess: "",
+        cart: []
     },
     reducers: {
         logout: (state) => {
@@ -38,6 +39,7 @@ export const userState = createSlice({
             localStorage.removeItem('user')
         }
     },
+
     extraReducers: (builder) => {
         builder.addCase(login.pending, state => {
             state.loading = true;
@@ -52,19 +54,26 @@ export const userState = createSlice({
             state.errorMess = action.payload;
 
         })
-        builder.addCase(update.pending, state => {
+        builder.addCase(getCart.pending, state => {
             state.loading = true;
+
         })
-        builder.addCase(update.fulfilled, (state, action) => {
+        builder.addCase(getCart.fulfilled, (state, action) => {
             state.loading = false
-            console.log(action.payload);
+            state.cart = action.payload
+         /*    localStorage.setItem('user', JSON.stringify(state.value)) */
         })
-        builder.addCase(update.rejected, (state, action) => {
+        builder.addCase(getCart.rejected, (state, action) => {
             state.loading = false;
             state.errorMess = action.payload;
 
+
         })
+
     }
+
+
+
 })
 export const { logout } = userState.actions
 export default userState.reducer
