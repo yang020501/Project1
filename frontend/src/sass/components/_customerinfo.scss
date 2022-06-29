@@ -35,12 +35,13 @@
         color: $txt-second-color;
 
         @include tablet {
-            flex-direction: column;
+            flex-direction: column-reverse;
+
 
         }
 
         @include mobile {
-            flex-direction: column;
+            flex-direction: column-reverse;
             font-size: 15pt;
         }
 

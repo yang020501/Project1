@@ -3,9 +3,11 @@ import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import { useSelector, useDispatch } from 'react-redux'
 import address from '../assets/fake-data/address.json'
+import { getCart } from '../redux/user/userState'
 const CustomerInfo = () => {
 
     const user = useSelector(state => state.userState.user)
+    const cart = useSelector(state => state.userState.cart)
     const initialForm = {
         customer_name: user.customer_name ? user.customer_name : "",
         email: user.username,
@@ -62,6 +64,9 @@ const CustomerInfo = () => {
 
     }
     useEffect(() => {
+        dispatch(getCart())
+    }, [])
+    useEffect(() => {
         if (address1) {
             if (address.filter(item => item.Name === address1)[0])
                 setDistrict(address.filter(item => item.Name === address1)[0].Districts)
@@ -72,12 +77,12 @@ const CustomerInfo = () => {
             provinceRef.current.classList.remove('active')
             provinceInvalidRef.current.classList.remove('active')
         }
+
     }, [address1, Province])
     useEffect(() => {
         if (address2) {
             if (District.filter(item => item.Name === address2)[0])
                 setWard(District.filter(item => item.Name === address2)[0].Wards)
-
         }
         else
             setWard([])
@@ -107,9 +112,9 @@ const CustomerInfo = () => {
                             <thead>
                                 <tr>
                                     <th >Đơn hàng</th>
-                                    <th >First</th>
+                                    <th >Ngày</th>
                                     <th >Last</th>
-                                    <th >Handle</th>
+                                    <th >Tổng</th>
 
                                 </tr>
                             </thead>

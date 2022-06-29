@@ -5,7 +5,7 @@ import { apiUrl } from "../../utils/constant";
 
 
 export const getAllclothes = createAsyncThunk(
-    'getAllclothes',
+    'product/getAllclothes',
     async (data, { rejectWithValue }) => {
         const tshirt = await axios.get(`${apiUrl}/product/category_slug/ao-thun`)
         const shirt = await axios.get(`${apiUrl}/product/category_slug/ao-somi`)
