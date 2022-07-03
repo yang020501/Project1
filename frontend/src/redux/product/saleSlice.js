@@ -5,7 +5,7 @@ import { apiUrl } from "../../utils/constant";
 
 
 export const getAllSale = createAsyncThunk(
-    'product/getAllProduct',
+    'product/getAllSale',
     async (data, { rejectWithValue }) => {
         const rs = await axios.get(`${apiUrl}/product/sale`)
         if (rs.status < 200 || rs.status >= 300) {

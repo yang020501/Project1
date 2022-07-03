@@ -5,8 +5,13 @@ import Button from './Button'
 import numberWithCommas from '../utils/numberWithCommas'
 import { useDispatch } from 'react-redux'
 import { set } from '../redux/product-modal/productModalSlice'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
 
 const ProductCard = props => {
+    const productSale = useSelector(state => state.saleSlice.value)
+    
     const dispatch = useDispatch()
     return (
         <div className='product-card'>
@@ -18,7 +23,7 @@ const ProductCard = props => {
                 <h3 className='product-card-name'>{props.name}</h3>
                 <div className="product-card-price">
                     {numberWithCommas(Number((props.price)))} đ
-                   {/*  <span className='product-card-price-old'>
+                    {/*  <span className='product-card-price-old'>
                         <del>{numberWithCommas(props.price + 70000)} đ</del>
                     </span> */}
                 </div>

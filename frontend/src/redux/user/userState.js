@@ -7,11 +7,15 @@ const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.get
 export const login = createAsyncThunk(
     'user/login',
     async (data, { rejectWithValue }) => {
-        const rs = await axios.post(`${apiUrl}/user/login`, data)
-        if (rs.status < 200 || rs.status >= 300) {
-            return rejectWithValue(rs.data)
+        try {
+            const rs = await axios.post(`${apiUrl}/user/login`, data)
+            return rs.data
         }
-        return rs.data
+        catch (error) {
+            return rejectWithValue(
+                error.response.data
+            )
+        }
     }
 )
 export const getCart = createAsyncThunk(
@@ -47,11 +51,14 @@ export const userState = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             state.loading = false
             state.user = action.payload
+            state.errorMess = ""
             localStorage.setItem('user', JSON.stringify(action.payload))
         })
         builder.addCase(login.rejected, (state, action) => {
             state.loading = false;
-            state.errorMess = action.payload;
+            console.log(action.payload);
+            state.errorMess = action.payload
+
 
         })
         builder.addCase(getCart.pending, state => {
@@ -61,7 +68,7 @@ export const userState = createSlice({
         builder.addCase(getCart.fulfilled, (state, action) => {
             state.loading = false
             state.cart = action.payload
-         /*    localStorage.setItem('user', JSON.stringify(state.value)) */
+            /*    localStorage.setItem('user', JSON.stringify(state.value)) */
         })
         builder.addCase(getCart.rejected, (state, action) => {
             state.loading = false;
