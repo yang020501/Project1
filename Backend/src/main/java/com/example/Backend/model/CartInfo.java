@@ -15,7 +15,7 @@ public class CartInfo {
     private String slug;
     private String color;
     private String size;
-    private int amount;
+    private int quantity;
     private long price;
 
     public CartInfo() {
@@ -27,7 +27,7 @@ public class CartInfo {
         this.slug = slug;
         this.color = color;
         this.size = size;
-        this.amount = amount;
+        this.quantity = amount;
         this.price = price;
     }
 
@@ -36,7 +36,7 @@ public class CartInfo {
         this.slug = slug;
         this.color = color;
         this.size = size;
-        this.amount = amount;
+        this.quantity = amount;
         this.price = price;
     }
 
@@ -80,12 +80,12 @@ public class CartInfo {
         this.color = color;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public long getPrice() {

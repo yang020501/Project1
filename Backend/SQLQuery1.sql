@@ -30,7 +30,8 @@ create table Product(
 	slug varchar(100),
 	colors varchar(100),
 	size varchar(50),
-	descriptions nvarchar(max)
+	descriptions nvarchar(max),
+	sale int default(0),
 
 	FOREIGN KEY (id_cate) REFERENCES Category(id)
 )
@@ -41,6 +42,7 @@ create table Cart(
 	address nvarchar(max),
 	create_date smalldatetime,
 	total int,
+	status nvarchar(50) default (N'đang chờ xữ lí'),
 
 	FOREIGN KEY (customer_id) REFERENCES Users(id)
 )
@@ -51,23 +53,13 @@ create table CartInfo(
 	slug varchar(50),
 	color varchar(50),
 	size varchar(50),
-	amount int,
-	price int
+	quantity int,
+	price int,
 
 	primary key (cart_id, product_id, color, size),
 	foreign key (cart_id) references Cart(id),
 	foreign key (product_id) references Product(id)
 )
-
-create table SaleProduct(
-	product_id varchar(10) primary key,
-	product_title nvarchar(100),
-	slug varchar(50),
-	sale int,
-
-	FOREIGN KEY (product_id) REFERENCES Product(id)
-)
-
 
 
 

@@ -18,17 +18,19 @@ public class Cart {
     private String address;
     private LocalDate create_date;
     private long total;
+    private String status;
 
 
     public Cart() {
     }
 
-    public Cart(String id, String customer_id, String address, LocalDate create_date, long total) {
+    public Cart(String id, String customer_id, String address, LocalDate create_date, long total, String status) {
         this.id = id;
         this.customer_id = customer_id;
         this.address = address;
         this.create_date = create_date;
         this.total = total;
+        this.status = status;
     }
 
     public String getAddress() {
@@ -69,5 +71,13 @@ public class Cart {
 
     public void setTotal(long total) {
         this.total = total;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

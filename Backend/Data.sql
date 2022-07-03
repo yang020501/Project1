@@ -8,13 +8,6 @@ insert into Category values ('rkt6yu548e', 'o')
 insert into Category values ('rkt5yu848e', 'kinh')
 insert into Category values ('r0di179uhw', 'non')
 
-insert into Product values ('trwyhnbd47', 'ao thun nam', 'erq200113r','ao-thun','1','null', 'null', '900000', 'null', 'xanh', 'M', 'lalalalla')
-insert into Product values ('74516ffssg', 'ao thun nu', 'erq200113r','ao-thun','1','null', 'null', '900000', 'null', 'do', 'M,X', 'lalalalla')
-insert into Product values ('tf6234ytfa', 'quan thun nam', 'erq135r5to','quan-thun','1','null', 'null', '900000', 'null', 'tim', 'S', 'lalalalla')
-insert into Product values ('67234cccas', 'quan kaki nam', 'erq55122d1','quan-kaki','1','null', 'null', '900000', 'null', 'vang', 'XL', 'lalalalla')
-insert into Product values ('awsdg52345', 'ao len', 'erq231146o','ao-len','1','null','null', '900000', 'null', 'den', 'S', 'lalalalla')
-insert into Product values ('asd5567111', 'vong tay go', 'rqt6yu748o', 'phu-kien','1','null','null', '1400000', 'null', 'xanh', '', 'memememe')
-insert into Product values ('asc623ggg1', 'nhan deo', 'rqt6yu748o','phu-kien' ,'1','null','null', '5600000', 'null', 'do', '', 'memememe')
 
 insert into Product values ('x1e19t4ucd',N'Áo thun cổ tròn Dinasour','erq200113r','ao-thun',0,'images/aothuncotrondinasour-1.png','images/aothuncotrondinasour-2.png',230000,'ao-thun-co-tron-dinasour','orange,yellow,red','M,L,XL,XXL',N'Nhóm thiết kế tại Paris, do Christophe Lemaire dẫn đầu, đã tạo ra bộ sưu tập LifeWear mới bằng cách sử dụng các loại vải tân tiến và kiểu dáng hiện đại.Áo thun cổ thuyền có thiết kế đơn giản được làm từ chất liệu vải jersey dày dặn.Do chất liệu áo độc đáo với số lượng sợi thấp được dệt nhỏ gọn nên sản phẩm bền, lâu phai và càng giặt càng đẹp.Cổ áo có thể điều chỉnh để tạo kiểu cổ phẳng.Dáng áo vừa vặn, rộng rãi mang phong cách hiện đại.')
 insert into Product values ('3p91mxalbr',N'Áo thun cổ tròn Dinasour 2','erq200113r','ao-thun',0,'images/aothuncotrondinasour2-1.png','images/aothuncotrondinasour2-2.png',230000,'ao-thun-co-tron-dinasour2','orange,yellow,blue','M,L,XL,XXL',N'Nhóm thiết kế tại Paris, do Christophe Lemaire dẫn đầu, đã tạo ra bộ sưu tập LifeWear mới bằng cách sử dụng các loại vải tân tiến và kiểu dáng hiện đại.Áo thun cổ thuyền có thiết kế đơn giản được làm từ chất liệu vải jersey dày dặn.Do chất liệu áo độc đáo với số lượng sợi thấp được dệt nhỏ gọn nên sản phẩm bền, lâu phai và càng giặt càng đẹp.Cổ áo có thể điều chỉnh để tạo kiểu cổ phẳng.Dáng áo vừa vặn, rộng rãi mang phong cách hiện đại.')

@@ -1,5 +1,6 @@
 package com.example.Backend.service.imple;
 
+import com.example.Backend.dto.CartDto;
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.dto.CartInfoResponeDto;
 import com.example.Backend.dto.CartRequestDto;
@@ -18,12 +19,19 @@ public class CartInfoImplement implements CartInfoService {
     private CartInfoRepo cartInfoRepo;
 
     @Override
-    public List<CartInfoResponeDto> getAll_byCartID(List<String> list_cart_id) {
+    public List<CartInfoResponeDto> getAll_byCartID(List<CartDto> list_cart) {
         try {
             List<CartInfoResponeDto> list_product_buy_by_customer = new ArrayList<>();
-            for (String cart_id : list_cart_id) {
-                CartInfoResponeDto cart_info = new CartInfoResponeDto(cart_id, cartInfoRepo.getAll_byCartID(cart_id));
-                list_product_buy_by_customer.add(cart_info);
+            for (CartDto cart : list_cart) {
+                CartInfoResponeDto cartInfoResponeDto = new CartInfoResponeDto();
+
+                cartInfoResponeDto.setCart_id(cart.getId());
+                cartInfoResponeDto.setList_product(cartInfoRepo.getAll_byCartID(cart.getId()));
+                cartInfoResponeDto.setCreate_date(cart.getCreate_date());
+                cartInfoResponeDto.setTotal(cart.getTotal());
+                cartInfoResponeDto.setStatus(cart.getStatus());
+
+                list_product_buy_by_customer.add(cartInfoResponeDto);
             }
             return list_product_buy_by_customer;
         }
@@ -41,9 +49,9 @@ public class CartInfoImplement implements CartInfoService {
                 String slug = product.getSlug();
                 String color = product.getColor();
                 String size = product.getSize();
-                int amount = product.getAmount();
+                int quantity = product.getQuantity();
                 long price= product.getPrice();
-                cartInfoRepo.add(cart_id, product_id, slug, color, size, amount, price);
+                cartInfoRepo.add(cart_id, product_id, slug, color, size, quantity, price);
             }
         }
         catch (Exception e){

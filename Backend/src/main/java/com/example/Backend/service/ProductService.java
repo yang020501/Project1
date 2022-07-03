@@ -10,6 +10,7 @@ public interface ProductService {
     public List<ProductDto> getAll_byCateID(String id_cate);
     public List<ProductDto> getProduct_byCateSlug(String categorySlug);
     public List<ProductDto> getProduct_bySlug(String slug);
+    public List<ProductDto> getAll_SaleProduct();
 
     public void add(ProductDto product);
     public void update(ProductDto product);

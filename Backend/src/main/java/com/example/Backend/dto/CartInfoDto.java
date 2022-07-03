@@ -9,7 +9,7 @@ public class CartInfoDto implements Serializable {
     private final String slug;
     private final String color;
     private final String size;
-    private final int amount;
+    private final int quantity;
     private final long price;
 
     public CartInfoDto(String cart_id, String product_id, String slug, String color, String size, int amount, long price) {
@@ -18,7 +18,7 @@ public class CartInfoDto implements Serializable {
         this.slug = slug;
         this.color = color;
         this.size = size;
-        this.amount = amount;
+        this.quantity = amount;
         this.price = price;
     }
 
@@ -28,7 +28,7 @@ public class CartInfoDto implements Serializable {
         this.slug = slug;
         this.color = color;
         this.size = size;
-        this.amount = amount;
+        this.quantity = amount;
         this.price = price;
     }
 
@@ -52,8 +52,8 @@ public class CartInfoDto implements Serializable {
         return size;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
     public long getPrice() {
@@ -70,13 +70,13 @@ public class CartInfoDto implements Serializable {
                 Objects.equals(this.slug, entity.slug) &&
                 Objects.equals(this.color, entity.color) &&
                 Objects.equals(this.size, entity.size) &&
-                Objects.equals(this.amount, entity.amount) &&
+                Objects.equals(this.quantity, entity.quantity) &&
                 Objects.equals(this.price, entity.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cart_id, product_id, slug, color, size, amount, price);
+        return Objects.hash(cart_id, product_id, slug, color, size, quantity, price);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class CartInfoDto implements Serializable {
                 "slug = " + slug + ", " +
                 "color = " + color + ", " +
                 "size = " + size + ", " +
-                "amount = " + amount + ", " +
+                "quantity = " + quantity + ", " +
                 "price = " + price + ")";
     }
 }

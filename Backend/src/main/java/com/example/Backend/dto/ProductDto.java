@@ -16,8 +16,9 @@ public class ProductDto implements Serializable {
     private final String colors;
     private final String size;
     private final String descriptions;
+    private final int sale;
 
-    public ProductDto(String id, String title, String id_cate, String categorySlug, String gender, String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
+    public ProductDto(String id, String title, String id_cate, String categorySlug, String gender, String image1, String image2, long price, String slug, String colors, String size, String descriptions, int sale) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
@@ -30,6 +31,7 @@ public class ProductDto implements Serializable {
         this.colors = colors;
         this.size = size;
         this.descriptions = descriptions;
+        this.sale = sale;
     }
 
     public String getId() {
@@ -80,6 +82,10 @@ public class ProductDto implements Serializable {
         return descriptions;
     }
 
+    public int getSale() {
+        return sale;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,12 +102,13 @@ public class ProductDto implements Serializable {
                 Objects.equals(this.slug, entity.slug) &&
                 Objects.equals(this.colors, entity.colors) &&
                 Objects.equals(this.size, entity.size) &&
-                Objects.equals(this.descriptions, entity.descriptions);
+                Objects.equals(this.descriptions, entity.descriptions) &&
+                Objects.equals(this.sale, entity.sale);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, id_cate, categorySlug, gender, image1, image2, price, slug, colors, size, descriptions);
+        return Objects.hash(id, title, id_cate, categorySlug, gender, image1, image2, price, slug, colors, size, descriptions, sale);
     }
 
     @Override
@@ -118,6 +125,7 @@ public class ProductDto implements Serializable {
                 "slug = " + slug + ", " +
                 "colors = " + colors + ", " +
                 "size = " + size + ", " +
-                "descriptions = " + descriptions + ")";
+                "descriptions = " + descriptions + ", " +
+                "sale = " + sale + ")";
     }
 }

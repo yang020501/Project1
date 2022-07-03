@@ -1,6 +1,7 @@
 package com.example.Backend.controller;
 
 import com.example.Backend.RandomGenerate;
+import com.example.Backend.dto.CartDto;
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.dto.CartInfoResponeDto;
 import com.example.Backend.dto.CartRequestDto;
@@ -61,8 +62,8 @@ public class CartController {
     @GetMapping("/{customer_id}")
     private Object getAll_byCustomerID(@PathVariable String customer_id){
         try{
-            List<String> cart_id = cartService.getId_byCustomerID(customer_id);
-            return new ResponseEntity<List<CartInfoResponeDto>>(cartInfoService.getAll_byCartID(cart_id), HttpStatus.OK);
+            List<CartDto> list_cart = cartService.getCart_byCustomerID(customer_id);
+            return new ResponseEntity<List<CartInfoResponeDto>>(cartInfoService.getAll_byCartID(list_cart), HttpStatus.OK);
         }
         catch (Exception e){
             e.printStackTrace();
