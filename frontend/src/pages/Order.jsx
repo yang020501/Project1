@@ -99,6 +99,7 @@ const Order = () => {
                     type: "success"
                 }))
                 dispatch(removeAll())
+                navigate("/")
 
             }
             else {
