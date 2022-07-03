@@ -132,6 +132,8 @@ const Header = () => {
                                             // nếu logout ở quá trình đặt hàng thì bay về /cart
                                             if (location.pathname === "/order")
                                                 navigate('/cart')
+                                            if (location.pathname === "/customer")
+                                                navigate('/')
                                         }}
                                     >
                                         Đăng xuất

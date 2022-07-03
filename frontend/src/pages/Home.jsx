@@ -9,30 +9,35 @@ import Grid from '../components/Grid'
 import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
 import banner from '../assets/images/banner.png'
-import { apiUrl } from '../utils/constant'
-import axios from 'axios'
+
 import { getAllProduct } from '../redux/product/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
+
 const Home = () => {
-  const dispatch = useDispatch()
   const productData = useSelector(state => state.productSlice.value)
-  useEffect(() => {
-    dispatch(getAllProduct())
-  }, [])
-  console.log(productData);
+  const productSale = useSelector(state => state.saleSlice.value)
+
   const getProducts = (count) => {
-    const max = productData.length - count
+    let find = (item) => {
+      let count = 0
+      for (let i = 0; i < productSale.length; i++) {
+        if (productSale[i].sale_product.id === item.id)
+          count++
+      }
+      if (count > 0) {
+        return false
+      }
+      else return true
+    }
+    let rs = productData.filter(find)
+    const max = rs.length - count
     const min = 0
     const start = Math.floor(Math.random() * (max - min) + min)
-    return productData.slice(start, start + count)
+    return rs.slice(start, start + count)
   }
   return (
     <Helmet title='Trang chủ'>
       <HeroSlider data={heroSliderData} control={true} auto={true} timeOut={3000} />
-      <span>
-
-
-      </span>
       <Section>
         <SectionBody>
           <Grid
@@ -68,7 +73,9 @@ const Home = () => {
             gap={20}
           >
             {
+
               getProducts(4).map((item, index) => (
+
                 <ProductCard
                   key={index}
                   img01={item.image1}
@@ -78,8 +85,8 @@ const Home = () => {
                   price={item.price}
                 >
                 </ProductCard>
-              )
-              )
+              ))
+
             }
 
           </Grid>
@@ -135,6 +142,7 @@ const Home = () => {
             gap={20}
           >
             {
+
               getProducts(12).map((item, index) => (
                 <ProductCard
                   key={index}

@@ -3,9 +3,15 @@ import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import { useSelector, useDispatch } from 'react-redux'
 import address from '../assets/fake-data/address.json'
+import { getCart } from '../redux/user/userState'
+import { getAllProduct } from '../redux/product/productSlice'
+import numberWithCommas from '../utils/numberWithCommas'
 const CustomerInfo = () => {
 
     const user = useSelector(state => state.userState.user)
+    const cart = useSelector(state => state.userState.cart)
+    const products = useSelector(state => state.productSlice.value)
+    console.log(products);
     const initialForm = {
         customer_name: user.customer_name ? user.customer_name : "",
         email: user.username,
@@ -57,10 +63,19 @@ const CustomerInfo = () => {
         })
 
     }
+    const getProductName = (slug) => {
+        console.log(slug);
+        let rs = products.filter(item => item.slug === slug)[0]
+        return rs.title
+    }
     // submit change customer information
     const handleSubmit = async () => {
 
     }
+    useEffect(() => {
+        dispatch(getCart())
+        dispatch(getAllProduct())
+    }, [])
     useEffect(() => {
         if (address1) {
             if (address.filter(item => item.Name === address1)[0])
@@ -72,12 +87,12 @@ const CustomerInfo = () => {
             provinceRef.current.classList.remove('active')
             provinceInvalidRef.current.classList.remove('active')
         }
+
     }, [address1, Province])
     useEffect(() => {
         if (address2) {
             if (District.filter(item => item.Name === address2)[0])
                 setWard(District.filter(item => item.Name === address2)[0].Wards)
-
         }
         else
             setWard([])
@@ -107,43 +122,33 @@ const CustomerInfo = () => {
                             <thead>
                                 <tr>
                                     <th >Đơn hàng</th>
-                                    <th >First</th>
-                                    <th >Last</th>
-                                    <th >Handle</th>
+                                    <th >Ngày</th>
+                                    <th >Tình trạng</th>
+                                    <th >Tổng</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th> Sản phẩm</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th >1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th >2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th >3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <th >3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <th >3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                {
+                                    cart ? cart.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{item.cart_id}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{item.list_product.map((product, index) => {
+                                                return (
+                                                    <div>{`${product.product_id} - ${getProductName(product.slug)} - 
+                                                    ${product.color} - ${product.size} - ${numberWithCommas(product.price)}đ`}</div>
+                                                )
+                                            })}</td>
+                                        </tr>
+                                    )) : <></>
+                                }
+
                             </tbody>
                         </Table>
                     </div>

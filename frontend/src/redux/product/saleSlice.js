@@ -1,13 +1,13 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 import { apiUrl } from "../../utils/constant";
 
 
-export const getAllProduct = createAsyncThunk(
-    'product/getAllProduct',
+export const getAllSale = createAsyncThunk(
+    'product/getAllSale',
     async (data, { rejectWithValue }) => {
-        const rs = await axios.get(`${apiUrl}/product`)
+        const rs = await axios.get(`${apiUrl}/product/sale`)
         if (rs.status < 200 || rs.status >= 300) {
             return rejectWithValue(rs.data)
         }
@@ -15,8 +15,8 @@ export const getAllProduct = createAsyncThunk(
     }
 
 )
-export const productSlice = createSlice({
-    name: 'productSlice',
+export const saleSlice = createSlice({
+    name: 'saleSlice',
     initialState: {
         value: []
     },
@@ -24,12 +24,12 @@ export const productSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        builder.addCase(getAllProduct.fulfilled, (state, action) => {
+        builder.addCase(getAllSale.fulfilled, (state, action) => {
             state.value = action.payload
         })
-      
+
     }
 
 
 })
-export default productSlice.reducer
+export default saleSlice.reducer

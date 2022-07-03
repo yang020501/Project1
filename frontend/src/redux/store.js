@@ -8,6 +8,7 @@ import productSlice from "./product/productSlice";
 import userState from "./user/userState";
 import accessoriesSlice from "./product/accessoriesSlice";
 import clothesSlice from "./product/clothesSlice";
+import saleSlice from "./product/saleSlice";
 
 export const store = configureStore({
     reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
         productSlice: productSlice,
         userState: userState,
         accessoriesSlice: accessoriesSlice,
-        clothesSlice: clothesSlice
+        clothesSlice: clothesSlice,
+        saleSlice: saleSlice
 
     }
 })

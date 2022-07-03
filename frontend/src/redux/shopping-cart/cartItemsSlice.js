@@ -49,6 +49,10 @@ export const cartItemsSlice = createSlice({
             const item = action.payload
             state.value = delItem(state.value, item)
             localStorage.setItem('cartItems', JSON.stringify(sortItems(state.value)))
+        },
+        removeAll: (state) => {
+            state.value = []
+            localStorage.setItem('cartItems', JSON.stringify(sortItems(state.value)))
         }
     }
 })
@@ -59,6 +63,6 @@ const delItem = (arr, item) => arr.filter(e => e.slug !== item.slug || e.color !
 
 const sortItems = (arr) => arr.sort((a, b) => a.id > b.id ? 1 : (a.id < b.id ? -1 : 0))
 
-export const { addItem, updateItem, removeItem} = cartItemsSlice.actions
+export const { addItem, updateItem, removeItem ,removeAll} = cartItemsSlice.actions
 
 export default cartItemsSlice.reducer

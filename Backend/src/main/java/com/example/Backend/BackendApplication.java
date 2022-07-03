@@ -1,6 +1,5 @@
 package com.example.Backend;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -29,16 +28,16 @@ public class BackendApplication {
 			http.cors().and().csrf().disable();
 		}
 	}
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*");
+				registry.addMapping("/**").allowedMethods("GET", "POST", "PATCH", "DELETE")
+						.allowedOrigins("*").allowedHeaders("*");
 			}
 		};
 	}
-
-
 
 }
