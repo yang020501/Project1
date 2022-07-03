@@ -1,6 +1,7 @@
 package com.example.Backend.service.imple;
 
 import com.example.Backend.dto.CartInfoDto;
+import com.example.Backend.dto.CartInfoResponeDto;
 import com.example.Backend.dto.CartRequestDto;
 import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartInfoRepo;
@@ -17,11 +18,12 @@ public class CartInfoImplement implements CartInfoService {
     private CartInfoRepo cartInfoRepo;
 
     @Override
-    public List<CartInfoDto> getAll_byCartID(List<String> list_cart_id) {
+    public List<CartInfoResponeDto> getAll_byCartID(List<String> list_cart_id) {
         try {
-            List<CartInfoDto> list_product_buy_by_customer = new ArrayList<>();
+            List<CartInfoResponeDto> list_product_buy_by_customer = new ArrayList<>();
             for (String cart_id : list_cart_id) {
-                list_product_buy_by_customer.addAll(cartInfoRepo.getAll_byCartID(cart_id));
+                CartInfoResponeDto cart_info = new CartInfoResponeDto(cart_id, cartInfoRepo.getAll_byCartID(cart_id));
+                list_product_buy_by_customer.add(cart_info);
             }
             return list_product_buy_by_customer;
         }

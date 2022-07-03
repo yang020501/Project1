@@ -26,17 +26,9 @@ public class UserController {
             boolean find = userService.checkLogin(user.getUsername(), user.getPassword(), list_user);
 
             if(find){
-                UserDto tmp = userService.find_byUserName(user.getUsername());
-                User login_user = new User();
-                login_user.setId(tmp.getId());
-                login_user.setUsername(tmp.getUsername());
-                login_user.setCustomer_name(tmp.getCustomer_name());
-                login_user.setPhone(tmp.getPhone());
-                login_user.setHouse_address(tmp.getHouse_address());
-                login_user.setAddress1(tmp.getAddress1());
-                login_user.setAddress2(tmp.getAddress2());
-                login_user.setAddress3(tmp.getAddress3());
-                return new ResponseEntity<User>(login_user, HttpStatus.ACCEPTED);
+                UserDto login_user = userService.find_byUserName(user.getUsername());
+                login_user.setPassword(null);
+                return new ResponseEntity<UserDto>(login_user, HttpStatus.ACCEPTED);
             }
           
             return new ResponseEntity<String>("Login false", HttpStatus.FOUND);
@@ -90,15 +82,40 @@ public class UserController {
     public Object update(@RequestBody UserDto userDto) {
         try {
             String id = userDto.getId();
+            UserDto u = userService.find_byID(id);
             String customer_name = userDto.getCustomer_name();
+            if(userDto.getUsername().isEmpty()){
+                customer_name = u.getCustomer_name();
+            }
+
             String phone = userDto.getPhone();
+            if(userDto.getPhone().isEmpty()){
+                phone = u.getPhone();
+            }
+
             String house_address = userDto.getHouse_address();
+            if(userDto.getHouse_address().isEmpty()){
+                house_address = u.getHouse_address();
+            }
+
             String address1 = userDto.getAddress1();
+            if(userDto.getAddress1().isEmpty()){
+                address1 = u.getAddress1();
+            }
             String address2 = userDto.getAddress2();
+            if(userDto.getAddress2().isEmpty()){
+                address2 = u.getAddress1();
+            }
+
             String address3 = userDto.getAddress3();
+            if(userDto.getAddress3().isEmpty()){
+                address3 = u.getAddress1();
+            }
 
             userService.update_information(customer_name, phone, house_address, address1, address2, address3, id);
-            return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+            UserDto refresh_user = userService.find_byID(id);
+            refresh_user.setPassword(null);
+            return new ResponseEntity<UserDto>(refresh_user, HttpStatus.OK);
         }
         catch (Exception e) {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);

@@ -22,7 +22,8 @@ public class User {
     private String address3;
 
 
-    public User(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+    public User(String id, String username, String password, String customer_name, String phone, String house_address,
+                String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -34,7 +35,8 @@ public class User {
         this.address3 = address3;
     }
 
-    public User(String id, String username, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+    public User(String id, String username, String customer_name, String phone, String house_address, String address1,
+                String address2, String address3) {
         this.id = id;
         this.username = username;
         this.customer_name = customer_name;

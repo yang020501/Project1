@@ -2,6 +2,7 @@ package com.example.Backend.controller;
 
 import com.example.Backend.RandomGenerate;
 import com.example.Backend.dto.CartInfoDto;
+import com.example.Backend.dto.CartInfoResponeDto;
 import com.example.Backend.dto.CartRequestDto;
 import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartRepo;
@@ -22,7 +23,6 @@ import java.util.Random;
 public class CartController {
     @Autowired
     private CartService cartService;
-
     @Autowired
     private CartInfoService cartInfoService;
 
@@ -62,7 +62,7 @@ public class CartController {
     private Object getAll_byCustomerID(@PathVariable String customer_id){
         try{
             List<String> cart_id = cartService.getId_byCustomerID(customer_id);
-            return new ResponseEntity<List<CartInfoDto>>(cartInfoService.getAll_byCartID(cart_id), HttpStatus.OK);
+            return new ResponseEntity<List<CartInfoResponeDto>>(cartInfoService.getAll_byCartID(cart_id), HttpStatus.OK);
         }
         catch (Exception e){
             e.printStackTrace();
