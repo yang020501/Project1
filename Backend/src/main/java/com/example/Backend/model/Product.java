@@ -22,9 +22,10 @@ public class Product {
     private String colors;
     private String size;
     private String descriptions;
+    private int sale;
 
-    public Product(String id, String title, String id_cate, String categorySlug, String gender,
-                   String image1, String image2, long price, String slug, String colors, String size, String descriptions) {
+    public Product(String id, String title, String id_cate, String categorySlug, String gender, String image1,
+                   String image2, long price, String slug, String colors, String size, String descriptions, int sale) {
         this.id = id;
         this.title = title;
         this.id_cate = id_cate;
@@ -37,6 +38,7 @@ public class Product {
         this.colors = colors;
         this.size = size;
         this.descriptions = descriptions;
+        this.sale = sale;
     }
 
     public long getPrice() {
@@ -152,5 +154,13 @@ public class Product {
 
     public void setCategorySlug(String categorySlug) {
         this.categorySlug = categorySlug;
+    }
+
+    public int getSale() {
+        return sale;
+    }
+
+    public void setSale(int sale) {
+        this.sale = sale;
     }
 }

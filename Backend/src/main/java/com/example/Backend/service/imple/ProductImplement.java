@@ -39,6 +39,11 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
+    public List<ProductDto> getAll_SaleProduct() {
+        return productRepo.getAllSaleProduct();
+    }
+
+    @Override
     public void add(ProductDto product) {}
 
     @Override

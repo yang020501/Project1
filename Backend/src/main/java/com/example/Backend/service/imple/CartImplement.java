@@ -1,5 +1,6 @@
 package com.example.Backend.service.imple;
 
+import com.example.Backend.dto.CartDto;
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.model.Cart;
 import com.example.Backend.model.CartInfo;
@@ -19,7 +20,7 @@ public class CartImplement implements CartService {
     private CartRepo cartRepo;
 
     @Override
-    public List<Cart> getAll() {
+    public List<CartDto> getAll() {
         return null;
     }
 
@@ -29,7 +30,7 @@ public class CartImplement implements CartService {
             LocalDate create_date = LocalDate.now();
             long price = 0;
             for (CartInfo product : list_product) {
-                price += product.getPrice() * product.getAmount();
+                price += product.getPrice() * product.getQuantity();
             }
             cartRepo.add(cart_id, customer_id, address, create_date, price);
 
@@ -48,5 +49,10 @@ public class CartImplement implements CartService {
     @Override
     public List<String> getId_byCustomerID(String customer_id) {
         return cartRepo.getId_byCustomerID(customer_id);
+    }
+
+    @Override
+    public List<CartDto> getCart_byCustomerID(String customer_id) {
+        return cartRepo.getCart_byCustomerID(customer_id);
     }
 }

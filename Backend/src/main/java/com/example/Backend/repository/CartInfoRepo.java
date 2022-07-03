@@ -14,10 +14,10 @@ import java.util.List;
 public interface CartInfoRepo extends JpaRepository<CartInfo, Integer> {
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO CartInfo (cart_id, product_id, slug, color, size, amount, price) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)", nativeQuery = true)
-    public void add(String cart_id, String product_id, String slug, String color, String size, int amount, long price);
+    @Query(value = "INSERT INTO CartInfo (cart_id, product_id, slug, color, size, quantity, price) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)", nativeQuery = true)
+    public void add(String cart_id, String product_id, String slug, String color, String size, int quantity, long price);
 
-    @Query("SELECT new com.example.Backend.dto.CartInfoDto(p.cart_id, p.product_id, p.slug, p.color, p.size, p.amount, p.price) FROM CartInfo p" +
+    @Query("SELECT new com.example.Backend.dto.CartInfoDto(p.cart_id, p.product_id, p.slug, p.color, p.size, p.quantity, p.price) FROM CartInfo p" +
             " WHERE p.cart_id = ?1")
     public List<CartInfoDto> getAll_byCartID(String cart_id);
 }

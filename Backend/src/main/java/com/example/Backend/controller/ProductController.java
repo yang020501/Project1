@@ -88,5 +88,20 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/sale")
+    public Object getAll_SaleProduct(){
+        try {
+            List<ProductDto> product_list = productService.getAll_SaleProduct();
+            return new ResponseEntity<List<ProductDto>>(product_list, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
+
 
 }

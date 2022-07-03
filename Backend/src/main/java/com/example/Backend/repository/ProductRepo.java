@@ -11,24 +11,28 @@ import java.util.List;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, " +
-            "p.size, p.descriptions) FROM Product p")
+            "p.size, p.descriptions, p.sale) FROM Product p")
     List<ProductDto> getAll();
 
     @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
-            "p.descriptions) FROM Product p WHERE p.id = ?1")
+            "p.descriptions, p.sale) FROM Product p WHERE p.id = ?1")
     ProductDto getDetail_byID(String id);
 
     @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
-            "p.descriptions) FROM Product p WHERE p.id_cate = ?1")
+            "p.descriptions, p.sale) FROM Product p WHERE p.id_cate = ?1")
     List<ProductDto> getAll_byCateID(String id_cate);
 
     @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
-            "p.descriptions) FROM Product p WHERE p.categorySlug = ?1")
+            "p.descriptions, p.sale) FROM Product p WHERE p.categorySlug = ?1")
     List<ProductDto> getProduct_byCateSlug(String categorySlug);
 
     @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
-            "p.descriptions) FROM Product p WHERE p.slug = ?1")
+            "p.descriptions, p.sale) FROM Product p WHERE p.slug = ?1")
     List<ProductDto> getProduct_bySlug(String slug);
+
+    @Query("SELECT new com.example.Backend.dto.ProductDto(p.id, p.title, p.id_cate, p.categorySlug ,p.gender ,p.image1, p.image2, p.price, p.slug, p.colors, p.size," +
+            "p.descriptions, p.sale) FROM Product p WHERE p.sale > 0")
+    List<ProductDto> getAllSaleProduct();
 
 
 
