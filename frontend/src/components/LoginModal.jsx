@@ -57,11 +57,11 @@ const LoginModal = () => {
     }, [alert])
     useEffect(() => {
         if (user.user) {
-
             dispatch(removeLoginModal())
             setAlert(<Alert variant='success'>Đăng nhập thành công!</Alert>)
         }
-        else if (user.user === null) {
+        else if (user.errorMess) {
+            
             setAlert(<Alert variant='danger'>Tài khoản hoặc mật khẩu không đúng!</Alert>)
 
         }
@@ -80,7 +80,7 @@ const LoginModal = () => {
         >
             <ModalHeader closeButton>
                 <Modal.Title id="example-custom-modal-styling-title">
-                    Đăng nhập 
+                    Đăng nhập
                 </Modal.Title>
             </ModalHeader>
             <ModalBody>
