@@ -6,7 +6,7 @@ import java.util.Objects;
 public class UserDto implements Serializable {
     private final String id;
     private final String username;
-    private final String password;
+    private  String password;
     private final String customer_name;
     private final String phone;
     private final String house_address;
@@ -37,6 +37,11 @@ public class UserDto implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getCustomer_name() {
         return customer_name;
     }
