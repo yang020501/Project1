@@ -83,34 +83,36 @@ public class UserController {
         try {
             String id = userDto.getId();
             UserDto u = userService.find_byID(id);
+            System.out.println(userDto);
             String customer_name = userDto.getCustomer_name();
-            if(userDto.getUsername().isEmpty()){
+            if(userDto.getUsername() == null){
                 customer_name = u.getCustomer_name();
             }
 
             String phone = userDto.getPhone();
-            if(userDto.getPhone().isEmpty()){
+            if(userDto.getPhone() == null){
                 phone = u.getPhone();
             }
 
             String house_address = userDto.getHouse_address();
-            if(userDto.getHouse_address().isEmpty()){
+            if(userDto.getHouse_address() == null){
                 house_address = u.getHouse_address();
             }
 
             String address1 = userDto.getAddress1();
-            if(userDto.getAddress1().isEmpty()){
+            if(userDto.getAddress1() == null){
                 address1 = u.getAddress1();
             }
             String address2 = userDto.getAddress2();
-            if(userDto.getAddress2().isEmpty()){
+            if(userDto.getAddress2() == null){
                 address2 = u.getAddress1();
             }
 
             String address3 = userDto.getAddress3();
-            if(userDto.getAddress3().isEmpty()){
+            if(userDto.getAddress3() == null){
                 address3 = u.getAddress1();
             }
+
 
             userService.update_information(customer_name, phone, house_address, address1, address2, address3, id);
             UserDto refresh_user = userService.find_byID(id);

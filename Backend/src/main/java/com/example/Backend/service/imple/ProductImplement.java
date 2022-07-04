@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.Backend.repository.ProductRepo;
 import com.example.Backend.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,6 +42,25 @@ public class ProductImplement implements ProductService {
     @Override
     public List<ProductDto> getAll_SaleProduct() {
         return productRepo.getAllSaleProduct();
+    }
+
+    @Override
+    public List<ProductDto> getClothes() {
+        List<ProductDto> list = productRepo.getAll();
+        List<ProductDto> clothes = new ArrayList<>();
+        try{
+            for(ProductDto product : list){
+                if(product.getCategorySlug().contains("quan") || product.getCategorySlug().contains("ao")){
+                    clothes.add(product);
+                }
+            }
+
+            return clothes;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
