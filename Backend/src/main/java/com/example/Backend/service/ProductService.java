@@ -12,6 +12,7 @@ public interface ProductService {
     public List<ProductDto> getProduct_bySlug(String slug);
     public List<ProductDto> getAll_SaleProduct();
     public List<ProductDto> getClothes();
+    public List<ProductDto> getAccessory();
 
     public void add(ProductDto product);
     public void update(ProductDto product);
