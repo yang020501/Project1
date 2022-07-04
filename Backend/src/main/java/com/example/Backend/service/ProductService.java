@@ -11,6 +11,7 @@ public interface ProductService {
     public List<ProductDto> getProduct_byCateSlug(String categorySlug);
     public List<ProductDto> getProduct_bySlug(String slug);
     public List<ProductDto> getAll_SaleProduct();
+    public List<ProductDto> getClothes();
 
     public void add(ProductDto product);
     public void update(ProductDto product);
