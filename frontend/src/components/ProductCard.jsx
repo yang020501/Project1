@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 const ProductCard = props => {
     const productSale = useSelector(state => state.saleSlice.value)
-    
+
     const dispatch = useDispatch()
     return (
         <div className='product-card'>
@@ -22,10 +22,19 @@ const ProductCard = props => {
                 </div>
                 <h3 className='product-card-name'>{props.name}</h3>
                 <div className="product-card-price">
-                    {numberWithCommas(Number((props.price)))} đ
-                    {/*  <span className='product-card-price-old'>
-                        <del>{numberWithCommas(props.price + 70000)} đ</del>
-                    </span> */}
+                    {
+                        props.sale ?
+                            (
+                                <div>
+                                    {numberWithCommas(Number((props.price - props.price * props.sale / 100)))} đ
+                                    <span className='product-card-price-old'>
+                                        <del>{numberWithCommas(props.price)} đ</del>
+                                    </span>
+                                </div>)
+                            :
+                            <div>{numberWithCommas(Number((props.price)))} đ</div>
+                    }
+
                 </div>
             </Link>
             <div className="product-card-btn">
@@ -47,7 +56,8 @@ ProductCard.propTypes = {
     img02: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    slug: PropTypes.string.isRequired
+    slug: PropTypes.string.isRequired,
+    sale: PropTypes.number
 }
 
 export default ProductCard

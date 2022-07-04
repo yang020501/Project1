@@ -11,11 +11,13 @@ import Button from "../components/Button"
 import axios from 'axios'
 import { apiUrl } from '../utils/constant'
 import { removeAll } from '../redux/shopping-cart/cartItemsSlice'
+import { getAllSale } from '../redux/product/saleSlice'
 const Order = () => {
     let navigate = useNavigate()
     const user = useSelector(state => state.userState.user)
     const cartItems = useSelector((state) => state.cartItems.value)
     const productList = useSelector(state => state.productSlice.value)
+    const productSale = useSelector(state => state.saleSlice.value)
     const initialForm = {
         email: user.username,
         phone: Number(user.phone) ? Number(user.phone) : "",
@@ -25,6 +27,7 @@ const Order = () => {
         address3: user.address3 ? user.address3 : ""
     }
     const dispatch = useDispatch()
+
     const infoRef = useRef(null)
     const addressRef = useRef(null)
     const provinceRef = useRef(null)
@@ -41,6 +44,7 @@ const Order = () => {
     const [Ward, setWard] = useState([])
     const [cartProducts, setcartProducts] = useState([])
     const [totalPrice, settotalPrice] = useState(0)
+    const [tmpPrice, settmpPrice] = useState(0)
 
 
     const getCartItemsInfo = (cartItems) => {
@@ -72,7 +76,7 @@ const Order = () => {
                     slug: item.slug,
                     color: item.color,
                     size: item.size,
-                    amount: item.quantity,
+                    quantity: item.quantity,
                     price: item.price
                 }
                 return tmp
@@ -80,7 +84,7 @@ const Order = () => {
             if (!user.phone) {
                 let data = {
                     id: user.id,
-                    phone: phone
+                    phone: String(phone)
                 }
                 await axios.patch(`${apiUrl}/user/update`, data)
             }
@@ -188,10 +192,18 @@ const Order = () => {
     }, [address3])
     useEffect(() => {
         setcartProducts(getCartItemsInfo(cartItems))
-        settotalPrice(cartItems.reduce((total, item) => total + (Number(item.quantity) * Number(item.price)), 0))
+        settotalPrice(cartItems.reduce((total, item) => {
+            let findSale = productSale.find(element => element.slug === item.slug)
+            if (findSale) {
+                return total + (Number(item.quantity) * Number(item.price - item.price * findSale.sale / 100))
+            }
+            return total + (Number(item.quantity) * Number(item.price))
+        }, 0))
+        settmpPrice(cartItems.reduce((total, item) => total + (Number(item.quantity) * Number(item.price)), 0))
     }, [cartItems, productList])
     useEffect(() => {
         dispatch(getAllProduct())
+        dispatch(getAllSale())
     }, [])
     return (
         <div className='order'>
@@ -363,7 +375,7 @@ const Order = () => {
                                 Tạm tính
                             </div>
                             <div className='order-rightcontent-content-fee-item-right'>
-                                {numberWithCommas(Number(totalPrice))} đ
+                                {numberWithCommas(Number(tmpPrice))} đ
                             </div>
                         </div>
                         <div className="order-rightcontent-content-fee-item">
@@ -372,6 +384,14 @@ const Order = () => {
                             </div >
                             <div className='order-rightcontent-content-fee-item-right' >
                                 {totalPrice > 279000 ? "0" : numberWithCommas(Number(25000))} đ
+                            </div>
+                        </div>
+                        <div className="order-rightcontent-content-fee-item">
+                            <div className='order-rightcontent-content-fee-item-left' >
+                                Giảm giá
+                            </div >
+                            <div className='order-rightcontent-content-fee-item-right' >
+                                {totalPrice === tmpPrice ? "0" : numberWithCommas(Number(totalPrice - tmpPrice))} đ
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ const ProductView = props => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const convert = (product) => {
-        
+
         if (product) {
             return {
                 ...product,
@@ -132,7 +132,17 @@ const ProductView = props => {
                 </h1>
                 <div className="product-info-item">
                     <span className='product-info-item-price'>
-                        {numberWithCommas(Number(product.price))} đ
+
+                        {product.sale ?
+                            (
+                                <div>
+                                    {numberWithCommas(Number((product.price - product.price * product.sale / 100)))} đ
+                                    <span className='product-card-price-old'>
+                                        <del>{numberWithCommas(product.price)} đ</del>
+                                    </span>
+                                </div>)
+                            :
+                            <div>{numberWithCommas(Number((product.price)))} đ</div>} 
                     </span>
                 </div>
                 <div className="product-info-item">

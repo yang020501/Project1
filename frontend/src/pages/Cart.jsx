@@ -8,10 +8,12 @@ import numberWithCommas from '../utils/numberWithCommas'
 import { getAllProduct } from '../redux/product/productSlice'
 import { setAlert } from '../redux/alert-message/alertMessage'
 import { setLoginModal } from '../redux/login-sign_modal/loginSlice'
+import { getAllSale } from '../redux/product/saleSlice'
 
 const Cart = () => {
 
   const cartItems = useSelector((state) => state.cartItems.value)
+  const productSale = useSelector(state => state.saleSlice.value)
   const [cartProducts, setcartProducts] = useState([])
   const [totalProducts, settotalProducts] = useState(0)
   const [totalPrice, settotalPrice] = useState(0)
@@ -62,10 +64,17 @@ const Cart = () => {
   useEffect(() => {
     setcartProducts(getCartItemsInfo(cartItems))
     settotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0))
-    settotalPrice(cartItems.reduce((total, item) => total + (Number(item.quantity) * Number(item.price)), 0))
+    settotalPrice(cartItems.reduce((total, item) => {
+      let findSale = productSale.find(element => element.slug === item.slug)
+      if (findSale) {
+        return total + (Number(item.quantity) * Number(item.price - item.price * findSale.sale / 100))
+      }
+      return total + (Number(item.quantity) * Number(item.price))
+    }, 0))
   }, [cartItems, productList])
   useEffect(() => {
     dispatch(getAllProduct())
+    dispatch(getAllSale())
   }, [])
   return (
     <Helmet title="Giỏ hàng">

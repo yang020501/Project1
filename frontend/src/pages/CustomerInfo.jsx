@@ -11,7 +11,6 @@ const CustomerInfo = () => {
     const user = useSelector(state => state.userState.user)
     const cart = useSelector(state => state.userState.cart)
     const products = useSelector(state => state.productSlice.value)
-    console.log(products);
     const initialForm = {
         customer_name: user.customer_name ? user.customer_name : "",
         email: user.username,
@@ -141,8 +140,12 @@ const CustomerInfo = () => {
                                             <td></td>
                                             <td>{item.list_product.map((product, index) => {
                                                 return (
-                                                    <div>{`${product.product_id} - ${getProductName(product.slug)} - 
-                                                    ${product.color} - ${product.size} - ${numberWithCommas(product.price)}đ`}</div>
+                                                    <div key={index}>
+                                                        {
+                                                            `${product.product_id} - ${getProductName(product.slug)} - 
+                                                    ${product.color} - ${product.size} ${product.sale} - ${numberWithCommas(product.price)}đ`
+                                                        }
+                                                    </div>
                                                 )
                                             })}</td>
                                         </tr>

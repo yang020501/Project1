@@ -9,32 +9,24 @@ import Grid from '../components/Grid'
 import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
 import banner from '../assets/images/banner.png'
-
+import { getAllSale } from '../redux/product/saleSlice'
 import { getAllProduct } from '../redux/product/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
+  let dispatch = useDispatch()
   const productData = useSelector(state => state.productSlice.value)
   const productSale = useSelector(state => state.saleSlice.value)
-
   const getProducts = (count) => {
-    let find = (item) => {
-      let count = 0
-      for (let i = 0; i < productSale.length; i++) {
-        if (productSale[i].sale_product.id === item.id)
-          count++
-      }
-      if (count > 0) {
-        return false
-      }
-      else return true
-    }
-    let rs = productData.filter(find)
-    const max = rs.length - count
+    const max = productData.length - count
     const min = 0
     const start = Math.floor(Math.random() * (max - min) + min)
-    return rs.slice(start, start + count)
+    return productData.slice(start, start + count)
   }
+  useEffect(() => {
+    dispatch(getAllProduct())
+    dispatch(getAllSale())
+  }, [])
   return (
     <Helmet title='Trang chủ'>
       <HeroSlider data={heroSliderData} control={true} auto={true} timeOut={3000} />
@@ -92,7 +84,41 @@ const Home = () => {
           </Grid>
         </SectionBody>
       </Section>
+      <Section>
+        <SectionTitle>
+          sản phẩm giảm giá
+        </SectionTitle>
+        <SectionBody>
+          <Grid
+            col={4}
+            mdCol={2}
+            smCol={1}
+            gap={20}
+          >
+            {
+              productSale.map((item, index) => (
+                <ProductCard
+                  key={index}
+                  img01={item.image1}
+                  img02={item.image2}
+                  name={item.title}
+                  slug={item.slug}
+                  price={item.price}
+                  sale={item.sale}
+                >
+                </ProductCard>
+              )
+              )
+            }
 
+          </Grid>
+        </SectionBody>
+      </Section>
+      <Section>
+        <Link to="/catalog">
+          <img src={banner} alt="" />
+        </Link>
+      </Section>
       <Section>
         <SectionTitle>
           sản phẩm mới
@@ -113,6 +139,7 @@ const Home = () => {
                   name={item.title}
                   slug={item.slug}
                   price={item.price}
+
                 >
                 </ProductCard>
               )
@@ -123,11 +150,6 @@ const Home = () => {
         </SectionBody>
       </Section>
 
-      <Section>
-        <Link to="/catalog">
-          <img src={banner} alt="" />
-        </Link>
-      </Section>
 
 
       <Section>
