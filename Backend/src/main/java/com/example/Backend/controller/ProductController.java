@@ -99,6 +99,28 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/clothes")
+    public Object getAll_Clothes(){
+        try {
+            List<ProductDto> product_list = productService.getClothes();
+            return new ResponseEntity<List<ProductDto>>(product_list, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/accessories")
+    public Object getAll_Accessory(){
+        try {
+            List<ProductDto> product_list = productService.getAccessory();
+            return new ResponseEntity<List<ProductDto>>(product_list, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 
 

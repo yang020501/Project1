@@ -64,6 +64,25 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
+    public List<ProductDto> getAccessory() {
+        List<ProductDto> list = productRepo.getAll();
+        List<ProductDto> accessory = new ArrayList<>();
+        try{
+            for(ProductDto product : list){
+                if(!(product.getCategorySlug().contains("quan") || product.getCategorySlug().contains("ao"))){
+                    accessory.add(product);
+                }
+            }
+
+            return accessory;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public void add(ProductDto product) {}
 
     @Override
