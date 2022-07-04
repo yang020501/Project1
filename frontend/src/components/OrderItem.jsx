@@ -21,7 +21,17 @@ const OrderItem = props => {
                     {`${item.product.title} - ${item.color} - ${item.size}`}
                 </div>
                 <div className="cart-item-info-price">
-                    {numberWithCommas(Number(item.product.price))} đ
+                    {item.product.sale ?
+                        (
+                            <div>
+                                {numberWithCommas(Number((item.product.price - item.product.price * item.product.sale / 100)))} đ
+                                <span className='product-card-price-old'>
+                                    <del>{numberWithCommas(item.product.price)} đ</del>
+                                </span>
+                            </div>)
+                        :
+                        <div>{numberWithCommas(Number((item.product.price)))} đ</div>
+                    }
                 </div>
                 <div className="cart-item-info-quantity">
                     <div className="product-info-item-quantity">
