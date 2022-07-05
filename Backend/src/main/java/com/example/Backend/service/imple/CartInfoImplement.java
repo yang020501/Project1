@@ -30,6 +30,7 @@ public class CartInfoImplement implements CartInfoService {
                 cartInfoResponeDto.setCreate_date(cart.getCreate_date());
                 cartInfoResponeDto.setTotal(cart.getTotal());
                 cartInfoResponeDto.setStatus(cart.getStatus());
+                cartInfoResponeDto.setAddress(cart.getAddress());
 
                 list_product_buy_by_customer.add(cartInfoResponeDto);
             }
