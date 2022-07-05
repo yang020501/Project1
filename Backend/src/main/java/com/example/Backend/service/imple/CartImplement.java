@@ -25,14 +25,10 @@ public class CartImplement implements CartService {
     }
 
     @Override
-    public void add(String cart_id, String customer_id, String address, List<CartInfo> list_product) {
+    public void add(String cart_id, String customer_id, String address, List<CartInfo> list_product, long total) {
         try{
             LocalDate create_date = LocalDate.now();
-            long price = 0;
-            for (CartInfo product : list_product) {
-                price += product.getPrice() * product.getQuantity();
-            }
-            cartRepo.add(cart_id, customer_id, address, create_date, price);
+            cartRepo.add(cart_id, customer_id, address, create_date, total);
 
         }
         catch (Exception e){

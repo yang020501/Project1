@@ -48,7 +48,8 @@ public class CartController {
             String customer_id = cartRequestDto.getUserID();
             String address = cartRequestDto.getAddress();
             List<CartInfo> list = cartRequestDto.getList_product();
-            cartService.add(cart_new_id, customer_id, address, list);
+            long total = cartRequestDto.getTotal();
+            cartService.add(cart_new_id, customer_id, address, list, total);
             cartInfoService.add(list, cart_new_id);
             return new ResponseEntity<String>("Success", HttpStatus.CREATED);
         }
