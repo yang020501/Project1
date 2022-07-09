@@ -3,8 +3,10 @@ import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import { useSelector, useDispatch } from 'react-redux'
 import address from '../assets/fake-data/address.json'
-import { getCart } from '../redux/user/userState'
+import { getCart, updateUser } from '../redux/user/userState'
 import { getAllProduct } from '../redux/product/productSlice'
+import axios from 'axios'
+import { apiUrl } from '../utils/constant'
 import numberWithCommas from '../utils/numberWithCommas'
 const CustomerInfo = () => {
 
@@ -33,13 +35,12 @@ const CustomerInfo = () => {
 
     const [validated, setValidated] = useState(false)
     const [CustomerForm, setCustomerForm] = useState(initialForm)
-    const { customer_name, email, phone, address1, address2, address3, house_address } = CustomerForm
+    const { customer_name, phone, address1, address2, address3, house_address } = CustomerForm
     const [Province, SetProvince] = useState(address)
     const [District, setDistrict] = useState([])
     const [Ward, setWard] = useState([])
 
     const onCustomerFormChange = e => {
-        console.log(CustomerForm);
         setCustomerForm({
             ...CustomerForm,
             [e.target.name]: e.target.value
@@ -63,14 +64,25 @@ const CustomerInfo = () => {
 
     }
     const getProductName = (slug) => {
-        console.log(slug);
         let rs = products.filter(item => item.slug === slug)[0]
-        return rs.title
+        return rs ? rs.title : ""
+    }
+    const getProductSale = (slug) => {
+        let rs = products.filter(item => item.slug === slug)[0]
+        return rs ? rs.sale : ""
     }
     // submit change customer information
     const handleSubmit = async () => {
-
+        let data = {
+            id: user.id,
+            ...CustomerForm
+        }
+        let rs = await axios.patch(`${apiUrl}/user/update`, data)
+        dispatch(updateUser(rs.data))
     }
+    useEffect(() => {
+        handleSubmit()
+    }, [CustomerForm])
     useEffect(() => {
         dispatch(getCart())
         dispatch(getAllProduct())
@@ -106,6 +118,7 @@ const CustomerInfo = () => {
             wardInvalidRef.current.classList.remove('active')
         }
     }, [address3])
+
     return (
         <div className='customer-info'>
             <div className="customer-info-header">
@@ -116,8 +129,8 @@ const CustomerInfo = () => {
                     <div className="customer-info-content-left-header">
                         Lịch sử đơn hàng
                     </div>
-                    <div className="customer-info-content-left-table">
-                        <Table responsive hover striped variant='info'>
+                    <div className="customer-info-content-left-table " >
+                        <Table responsive hover striped variant='info' size='lg'  >
                             <thead>
                                 <tr>
                                     <th >Đơn hàng</th>
@@ -127,6 +140,7 @@ const CustomerInfo = () => {
                                     <th>Địa chỉ giao hàng</th>
                                     <th> Sản phẩm</th>
 
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,16 +148,16 @@ const CustomerInfo = () => {
                                     cart ? cart.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.cart_id}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>{item.list_product.map((product, index) => {
+                                            <td className='tdcell'>{item.create_date}</td>
+                                            <td className='tdcell'>{item.status}</td>
+                                            <td className='tdcell'>{numberWithCommas(item.total)}đ</td>
+                                            <td className='tdcell2'>{item.address}</td>
+                                            <td className='tdcell3'>{item.list_product.map((product, index) => {
                                                 return (
                                                     <div key={index}>
                                                         {
                                                             `${product.product_id} - ${getProductName(product.slug)} - 
-                                                    ${product.color} - ${product.size} ${product.sale} - ${numberWithCommas(product.price)}đ`
+                                                    ${product.color} - ${product.size} - sale: ${getProductSale(product.slug) ? `${getProductSale(product.slug)}%` : "none"} - ${numberWithCommas(product.price)}đ`
                                                         }
                                                     </div>
                                                 )
@@ -169,7 +183,7 @@ const CustomerInfo = () => {
                                     disabled
                                     required
                                     type="email"
-                                    defaultValue={email}
+                                    defaultValue={user.username}
                                     size="lg"
                                 />
                                 <Form.Control.Feedback type="invalid">

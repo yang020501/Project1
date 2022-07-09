@@ -12,8 +12,10 @@ import axios from 'axios'
 import { apiUrl } from '../utils/constant'
 import { removeAll } from '../redux/shopping-cart/cartItemsSlice'
 import { getAllSale } from '../redux/product/saleSlice'
+import { updateUserPart } from '../redux/user/userState'
 const Order = () => {
     let navigate = useNavigate()
+    const dispatch = useDispatch()
     const user = useSelector(state => state.userState.user)
     const cartItems = useSelector((state) => state.cartItems.value)
     const productList = useSelector(state => state.productSlice.value)
@@ -26,7 +28,7 @@ const Order = () => {
         address2: user.address2 ? user.address2 : "",
         address3: user.address3 ? user.address3 : ""
     }
-    const dispatch = useDispatch()
+
 
     const infoRef = useRef(null)
     const addressRef = useRef(null)
@@ -81,18 +83,24 @@ const Order = () => {
                 }
                 return tmp
             })
+            // save phone if account phone null
             if (!user.phone) {
                 let data = {
                     id: user.id,
                     phone: String(phone)
                 }
-                await axios.patch(`${apiUrl}/user/update`, data)
+                let rs = await axios.patch(`${apiUrl}/user/update`, data)
+                dispatch(updateUserPart({
+                    name: "phone",
+                    value: rs.data.phone
+                }))
             }
 
             let body = {
                 user_id: user.id,
                 address: `${house_address}, ${address3}, ${address2}, ${address1}`,
-                list_product: listtmp
+                list_product: listtmp,
+                total: totalPrice
 
             }
 

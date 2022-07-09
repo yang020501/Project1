@@ -41,6 +41,17 @@ export const userState = createSlice({
             state.user = null;
             state.errorMess = "";
             localStorage.removeItem('user')
+        },
+        updateUser: (state, action) => {
+            state.user = action.payload
+            localStorage.setItem('user', JSON.stringify(action.payload))
+        },
+        updateUserPart: (state, action) => {
+            state.user = {
+                ...state.user,
+                [action.payload.name]: action.payload.value
+            }
+            localStorage.setItem('user', JSON.stringify(state.user))
         }
     },
 
@@ -82,5 +93,5 @@ export const userState = createSlice({
 
 
 })
-export const { logout } = userState.actions
+export const { logout, updateUser,updateUserPart } = userState.actions
 export default userState.reducer

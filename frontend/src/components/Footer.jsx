@@ -31,16 +31,16 @@ const footerAboutLinks = [
 const footerCustomerLinks = [
   {
     display: "Chính sách đổi trả",
-    path: "/about"
+    path: "/policy/doi-tra"
   },
   {
     display: "Chính sách bảo hành",
-    path: "/about"
+    path: "/policy/bao-hanh"
   },
-  {
+ /*  {
     display: "Chính sách hoàn tiền",
-    path: "/about"
-  }
+    path: "/policy/hoan-tien"
+  } */
 ]
 
 
