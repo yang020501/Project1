@@ -45,12 +45,10 @@
             font-size: 15pt;
         }
 
-        &-left {
-            flex-grow: 1;
-        }
+
 
         &-right {
-
+            width: 100%;
 
             &-table {
 
@@ -76,6 +74,7 @@
                     }
                 }
 
+
                 .active {
                     border-color: #DC3545;
                 }
@@ -86,6 +85,16 @@
             }
         }
 
+        &-left {
+            .table-responsive {
+                overflow: auto;
+                max-height: 650px;
+               
+            }
+            
+        }
+
+
         &-right,
         &-left {
             padding: 1rem;
@@ -93,6 +102,10 @@
             &-table {
                 margin-top: 10px;
                 font-size: 12pt;
+
+
+
+
             }
 
             @include tablet {
