@@ -3,7 +3,6 @@ import axios from "axios";
 import { apiUrl } from "../../utils/constant";
 
 const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')) : null
-
 export const login = createAsyncThunk(
     'user/login',
     async (data, { rejectWithValue }) => {
