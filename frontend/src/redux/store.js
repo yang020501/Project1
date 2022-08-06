@@ -23,5 +23,6 @@ export const store = configureStore({
         clothesSlice: clothesSlice,
         saleSlice: saleSlice
 
-    }
+    },
+    devTools: true
 })
