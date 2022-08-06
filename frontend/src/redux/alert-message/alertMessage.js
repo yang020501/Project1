@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     message: "",
     type: "",
-    state: null
+    state: false
 }
 
 export const alertMessage = createSlice({
