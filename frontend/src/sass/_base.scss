@@ -44,6 +44,9 @@ a {
 a:hover {
     color: $main-color;
 }
+::after, ::before {
+    box-sizing: border-box;
+}
 
 @each $color,
 $val in $colors {
