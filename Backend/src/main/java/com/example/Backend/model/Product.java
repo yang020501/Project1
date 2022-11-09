@@ -23,6 +23,7 @@ public class Product {
     private String size;
     private String descriptions;
     private int sale;
+    private boolean active;
 
     public Product(String id, String title, String id_cate, String categorySlug, String gender, String image1,
                    String image2, long price, String slug, String colors, String size, String descriptions, int sale) {
@@ -39,6 +40,7 @@ public class Product {
         this.size = size;
         this.descriptions = descriptions;
         this.sale = sale;
+        this.active = true;
     }
 
     public long getPrice() {
@@ -162,5 +164,13 @@ public class Product {
 
     public void setSale(int sale) {
         this.sale = sale;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

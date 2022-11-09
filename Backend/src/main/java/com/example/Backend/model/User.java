@@ -1,11 +1,13 @@
 package com.example.Backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.util.Collection;
 
 @Entity(name = "Users")
 @Table(name = "Users")
@@ -13,26 +15,40 @@ public class User {
     @Id
     private String id;
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    private String id_role;
     private String customer_name;
     private String phone;
     private String house_address;
     private String address1;
     private String address2;
     private String address3;
+    private boolean active;
 
+    public User() {
+    }
 
-    public User(String id, String username, String password, String customer_name, String phone, String house_address,
+    public User(String id, String username, String password, String id_role){
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.id_role = id_role;
+    }
+
+    public User(String id, String username, String password, String id_role, String customer_name, String phone, String house_address,
                 String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.id_role = id_role;
         this.customer_name = customer_name;
         this.phone = phone;
         this.house_address = house_address;
         this.address1 = address1;
         this.address2 = address2;
         this.address3 = address3;
+        this.active = true;
     }
 
     public User(String id, String username, String customer_name, String phone, String house_address, String address1,
@@ -47,7 +63,7 @@ public class User {
         this.address3 = address3;
     }
 
-    public User() {
+    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
     }
 
     public String getId() {
@@ -120,5 +136,21 @@ public class User {
 
     public void setAddress3(String address3) {
         this.address3 = address3;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(String id_role) {
+        this.id_role = id_role;
     }
 }

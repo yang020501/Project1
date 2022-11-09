@@ -4,6 +4,7 @@ import com.example.Backend.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.example.Backend.service.ProductService;
 
@@ -25,7 +26,7 @@ public class ProductController {
         }
         catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -37,7 +38,7 @@ public class ProductController {
             return new ResponseEntity<ProductDto>(product, HttpStatus.OK);
         }
         catch (Exception e) {
-            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -120,6 +121,54 @@ public class ProductController {
             return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @Transactional
+    @PostMapping("/add-product")
+    public Object addProduct(@RequestBody ProductDto productDto){
+        try{
+            if(productService.check_Title_duplicate(productDto)){
+                return new ResponseEntity<String>("Duplicate name", HttpStatus.CONFLICT);
+            }
+
+            ProductDto product = productService.add(productDto);
+            return new ResponseEntity<ProductDto>(product, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Transactional
+    @PostMapping("/update-product")
+    public Object updateProduct(@RequestBody ProductDto productDto){
+        try{
+            if(productService.check_Title_duplicate(productDto)){
+                return new ResponseEntity<String>("Duplicate name", HttpStatus.CONFLICT);
+            }
+
+            ProductDto product = productService.update(productDto);
+            return new ResponseEntity<ProductDto>(product, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Transactional
+    @PostMapping("/delete-product")
+    public Object deleteProduct(@RequestBody ProductDto productDto){
+        try{
+            ProductDto product = productService.delete(productDto);
+            return new ResponseEntity<ProductDto>(product, HttpStatus.OK);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 
 

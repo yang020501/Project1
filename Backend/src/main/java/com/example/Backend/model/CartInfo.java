@@ -17,6 +17,7 @@ public class CartInfo {
     private String size;
     private int quantity;
     private long price;
+    private boolean active;
 
     public CartInfo() {
     }
@@ -29,6 +30,7 @@ public class CartInfo {
         this.size = size;
         this.quantity = amount;
         this.price = price;
+        this.active = true;
     }
 
     public CartInfo(String product_id, String slug, String color, String size, int amount, long price) {
@@ -38,6 +40,7 @@ public class CartInfo {
         this.size = size;
         this.quantity = amount;
         this.price = price;
+        this.active = true;
     }
 
     public String getSize() {
@@ -94,5 +97,13 @@ public class CartInfo {
 
     public void setPrice(long price) {
         this.price = price;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

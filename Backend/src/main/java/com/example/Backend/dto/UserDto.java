@@ -6,7 +6,8 @@ import java.util.Objects;
 public class UserDto implements Serializable {
     private final String id;
     private final String username;
-    private  String password;
+    private String password;
+    private final String id_role;
     private final String customer_name;
     private final String phone;
     private final String house_address;
@@ -14,10 +15,11 @@ public class UserDto implements Serializable {
     private final String address2;
     private final String address3;
 
-    public UserDto(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+    public UserDto(String id, String username, String password, String id_role,String customer_name, String phone, String house_address, String address1, String address2, String address3) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.id_role = id_role;
         this.customer_name = customer_name;
         this.phone = phone;
         this.house_address = house_address;
@@ -66,6 +68,10 @@ public class UserDto implements Serializable {
         return address3;
     }
 
+    public String getId_role() {
+        return id_role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,6 +80,7 @@ public class UserDto implements Serializable {
         return Objects.equals(this.id, entity.id) &&
                 Objects.equals(this.username, entity.username) &&
                 Objects.equals(this.password, entity.password) &&
+                Objects.equals(this.id_role, entity.id_role) &&
                 Objects.equals(this.customer_name, entity.customer_name) &&
                 Objects.equals(this.phone, entity.phone) &&
                 Objects.equals(this.house_address, entity.house_address) &&
@@ -84,7 +91,7 @@ public class UserDto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, customer_name, phone, house_address, address1, address2, address3);
+        return Objects.hash(id, username, password, id_role, customer_name, phone, house_address, address1, address2, address3);
     }
 
     @Override

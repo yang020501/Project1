@@ -1,6 +1,7 @@
 package com.example.Backend.service;
 
 import com.example.Backend.dto.ProductDto;
+import com.example.Backend.repository.ProductRepo;
 
 import java.util.List;
 
@@ -13,9 +14,10 @@ public interface ProductService {
     public List<ProductDto> getAll_SaleProduct();
     public List<ProductDto> getClothes();
     public List<ProductDto> getAccessory();
-
-    public void add(ProductDto product);
-    public void update(ProductDto product);
+    public boolean check_Title_duplicate(ProductDto product);
+    public ProductDto add(ProductDto product);
+    public ProductDto update(ProductDto product);
+    public ProductDto delete(ProductDto product);
 
 
 

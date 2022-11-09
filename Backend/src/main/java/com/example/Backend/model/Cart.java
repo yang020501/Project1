@@ -19,7 +19,7 @@ public class Cart {
     private LocalDate create_date;
     private long total;
     private String status;
-
+    private boolean active;
 
     public Cart() {
     }
@@ -31,6 +31,7 @@ public class Cart {
         this.create_date = create_date;
         this.total = total;
         this.status = status;
+        this.active = true;
     }
 
     public String getAddress() {
@@ -79,5 +80,13 @@ public class Cart {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

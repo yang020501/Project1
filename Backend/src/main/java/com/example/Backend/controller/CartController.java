@@ -2,11 +2,9 @@ package com.example.Backend.controller;
 
 import com.example.Backend.RandomGenerate;
 import com.example.Backend.dto.CartDto;
-import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.dto.CartInfoResponeDto;
 import com.example.Backend.dto.CartRequestDto;
 import com.example.Backend.model.CartInfo;
-import com.example.Backend.repository.CartRepo;
 import com.example.Backend.service.CartInfoService;
 import com.example.Backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.GeneratedValue;
 import java.util.List;
-import java.util.Random;
 
 @RequestMapping("/cart")
 @RestController

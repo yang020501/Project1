@@ -44,20 +44,21 @@ public class UserController {
     public Object sign(@RequestBody UserDto new_user) {
         try {
             List<UserDto> list_user = userService.getAll();
-            boolean find = userService.find_dublicate_username(new_user.getUsername(), list_user);
+            boolean find = userService.find_duplicate_username(new_user.getUsername(), list_user);
             if (find) {
                 return new ResponseEntity<String>("Can not sign in with this username", HttpStatus.BAD_REQUEST);
             }
             String id = RandomGenerate.GenerateId(5);
             String username = new_user.getUsername();
             String password = new_user.getPassword();
+            String id_role = new_user.getId_role();
             String customer_name = new_user.getCustomer_name();
             String phone = new_user.getPhone();
             String house_address = new_user.getHouse_address();
             String address1 = new_user.getAddress1();
             String address2 = new_user.getAddress2();
             String address3 = new_user.getAddress3();
-            userService.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
+            userService.add(id, username, password, id_role, customer_name, phone, house_address, address1, address2, address3);
 
             return new ResponseEntity<String>("Add a user successfully", HttpStatus.CREATED);
 

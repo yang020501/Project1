@@ -3,7 +3,6 @@ package com.example.Backend.service.imple;
 import com.example.Backend.dto.CartDto;
 import com.example.Backend.dto.CartInfoDto;
 import com.example.Backend.dto.CartInfoResponeDto;
-import com.example.Backend.dto.CartRequestDto;
 import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartInfoRepo;
 import com.example.Backend.service.CartInfoService;
@@ -40,6 +39,26 @@ public class CartInfoImplement implements CartInfoService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<CartInfoDto> delete_list_cartInfo(List<CartInfoDto> delete_list) {
+        return null;
+    }
+
+    @Override
+    public List<CartInfoDto> modify_list_cartInfo(List<CartInfoDto> modify_list) {
+        return null;
+    }
+
+    @Override
+    public CartInfoDto delete_cartInfo(CartInfoDto cartInfo) {
+        return null;
+    }
+
+    @Override
+    public CartInfoDto modify_cartInfo(CartInfoDto cartInfo) {
+        return null;
     }
 
     @Override

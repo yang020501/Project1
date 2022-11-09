@@ -1,8 +1,6 @@
 package com.example.Backend.service.imple;
 
 import com.example.Backend.dto.CartDto;
-import com.example.Backend.dto.CartInfoDto;
-import com.example.Backend.model.Cart;
 import com.example.Backend.model.CartInfo;
 import com.example.Backend.repository.CartRepo;
 import com.example.Backend.service.CartService;
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service

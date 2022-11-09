@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface CategoryService {
     public List<CategoryDto> getAll();
-    public void add(Category category);
-    public void update(Category category);
+    public String getDisplay_byId(String id);
+    public boolean check_Id(String id);
+    public boolean check_Display_duplicate(String display);
+    public CategoryDto add(CategoryDto category);
+    public CategoryDto update(CategoryDto category);
+    public CategoryDto delete(CategoryDto category);
 }
