@@ -1,21 +1,31 @@
 ﻿create database E_Commerce
 use E_Commerce
 
+create table Roles(
+	id varchar(5) primary key,
+	name varchar(50)
+)
+
 create table Users(
 	id varchar(5) primary key,
 	username varchar(50),
 	password varchar(50),
+	id_role varchar(5),
 	customer_name nvarchar(max),
 	phone varchar(20),
 	house_address nvarchar(100),
 	address1 nvarchar(100),
 	address2 nvarchar(100),
 	address3 nvarchar(100),
+	active bit default(1),
+
+	FOREIGN KEY (id_role) REFERENCES Roles(id)
 )
 
 create table Category(
 	id varchar(10) primary key,
 	display varchar(50),
+	active bit default(1),
 )
 
 create table Product(
@@ -32,6 +42,7 @@ create table Product(
 	size varchar(50),
 	descriptions nvarchar(max),
 	sale int default(0),
+	active bit default(1),
 
 	FOREIGN KEY (id_cate) REFERENCES Category(id)
 )
@@ -43,6 +54,7 @@ create table Cart(
 	create_date smalldatetime,
 	total int,
 	status nvarchar(50) default (N'đang chờ xữ lí'),
+	active bit default(1),
 
 	FOREIGN KEY (customer_id) REFERENCES Users(id)
 )
@@ -55,6 +67,7 @@ create table CartInfo(
 	size varchar(50),
 	quantity int,
 	price int,
+	active bit default(1),
 
 	primary key (cart_id, product_id, color, size),
 	foreign key (cart_id) references Cart(id),
@@ -62,8 +75,10 @@ create table CartInfo(
 )
 
 
+insert into Roles values('00001', 'admin')
+insert into Roles values('00002', 'staff')
+insert into Roles values('00003', 'customer')
 
-
-insert into Users values('aaaaa','admin','admin',N'Nguyễn Hoàng Thái Dương','0366330205',N'30 đường Lê Hồng Phong',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B')
-insert into Users values('aaaad','admin@gmail.com','admin',N'Nguyễn Hoàng Thái Dương','0366330205',N'481 Tỉnh Lộ 10',N'Thành phố Hồ Chí Minh',N'Quận Bình Tân',N'Phường Bình Trị Đông B')
+insert into Users values('aaaaa','admin','admin','00001',N'Nguyễn Hoàng Thái Dương','0366330205',N'30 đường Lê Hồng Phong',N'Hồ Chí Minh',N'Bình Tân',N'Bình trị Đông B', 1)
+insert into Users values('aaaad','admin@gmail.com','admin','00001',N'Nguyễn Hoàng Thái Dương','0366330205',N'481 Tỉnh Lộ 10',N'Thành phố Hồ Chí Minh',N'Quận Bình Tân',N'Phường Bình Trị Đông B', 1)
 

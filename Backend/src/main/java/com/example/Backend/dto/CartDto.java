@@ -11,6 +11,7 @@ public class CartDto implements Serializable {
     private final LocalDate create_date;
     private final long total;
     private final String status;
+    private final boolean active;
 
     public CartDto(String id, String customer_id, String address, LocalDate create_date, long total, String status) {
         this.id = id;
@@ -19,6 +20,7 @@ public class CartDto implements Serializable {
         this.create_date = create_date;
         this.total = total;
         this.status = status;
+        this.active = true;
     }
 
     public String getId() {
@@ -45,6 +47,10 @@ public class CartDto implements Serializable {
         return status;
     }
 
+    public boolean getActive() {
+        return active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,7 +66,7 @@ public class CartDto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer_id, address, create_date, total, status);
+        return Objects.hash(id, customer_id, address, create_date, total, status, active);
     }
 
     @Override
@@ -71,6 +77,6 @@ public class CartDto implements Serializable {
                 "address = " + address + ", " +
                 "create_date = " + create_date + ", " +
                 "total = " + total + ", " +
-                "status = " + status + ")";
+                "status = " + status;
     }
 }

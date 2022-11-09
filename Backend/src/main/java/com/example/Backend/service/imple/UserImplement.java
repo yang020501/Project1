@@ -4,12 +4,15 @@ import com.example.Backend.dto.UserDto;
 import com.example.Backend.repository.UserRepo;
 import com.example.Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserImplement implements UserService {
+public class UserImplement implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepo userRepo;
@@ -68,7 +71,7 @@ public class UserImplement implements UserService {
     }
 
     @Override
-    public boolean find_dublicate_username(String username, List<UserDto> list) {
+    public boolean find_duplicate_username(String username, List<UserDto> list) {
         try{
             if(list.isEmpty()){
                 return false;
@@ -89,9 +92,9 @@ public class UserImplement implements UserService {
     }
 
     @Override
-    public void add(String id, String username, String password, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
+    public void add(String id, String username, String password, String id_role, String customer_name, String phone, String house_address, String address1, String address2, String address3) {
         try{
-            userRepo.add(id, username, password, customer_name, phone, house_address, address1, address2, address3);
+            userRepo.add(id, username, password, id_role,customer_name, phone, house_address, address1, address2, address3);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -106,5 +109,18 @@ public class UserImplement implements UserService {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDto userDto = userRepo.find_byUserName(username);
+        if (userDto == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        String id = userDto.getId();
+        String password = userDto.getPassword();
+
+
+        return null;
     }
 }

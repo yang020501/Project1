@@ -18,6 +18,11 @@ public interface CartInfoRepo extends JpaRepository<CartInfo, Integer> {
     public void add(String cart_id, String product_id, String slug, String color, String size, int quantity, long price);
 
     @Query("SELECT new com.example.Backend.dto.CartInfoDto(p.cart_id, p.product_id, p.slug, p.color, p.size, p.quantity, p.price) FROM CartInfo p" +
-            " WHERE p.cart_id = ?1")
+            " WHERE p.cart_id = ?1 AND p.active = 1")
     public List<CartInfoDto> getAll_byCartID(String cart_id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE CartInfo SET active = 0 WHERE cart_id = ?1 AND product_id = ?2", nativeQuery = true)
+    public void delete(String cart_id, String product_id);
 }
